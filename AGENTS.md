@@ -155,6 +155,19 @@ This applies to all agents. No agent may skip validation to start the next phase
 
 ---
 
+## Worktree & Merge Workflow
+
+When working in a git worktree, **never merge directly into main locally**. Instead:
+
+1. **Commit** your changes in the worktree branch.
+2. **Push** the worktree branch to the remote.
+3. **Create a GitHub PR** (`gh pr create`) for Ken to review.
+4. **Merge on GitHub** — Ken will review and merge the PR on GitHub.
+
+This applies to all agents. No agent may bypass PR review by merging locally.
+
+---
+
 ## Requirements Tracking
 
 When Ken makes suggestions, asks questions, or adds ideas that affect how the app should work:
