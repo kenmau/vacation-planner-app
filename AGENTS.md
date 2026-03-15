@@ -204,6 +204,14 @@ This applies to all agents. Never silently propagate wireframe changes into requ
 
 ## Testing Requirements
 
+### Bug Fix Rule
+**Every bug fix must include a unit test that reproduces the bug.** No exceptions, project-wide, all agents.
+
+1. Write a failing test that reproduces the bug
+2. Fix the bug
+3. Confirm the test now passes
+4. Test name should describe the bug scenario (e.g., `should not crash when price is undefined`)
+
 ### TDD (test-first)
 Write tests **before** implementation for:
 - Segment connectivity validator
