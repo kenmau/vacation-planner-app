@@ -49,25 +49,25 @@
 
 ---
 
-## Phase 2 — Trip Structure ⏳
+## Phase 2 — Trip Structure ✅
 **Goal**: A user can create a trip through the wizard, see their segments on the Trip Overview, and navigate between views.
 
 ### Checklist
-- [ ] Wizard step 1 — trip name, origin city, duration (exact / flexible)
-- [ ] Wizard step 2 — segment builder: type picker, duration, location, running day counter, connectivity warning
-- [ ] Wizard step 3 — review summary → confirm → go to Trip Overview
-- [ ] Date overlap validation — every segment's start date = previous segment's end date
-- [ ] Trip Overview — sticky price header (total + breakdown by category)
-- [ ] Trip Overview — enhanced segment cards (colored border, type pill, dates, route, sub-rows)
-- [ ] Trip Overview — between-segment flight CTAs
-- [ ] Trip Overview — segment events toggle (show/hide events per card)
-- [ ] "Edit Trip Segments" button → wizard step 2
-- [ ] View history stack + back navigation working on all views
-- [ ] Bottom nav (Trips, Pack, Settings) + desktop top bar active state synced to current view
+- [x] Wizard step 1 — trip name, origin city, duration (exact / flexible)
+- [x] Wizard step 2 — segment builder: type picker, duration, location, running day counter, connectivity warning
+- [x] Wizard step 3 — review summary → confirm → go to Trip Overview
+- [x] Date overlap validation — every segment's start date = previous segment's end date
+- [x] Trip Overview — sticky price header (total + breakdown by category)
+- [x] Trip Overview — enhanced segment cards (colored border, type pill, dates, route, sub-rows)
+- [x] Trip Overview — between-segment flight CTAs
+- [x] Trip Overview — segment events toggle (show/hide events per card)
+- [x] "Edit Trip Segments" button → wizard step 2
+- [x] View history stack + back navigation working on all views
+- [x] Bottom nav (Trips, Pack, Settings) + desktop top bar active state synced to current view
 
 **End-of-phase validation**: Ask Ken to walk through creating a trip and confirm the overview looks and feels right.
 
-**Validated by Ken**: ⏳
+**Validated by Ken**: ✅ 2026-03-15
 
 ---
 
@@ -227,7 +227,7 @@
 |-------|-------------|--------|
 | 0 | Wireframe & Requirements | ✅ |
 | 1 | Foundation | ✅ |
-| 2 | Trip Structure | ⏳ |
+| 2 | Trip Structure | ✅ |
 | 3 | Calendar & Day Detail | ⏳ |
 | 4 | Cruise Module | ⏳ |
 | 5 | Land & Accommodations | ⏳ |

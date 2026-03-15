@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Trip, Segment, DayEvent } from '@/lib/types';
@@ -26,9 +27,21 @@ interface TripActions {
   popView: () => void;
 }
 
+/** Whether the persist middleware has finished hydrating from localStorage */
+export const useTripStoreHydrated = () => {
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    const unsub = useTripStore.persist.onFinishHydration(() => setHydrated(true));
+    // If already hydrated (e.g. same session navigation), set immediately
+    if (useTripStore.persist.hasHydrated()) setHydrated(true);
+    return unsub;
+  }, []);
+  return hydrated;
+};
+
 export const useTripStore = create<TripState & TripActions>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       // State
       trips: [],
       activeTrip: null,

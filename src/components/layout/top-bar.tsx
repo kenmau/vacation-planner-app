@@ -3,11 +3,22 @@
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Backpack, Settings } from "lucide-react";
+import { useTripStore } from "@/lib/stores/trip-store";
+import { useWizardStore } from "@/lib/stores/wizard-store";
 
 /** Page title mapping */
-function getPageTitle(pathname: string): string {
+function getPageTitle(
+  pathname: string,
+  activeTripName: string | null,
+  isEditing: boolean
+): string {
   if (pathname === "/" || pathname === "/dashboard") return "Vacation Planner";
-  if (pathname.startsWith("/trip-overview")) return "Trip Overview";
+  if (pathname.startsWith("/trip-overview")) {
+    return activeTripName ?? "Trip Overview";
+  }
+  if (pathname.startsWith("/wizard")) {
+    return isEditing ? "Edit Trip" : "New Trip";
+  }
   if (pathname.startsWith("/cruise-browse")) return "Cruise Browse";
   if (pathname.startsWith("/cruise-detail")) return "Cruise Detail";
   if (pathname.startsWith("/cruise-compare")) return "Compare Ships";
@@ -16,11 +27,10 @@ function getPageTitle(pathname: string): string {
   if (pathname.startsWith("/travel")) return "Travel";
   if (pathname.startsWith("/packing")) return "Packing List";
   if (pathname.startsWith("/settings")) return "Settings";
-  if (pathname.startsWith("/wizard")) return "New Trip";
   return "Vacation Planner";
 }
 
-/** Whether to show the back button on mobile */
+/** Whether to show the back button */
 function shouldShowBack(pathname: string): boolean {
   return pathname !== "/" && pathname !== "/dashboard";
 }
@@ -28,12 +38,26 @@ function shouldShowBack(pathname: string): boolean {
 export function TopBar() {
   const pathname = usePathname();
   const router = useRouter();
-  const title = getPageTitle(pathname);
+  const activeTripName = useTripStore((s) => s.activeTrip?.name ?? null);
+  const isEditing = useWizardStore((s) => s.isEditing);
+  const title = getPageTitle(pathname, activeTripName, isEditing);
   const showBack = shouldShowBack(pathname);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-14 max-w-[900px] items-center gap-3 px-4">
+        {/* Desktop back button — hidden on mobile */}
+        {showBack && (
+          <button
+            onClick={() => router.back()}
+            className="hidden lg:flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Go back"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back</span>
+          </button>
+        )}
+
         {/* Mobile back button */}
         {showBack && (
           <button
