@@ -47,10 +47,12 @@ export function SegmentTypePicker({ value, onChange }: SegmentTypePickerProps) {
       <SelectContent>
         {SEGMENT_TYPES.map((type) => (
           <SelectItem key={type.id} value={type.id}>
-            <span
-              className={`inline-block size-2.5 rounded-full shrink-0 ${DOT_COLOR_MAP[type.color] ?? 'bg-gray-500'}`}
-            />
-            <span>{type.name}</span>
+            <span className="flex items-center gap-1.5">
+              <span
+                className={`inline-block size-2.5 rounded-full shrink-0 ${DOT_COLOR_MAP[type.color] ?? 'bg-gray-500'}`}
+              />
+              <span>{type.name}</span>
+            </span>
           </SelectItem>
         ))}
       </SelectContent>
