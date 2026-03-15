@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vacation Planner — Interactive Wireframe</title>
+<style>
+/* ── Reset & Base ─────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#4f46e5;--primary-light:#818cf8;--primary-dark:#3730a3;
+  --bg:#e8edf5;--surface:#fff;--surface-2:#f1f5f9;--border:#e2e8f0;--text:#1e293b;--text-secondary:#64748b;
+  --cruise:#3b82f6;--land:#22c55e;--adventure:#f97316;--beach:#eab308;
+  --cultural:#a855f7;--safari:#b45309;--roadtrip:#64748b;--backpacking:#059669;
+  --ski:#06b6d4;--river:#2563eb;--island:#14b8a6;--wellness:#ec4899;
+  --radius:12px;--shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
+button{cursor:pointer;font:inherit;border:none;background:none}
+input,select{font:inherit;border:1px solid var(--border);border-radius:8px;padding:10px 14px;width:100%;background:var(--surface)}
+input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+
+/* ── Layout Shell ─────────────────────────────────────────── */
+.app{display:flex;flex-direction:column;min-height:100dvh}
+.main{flex:1;padding:16px 16px 80px;max-width:1200px;margin:0 auto;width:100%}
+.view{display:none}
+.view.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── Top Header ───────────────────────────────────────────── */
+.top-header{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;background:var(--primary);color:#fff;position:sticky;top:0;z-index:100}
+.top-header h1{font-size:1.15rem;font-weight:700;letter-spacing:-.02em}
+.top-header .back-btn{display:none;background:none;color:#fff;font-size:1.3rem;margin-right:8px;padding:4px}
+.top-header .back-btn.show{display:inline-flex}
+.top-header .left{display:flex;align-items:center}
+.gear-btn{background:none;color:#fff;font-size:1.3rem;padding:4px}
+
+/* ── Bottom Nav (mobile) ──────────────────────────────────── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);
+  border-top:1px solid var(--border);display:flex;z-index:100;padding:4px 0 env(safe-area-inset-bottom,4px)}
+.bottom-nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:8px 4px;font-size:.65rem;color:var(--text-secondary);transition:color .15s}
+.bottom-nav button .icon{font-size:1.3rem}
+.bottom-nav button.active{color:var(--primary);font-weight:600}
+
+/* ── Desktop back button in content area ─────────────────── */
+.desktop-back{display:none}
+@media(min-width:900px){
+  .desktop-back{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;
+    color:var(--primary);margin-bottom:12px;cursor:pointer;padding:4px 0}
+  .desktop-back:hover{color:var(--primary-dark)}
+  .desktop-back.hidden{display:none!important}
+}
+
+/* ── Desktop Top Bar ──────────────────────────────────────── */
+.desktop-topbar{display:none}
+@media(min-width:900px){
+  .desktop-topbar{display:flex;align-items:center;justify-content:space-between;
+    padding:12px 32px;background:var(--primary-dark);color:#fff;position:sticky;top:0;z-index:100}
+  .desktop-topbar .trip-title{font-size:1rem;font-weight:700;letter-spacing:-.02em}
+  .desktop-topbar .gear-btn-dt{background:none;color:#fff;font-size:1.25rem;padding:4px;cursor:pointer}
+  .bottom-nav{display:none}
+  .top-header{display:none}
+  .main{padding:28px 32px 40px;max-width:900px}
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.12);
+  padding:20px;margin-bottom:16px;border:1px solid var(--border)}
+.card-grid{display:grid;gap:16px}
+@media(min-width:600px){.card-grid.cols-2{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.card-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .card-grid.cols-4{grid-template-columns:repeat(4,1fr)}}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 24px;border-radius:10px;font-weight:600;font-size:.95rem;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-outline{border:2px solid var(--primary);color:var(--primary)}
+.btn-outline:hover{background:rgba(79,70,229,.06)}
+.btn-sm{padding:8px 16px;font-size:.85rem;border-radius:8px}
+.btn-block{width:100%}
+.btn-danger{background:#ef4444;color:#fff}
+.btn-secondary{background:#e2e8f0;color:var(--text)}
+
+/* ── Badges ───────────────────────────────────────────────── */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:600}
+.badge-mock{background:#fef3c7;color:#92400e}
+.badge-verified{background:#dbeafe;color:#1e40af}
+.badge-live{background:#dcfce7;color:#166534}
+
+/* ── Progress Bar ─────────────────────────────────────────── */
+.progress{height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden}
+.progress .bar{height:100%;border-radius:99px;transition:width .4s ease}
+
+/* ── Tabs ─────────────────────────────────────────────────── */
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--border);margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs button{padding:10px 18px;font-size:.88rem;color:var(--text-secondary);white-space:nowrap;
+  border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tabs button.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+
+/* ── Segment Colors ───────────────────────────────────────── */
+.seg-cruise{background:var(--cruise);color:#fff}
+.seg-land{background:var(--land);color:#fff}
+.seg-adventure{background:var(--adventure);color:#fff}
+.seg-beach{background:var(--beach);color:#fff}
+.seg-cultural{background:var(--cultural);color:#fff}
+.seg-safari{background:var(--safari);color:#fff}
+
+/* ── Specific Components ──────────────────────────────────── */
+.trip-card{position:relative;overflow:hidden}
+.trip-card .trip-accent{position:absolute;left:0;top:0;bottom:0;width:5px}
+.trip-card .trip-body{padding-left:12px}
+.trip-card h3{font-size:1.05rem;margin-bottom:4px}
+.trip-card .meta{font-size:.82rem;color:var(--text-secondary);margin-bottom:8px}
+.trip-card .price{font-size:1.15rem;font-weight:700;color:var(--primary)}
+
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-secondary)}
+.empty-state .icon{font-size:3rem;margin-bottom:12px}
+
+/* Price Header */
+.price-header{background:var(--primary-dark);color:#fff;padding:16px 20px;border-radius:var(--radius);margin-bottom:16px;position:sticky;top:56px;z-index:50}
+.price-header .total{font-size:1.6rem;font-weight:800}
+.price-header .breakdown{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px;font-size:.78rem;opacity:.85}
+@media(min-width:900px){.price-header{top:0}}
+
+/* Calendar Timeline */
+.calendar-timeline{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 0 16px;margin-bottom:16px}
+.cal-track{display:flex;gap:3px;min-width:max-content}
+.cal-day{width:54px;flex-shrink:0;text-align:center;border-radius:8px;padding:6px 4px;font-size:.7rem}
+.cal-day .day-num{font-weight:700;font-size:.85rem}
+.cal-day .weather{font-size:1rem}
+.cal-day .city{font-size:.6rem;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Map Placeholder */
+.map-placeholder{background:#e2e8f0;border-radius:var(--radius);height:200px;display:flex;
+  align-items:center;justify-content:center;color:var(--text-secondary);font-size:.9rem;margin-bottom:16px;
+  position:relative;overflow:hidden}
+.map-placeholder .route{position:absolute;top:50%;left:10%;right:10%;height:3px;background:var(--cruise);border-radius:2px}
+.map-placeholder .route::after{content:'';position:absolute;top:-4px;right:0;width:10px;height:10px;
+  background:var(--adventure);border-radius:50%}
+
+/* Segment Type Grid */
+.seg-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+@media(min-width:600px){.seg-type-grid{grid-template-columns:repeat(4,1fr)}}
+.seg-type-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;
+  border-radius:10px;border:2px solid var(--border);font-size:.72rem;font-weight:500;transition:all .15s}
+.seg-type-btn:hover{border-color:var(--primary-light);background:rgba(79,70,229,.04)}
+.seg-type-btn.selected{border-color:var(--primary);background:rgba(79,70,229,.08);color:var(--primary)}
+.seg-type-btn .icon{font-size:1.4rem}
+
+/* Segment Card */
+.segment-card{border-left:4px solid var(--cruise);padding-left:14px;margin-bottom:14px;position:relative}
+.segment-card .drag-handle{position:absolute;left:-28px;top:50%;transform:translateY(-50%);
+  color:#cbd5e1;font-size:1.1rem;cursor:grab}
+.segment-card h4{font-size:.95rem;margin-bottom:4px}
+
+/* Running Counter */
+.running-counter{background:#eef2ff;border-radius:10px;padding:12px 16px;margin-bottom:16px;
+  font-size:.88rem;font-weight:600;color:var(--primary-dark);text-align:center}
+
+/* Connectivity Warning */
+.conn-warning{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:12px 16px;
+  margin-bottom:16px;font-size:.85rem;color:#9a3412;display:flex;align-items:center;gap:8px}
+
+/* Timeline Visual */
+.timeline-visual{display:flex;height:40px;border-radius:10px;overflow:hidden;margin-bottom:20px}
+.timeline-block{display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:#fff}
+
+/* Ship / Activity Cards */
+.browse-card{position:relative}
+.browse-card .img-placeholder{height:120px;background:#e2e8f0;border-radius:10px;margin-bottom:10px;
+  display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:.85rem}
+.browse-card h4{font-size:.95rem;margin-bottom:2px}
+.browse-card .subtitle{font-size:.8rem;color:var(--text-secondary);margin-bottom:6px}
+.browse-card .price{font-size:1.1rem;font-weight:700;color:var(--primary)}
+.browse-card .stars{color:#f59e0b;font-size:.85rem;margin-bottom:6px}
+.browse-card .top-badge{position:absolute;top:12px;right:12px}
+
+/* Compare Table */
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;font-size:.85rem}
+.compare-table th,.compare-table td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.compare-table th{background:#f1f5f9;font-weight:600;position:sticky;left:0;z-index:2}
+.compare-table .best{color:#16a34a;font-weight:700}
+.compare-wrap{overflow-x:auto}
+
+/* Stateroom Cards */
+.stateroom-card{border:2px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;transition:all .15s}
+.stateroom-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow-md)}
+.stateroom-card.selected{border-color:var(--primary);background:rgba(79,70,229,.04)}
+.stateroom-card .room-icon{font-size:2rem;margin-bottom:8px}
+.stateroom-card .room-type{font-weight:600;font-size:.92rem;margin-bottom:4px}
+.stateroom-card .room-price{font-size:1.2rem;font-weight:800;color:var(--primary);margin-bottom:4px}
+
+/* Filter Bar */
+.filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;align-items:center}
+.filter-bar select,.filter-bar input{width:auto;flex:1;min-width:120px}
+
+/* Chip */
+.chip{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:999px;
+  font-size:.78rem;background:#f1f5f9;color:var(--text-secondary)}
+
+/* Packing */
+.pack-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.pack-item input[type=checkbox]{width:20px;height:20px;accent-color:var(--primary)}
+.pack-item.checked label{text-decoration:line-through;color:#94a3b8}
+.pack-category{font-size:.9rem;font-weight:700;color:var(--text-secondary);text-transform:uppercase;
+  letter-spacing:.05em;margin:18px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.smart-rec{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;
+  background:#f0fdf4;border-radius:10px;margin-bottom:8px;font-size:.88rem}
+
+/* Settings */
+.api-row{margin-bottom:14px}
+.api-row .api-label{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:4px}
+
+/* Compare floating button */
+.compare-float{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);z-index:90;
+  background:var(--primary);color:#fff;padding:12px 28px;border-radius:999px;font-weight:700;
+  font-size:.95rem;box-shadow:var(--shadow-lg);display:none;animation:slideUp .25s ease}
+@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@media(min-width:900px){.compare-float{bottom:28px}}
+
+/* Wizard Steps */
+.wizard-steps{display:flex;gap:4px;margin-bottom:24px}
+.wizard-step{flex:1;text-align:center;padding:10px 8px;font-size:.8rem;font-weight:600;
+  border-radius:8px;background:#e2e8f0;color:var(--text-secondary)}
+.wizard-step.active{background:var(--primary);color:#fff}
+.wizard-step.done{background:#c7d2fe;color:var(--primary-dark)}
+
+/* Toggle Switch */
+.toggle-group{display:flex;border:2px solid var(--border);border-radius:10px;overflow:hidden;margin:8px 0 16px}
+.toggle-group button{flex:1;padding:10px;font-size:.88rem;font-weight:500;transition:all .15s}
+.toggle-group button.active{background:var(--primary);color:#fff}
+
+/* Image Gallery Placeholder */
+.gallery-placeholder{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6px;height:180px;border-radius:var(--radius);overflow:hidden;margin-bottom:16px}
+.gallery-placeholder div{background:#e2e8f0;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:.8rem}
+.gallery-placeholder div:first-child{grid-row:span 2}
+
+/* Misc */
+.section-title{font-size:1.15rem;font-weight:700;margin-bottom:14px}
+.mb-8{margin-bottom:8px}.mb-12{margin-bottom:12px}.mb-16{margin-bottom:16px}.mb-20{margin-bottom:20px}.mb-24{margin-bottom:24px}
+.text-sm{font-size:.85rem}.text-xs{font-size:.78rem}
+.text-muted{color:var(--text-secondary)}
+.flex-between{display:flex;justify-content:space-between;align-items:center}
+.gap-8{gap:8px}.gap-12{gap:12px}
+.inline-flex{display:inline-flex;align-items:center}
+.w-full{width:100%}
+
+/* Physical level badge */
+.level-badge{padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:600}
+.level-easy{background:#dcfce7;color:#166534}
+.level-mod{background:#fef3c7;color:#92400e}
+.level-hard{background:#fee2e2;color:#991b1b}
+
+/* Responsive helpers */
+@media(max-width:599px){
+  .hide-mobile{display:none!important}
+}
+@media(min-width:600px){
+  .hide-desktop{display:none!important}
+}
+
+/* Enhanced Segment Cards */
+.seg-card-v2{cursor:pointer;padding-left:18px}
+.seg-card-v2 .seg-type-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 12px;border-radius:999px;font-size:.72rem;font-weight:700;color:#fff;margin-bottom:10px}
+.seg-card-v2 .seg-dates{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.seg-card-v2 .seg-dates .cal-icon{font-size:1rem}
+.seg-card-v2 .seg-route{font-size:.82rem;color:var(--text-secondary);margin-bottom:8px}
+.seg-card-v2 .seg-sub-row{display:flex;align-items:center;gap:6px;font-size:.82rem;padding:5px 0;border-top:1px solid var(--border);color:var(--text-secondary)}
+.seg-card-v2 .seg-sub-row .seg-sub-icon{font-size:.95rem}
+.seg-card-v2 .seg-sub-row.muted-tap{color:#94a3b8;font-style:italic}
+.seg-card-v2 .seg-price{font-size:1rem;font-weight:700;color:var(--primary);margin-top:8px}
+
+/* Tooltip */
+.tooltip-wrap{position:relative;display:inline-flex;align-items:center;gap:3px;cursor:help}
+.tooltip-wrap .tip-icon{font-size:.7rem;color:#94a3b8;user-select:none}
+.tooltip-wrap .tooltip-tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:#1e293b;color:#fff;font-size:.72rem;line-height:1.4;padding:6px 10px;border-radius:7px;
+  white-space:nowrap;max-width:220px;white-space:normal;width:220px;z-index:300;
+  opacity:0;pointer-events:none;transition:opacity .15s}
+.tooltip-wrap:hover .tooltip-tip{opacity:1}
+.tooltip-wrap .tooltip-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#1e293b}
+
+/* Specs Table */
+.specs-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px}
+.specs-table tr:nth-child(even) td,.specs-table tr:nth-child(even) th{background:var(--surface-2)}
+.specs-table td,.specs-table th{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.specs-table th{width:55%;color:var(--text-secondary);font-weight:500}
+.specs-table td{font-weight:600;color:var(--text)}
+.specs-table .specs-group-header td{background:var(--border);color:var(--text-secondary);
+  font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 12px;
+  colspan:2}
+
+/* Trip Context Header */
+.trip-context-header{margin-bottom:0}
+.trip-context-header .breadcrumb{font-size:.78rem;color:rgba(255,255,255,.75);margin-bottom:4px}
+.trip-context-header .breadcrumb a{color:rgba(255,255,255,.9);cursor:pointer;text-decoration:underline}
+
+/* Day Drawer */
+#dayDrawer{position:fixed;bottom:0;left:0;right:0;max-height:80vh;overflow-y:auto;
+  background:#fff;border-radius:20px 20px 0 0;z-index:200;
+  transform:translateY(100%);transition:transform .35s ease;padding:20px}
+#dayDrawer.open{transform:translateY(0)}
+#dayBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199;display:none}
+#dayBackdrop.show{display:block}
+.day-event{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.day-event .ev-time{font-size:.78rem;font-weight:700;color:var(--primary);min-width:62px}
+.day-event .ev-desc{flex:1;font-size:.88rem}
+.day-event .ev-actions{display:flex;gap:6px}
+.day-event .ev-actions button{font-size:1rem;color:var(--text-secondary);padding:2px 4px}
+.day-event .ev-cat{font-size:.7rem;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--text-secondary)}
+.add-event-form{background:var(--surface-2);border-radius:10px;padding:14px;margin-top:12px;display:none}
+.add-event-form.show{display:block}
+
+/* Between-segment Flight CTA */
+.between-seg-cta{display:flex;align-items:center;gap:10px;margin:4px 0 12px}
+.bsc-line{flex:1;height:1px;background:var(--border)}
+.bsc-inner{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.bsc-label{font-size:.75rem;color:var(--text-secondary)}
+.bsc-btn{white-space:nowrap;font-size:.75rem;padding:5px 12px}
+
+/* Custom Input Form (accommodations + transport) */
+.custom-input-section{border-top:2px dashed var(--border);padding-top:20px;margin-top:4px}
+.custom-input-section summary{font-weight:700;font-size:.9rem;cursor:pointer;
+  display:flex;align-items:center;gap:8px;padding:10px 0;color:var(--primary)}
+.custom-input-section summary::-webkit-details-marker{display:none}
+.custom-input-section summary::before{content:'＋';font-size:1rem}
+details[open].custom-input-section summary::before{content:'－'}
+.form-grid{display:grid;gap:12px;margin-top:16px}
+@media(min-width:600px){.form-grid.cols-2{grid-template-columns:repeat(2,1fr)}}
+.form-label{display:block;font-size:.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:5px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ── Desktop Top Bar ───────────────────────────────────── -->
+<div class="desktop-topbar">
+  <span class="trip-title">&#128506; Alaska 2026</span>
+  <button class="gear-btn-dt" onclick="showView('settings')">&#9881;</button>
+</div>
+
+<!-- ── Main Content ──────────────────────────────────────── -->
+<div class="main-wrap">
+
+<!-- Top Header (mobile) -->
+<header class="top-header">
+  <div class="left">
+    <button class="back-btn" id="backBtn" onclick="goBack()">&#8592;</button>
+    <h1 id="headerTitle">Vacation Planner</h1>
+  </div>
+  <button class="gear-btn" onclick="showView('settings')">&#9881;</button>
+</header>
+
+<main class="main">
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 1: DASHBOARD
+     ═══════════════════════════════════════════════════════ -->
+<section class="view active" id="view-dashboard">
+  <div class="flex-between mb-20">
+    <h2 class="section-title" style="margin-bottom:0">My Trips</h2>
+    <button class="btn btn-primary btn-sm" onclick="showView('wizard-1')">&#43; New Trip</button>
+  </div>
+
+  <!-- Trip Card: Alaska 2026 -->
+  <div class="card trip-card" onclick="showView('trip-overview')" style="cursor:pointer">
+    <div class="trip-accent" style="background:var(--cruise)"></div>
+    <div class="trip-body">
+      <div class="flex-between mb-8">
+        <h3>Alaska 2026</h3>
+        <span class="badge badge-verified">Verified &middot; Mar 14</span>
+      </div>
+      <div class="meta">Jun 15 &ndash; Jun 28, 2026 &middot; 14 days &middot; 3 segments</div>
+      <div class="flex-between mb-8">
+        <span class="price">$8,450 CAD</span>
+        <span class="text-sm text-muted">65% planned</span>
+      </div>
+      <div class="progress"><div class="bar" style="width:65%;background:var(--primary)"></div></div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="card empty-state">
+    <div class="icon">&#127757;</div>
+    <p style="font-weight:600;margin-bottom:4px">No more trips yet</p>
+    <p class="text-sm text-muted mb-16">Tap "New Trip" to start planning your next adventure</p>
+    <button class="btn btn-outline btn-sm" onclick="showView('wizard-1')">&#43; Create Trip</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 2: WIZARD STEP 1 — BASIC INFO
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-wizard-1">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <div class="wizard-steps mb-24">
+    <div class="wizard-step active">1. Basic Info</div>
+    <div class="wizard-step">2. Segments</div>
+    <div class="wizard-step">3. Review</div>
+  </div>
+  <h2 class="section-title">Trip Details</h2>
+  <div class="card">
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Trip Name</label>
+    <input type="text" placeholder="e.g. Alaska 2026" value="Alaska 2026" class="mb-16">
+
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Origin City</label>
+    <input type="text" value="Toronto, Canada" class="mb-16">
+
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Total Duration</label>
+    <div class="toggle-group" id="durationToggle">
+      <button class="active" onclick="setDurationMode(this,'exact')">Exact Days</button>
+      <button onclick="setDurationMode(this,'flexible')">Flexible &plusmn;X</button>
+    </div>
+    <div id="durationExact">
+      <input type="number" value="14" min="1" max="90" style="max-width:140px">
+      <span class="text-sm text-muted" style="margin-left:8px">days</span>
+    </div>
+    <div id="durationFlex" style="display:none">
+      <div class="flex-between mb-8">
+        <span class="text-sm">Target: 14 days</span>
+        <span class="text-sm text-muted">&plusmn; <span id="flexVal">3</span> days</span>
+      </div>
+      <input type="range" min="1" max="7" value="3" style="border:none;padding:0" oninput="document.getElementById('flexVal').textContent=this.value">
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block" onclick="showView('wizard-2')">Next &rarr;</button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 3: WIZARD STEP 2 — SEGMENT BUILDER
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-wizard-2">
+  <div class="wizard-steps mb-24">
+    <div class="wizard-step done">1. Basic Info</div>
+    <div class="wizard-step active">2. Segments</div>
+    <div class="wizard-step">3. Review</div>
+  </div>
+
+  <h2 class="section-title">Build Your Segments</h2>
+
+  <!-- Timeline bar -->
+  <div style="background:#e2e8f0;border-radius:10px;height:28px;position:relative;margin-bottom:8px;overflow:hidden;display:flex">
+    <div style="width:50%;background:var(--cruise);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:#fff">Cruise (7d)</div>
+    <div style="width:7.14%;background:var(--adventure);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;color:#fff">1d</div>
+  </div>
+  <div class="text-xs text-muted mb-16" style="text-align:right">14 total days</div>
+
+  <!-- Running Counter -->
+  <div class="running-counter" id="dayCounter">8 of 14 days allocated &mdash; 6 remaining</div>
+
+  <!-- Existing Segments -->
+  <div id="segmentList">
+    <div class="card segment-card" style="border-left-color:var(--cruise)">
+      <span class="drag-handle">&#9776;</span>
+      <div class="flex-between mb-8">
+        <h4>&#128674; Cruise</h4>
+        <span class="text-sm text-muted">7 days</span>
+      </div>
+      <div class="text-sm text-muted">Whittier &rarr; Juneau &rarr; Skagway &rarr; Glacier Bay &rarr; Seward</div>
+    </div>
+    <div class="card segment-card" style="border-left-color:var(--adventure)">
+      <span class="drag-handle">&#9776;</span>
+      <div class="flex-between mb-8">
+        <h4>&#9968; Adventure</h4>
+        <span class="text-sm text-muted">1 day</span>
+      </div>
+      <div class="text-sm text-muted">Kenai Fjords, Seward</div>
+    </div>
+  </div>
+
+  <!-- Connectivity Warning -->
+  <div class="conn-warning">
+    &#9888;&#65039; Gap: Whittier &rarr; Anchorage &mdash; Add transit segment?
+    <button class="btn btn-sm btn-outline" style="flex-shrink:0;margin-left:auto">Add</button>
+  </div>
+
+  <!-- Add Segment -->
+  <div class="card" id="addSegmentArea">
+    <h4 class="mb-12">Add Segment</h4>
+    <div class="seg-type-grid" id="segTypeGrid">
+      <button class="seg-type-btn" data-type="Cruise"><span class="icon">&#128674;</span>Cruise</button>
+      <button class="seg-type-btn" data-type="Land/Resort"><span class="icon">&#127968;</span>Land/Resort</button>
+      <button class="seg-type-btn" data-type="Adventure"><span class="icon">&#9968;</span>Adventure</button>
+      <button class="seg-type-btn" data-type="Beach"><span class="icon">&#127958;</span>Beach</button>
+      <button class="seg-type-btn" data-type="Cultural"><span class="icon">&#127963;</span>Cultural</button>
+      <button class="seg-type-btn" data-type="Safari"><span class="icon">&#129427;</span>Safari</button>
+      <button class="seg-type-btn" data-type="Road Trip"><span class="icon">&#128663;</span>Road Trip</button>
+      <button class="seg-type-btn" data-type="Backpacking"><span class="icon">&#127890;</span>Backpacking</button>
+      <button class="seg-type-btn" data-type="Ski"><span class="icon">&#9975;</span>Ski</button>
+      <button class="seg-type-btn" data-type="River Cruise"><span class="icon">&#128676;</span>River Cruise</button>
+      <button class="seg-type-btn" data-type="Island Hopping"><span class="icon">&#127965;</span>Island Hop</button>
+      <button class="seg-type-btn" data-type="Wellness/Spa"><span class="icon">&#128134;</span>Wellness</button>
+    </div>
+    <div class="mb-12">
+      <label class="text-sm" style="font-weight:600;display:block;margin-bottom:4px">Duration (days)</label>
+      <input type="number" value="3" min="1" max="30" style="max-width:120px" id="newSegDays">
+    </div>
+    <div class="mb-12">
+      <label class="text-sm" style="font-weight:600;display:block;margin-bottom:4px">Location</label>
+      <input type="text" placeholder="e.g. Denali National Park" id="newSegLoc">
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="addSegment()">&#43; Add Segment</button>
+  </div>
+
+  <button class="btn btn-primary btn-block" onclick="showView('wizard-3')">Next &rarr;</button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 4: WIZARD STEP 3 — REVIEW
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-wizard-3">
+  <div class="wizard-steps mb-24">
+    <div class="wizard-step done">1. Basic Info</div>
+    <div class="wizard-step done">2. Segments</div>
+    <div class="wizard-step active">3. Review</div>
+  </div>
+  <h2 class="section-title">Review Your Trip</h2>
+
+  <!-- Visual Timeline -->
+  <div class="timeline-visual mb-16">
+    <div class="timeline-block" style="flex:7;background:var(--cruise)">&#128674; Cruise (7d)</div>
+    <div class="timeline-block" style="flex:1;background:var(--adventure)">1d</div>
+    <div class="timeline-block" style="flex:3;background:var(--land)">&#127968; Land (3d)</div>
+    <div class="timeline-block" style="flex:3;background:#e2e8f0;color:var(--text-secondary)">3d free</div>
+  </div>
+
+  <div class="card mb-12">
+    <div class="flex-between mb-8">
+      <h4>&#128674; Cruise</h4>
+      <span class="text-sm text-muted">7 days &middot; Jun 15–21</span>
+    </div>
+    <p class="text-sm text-muted">Whittier &rarr; Juneau &rarr; Skagway &rarr; Glacier Bay &rarr; Seward</p>
+  </div>
+  <div class="card mb-12">
+    <div class="flex-between mb-8">
+      <h4>&#9968; Adventure</h4>
+      <span class="text-sm text-muted">1 day &middot; Jun 22</span>
+    </div>
+    <p class="text-sm text-muted">Kenai Fjords, Seward</p>
+  </div>
+  <div class="card mb-12">
+    <div class="flex-between mb-8">
+      <h4>&#127968; Land / Resort</h4>
+      <span class="text-sm text-muted">3 days &middot; Jun 23–25</span>
+    </div>
+    <p class="text-sm text-muted">Denali National Park</p>
+  </div>
+
+  <button class="btn btn-primary btn-block" onclick="showView('trip-overview')">Start Planning &rarr;</button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 5: TRIP OVERVIEW
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-trip-overview">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <!-- Price Header -->
+  <div class="price-header">
+    <div class="flex-between">
+      <div class="total">$8,450 CAD</div>
+      <span class="badge badge-live" style="font-size:.7rem">Live</span>
+    </div>
+    <div class="breakdown">
+      <span>Cruise $4,200</span><span>|</span>
+      <span>Flights $1,800</span><span>|</span>
+      <span>Hotels $1,200</span><span>|</span>
+      <span>Activities $750</span><span>|</span>
+      <span>Car $500</span>
+    </div>
+  </div>
+
+  <!-- Calendar Timeline -->
+  <h3 class="text-sm mb-8" style="font-weight:700">Itinerary Timeline</h3>
+  <div class="calendar-timeline">
+    <div class="cal-track" id="calTrack"></div>
+  </div>
+
+  <!-- Map SVG -->
+  <svg viewBox="0 0 800 300" width="100%" height="220" style="display:block;border-radius:var(--radius);margin-bottom:16px;background:#d4e9f7" xmlns="http://www.w3.org/2000/svg">
+    <!-- Ocean background already from fill -->
+    <!-- Landmass silhouette (stylized) -->
+    <path d="M0,300 L0,180 Q60,160 120,170 L180,140 Q220,120 260,130 L320,100 Q380,80 440,90 L500,70 Q560,55 620,65 L680,50 Q740,40 800,55 L800,300 Z" fill="#c8d8b0" opacity="0.6"/>
+    <path d="M0,300 L0,220 Q40,200 80,210 L130,185 Q170,168 210,175 L270,155 Q310,140 340,148 L380,138 Q410,128 430,134 L480,118 Q520,108 550,114 L600,100 Q640,92 670,98 L720,86 Q760,80 800,88 L800,300 Z" fill="#b8cc9a" opacity="0.5"/>
+    <!-- Route: Flight Toronto→Anchorage (dashed orange arc) -->
+    <path d="M60,240 Q200,60 380,130" stroke="#f97316" stroke-width="2.5" stroke-dasharray="8,5" fill="none"/>
+    <!-- Arrow on flight arc -->
+    <polygon points="380,130 368,120 372,134" fill="#f97316"/>
+    <!-- Route: Cruise Whittier→Seward (solid blue) -->
+    <path d="M380,130 Q420,160 450,150 Q480,140 510,155 Q530,162 545,155 Q560,148 575,158 Q590,168 605,160 Q620,152 640,165" stroke="#3b82f6" stroke-width="3" fill="none"/>
+    <!-- Route: Drive Seward→Denali (solid green) -->
+    <path d="M640,165 Q650,140 660,120 Q668,103 650,88" stroke="#22c55e" stroke-width="2.5" fill="none"/>
+    <!-- Route: Return flight Denali→Toronto (dashed orange arc) -->
+    <path d="M650,88 Q500,40 200,120 Q130,150 60,240" stroke="#f97316" stroke-width="2" stroke-dasharray="6,5" fill="none" opacity="0.7"/>
+    <!-- City dots & labels -->
+    <circle cx="60" cy="240" r="6" fill="#1e293b"/><text x="50" y="258" font-size="11" fill="#1e293b" text-anchor="middle" font-family="sans-serif">Toronto</text>
+    <circle cx="380" cy="130" r="6" fill="#1e293b"/><text x="380" y="118" font-size="11" fill="#1e293b" text-anchor="middle" font-family="sans-serif">Anchorage</text>
+    <circle cx="420" cy="155" r="5" fill="#3b82f6"/><text x="420" y="170" font-size="10" fill="#1e293b" text-anchor="middle" font-family="sans-serif">Whittier</text>
+    <circle cx="510" cy="155" r="5" fill="#3b82f6"/><text x="510" y="170" font-size="10" fill="#1e293b" text-anchor="middle" font-family="sans-serif">Juneau</text>
+    <circle cx="575" cy="158" r="5" fill="#3b82f6"/><text x="575" y="172" font-size="10" fill="#1e293b" text-anchor="middle" font-family="sans-serif">Skagway</text>
+    <circle cx="545" cy="148" r="4" fill="#3b82f6"/><text x="545" y="136" font-size="9" fill="#64748b" text-anchor="middle" font-family="sans-serif">Glacier Bay</text>
+    <circle cx="640" cy="165" r="6" fill="#3b82f6"/><text x="650" y="180" font-size="10" fill="#1e293b" text-anchor="middle" font-family="sans-serif">Seward</text>
+    <circle cx="650" cy="88" r="6" fill="#22c55e"/><text x="650" y="76" font-size="11" fill="#1e293b" text-anchor="middle" font-family="sans-serif">Denali</text>
+    <!-- Legend -->
+    <rect x="12" y="12" width="160" height="64" rx="7" fill="white" opacity="0.88"/>
+    <line x1="22" y1="30" x2="48" y2="30" stroke="#f97316" stroke-width="2.5" stroke-dasharray="6,4"/>
+    <text x="54" y="34" font-size="11" fill="#1e293b" font-family="sans-serif">&#9992; Flight</text>
+    <line x1="22" y1="48" x2="48" y2="48" stroke="#3b82f6" stroke-width="3"/>
+    <text x="54" y="52" font-size="11" fill="#1e293b" font-family="sans-serif">&#128674; Cruise</text>
+    <line x1="22" y1="66" x2="48" y2="66" stroke="#22c55e" stroke-width="2.5"/>
+    <text x="54" y="70" font-size="11" fill="#1e293b" font-family="sans-serif">&#128663; Drive</text>
+  </svg>
+
+  <!-- Segment Cards -->
+  <h3 class="section-title">Segments</h3>
+
+  <!-- Segment 1: Cruise -->
+  <div class="card seg-card-v2 mb-12" style="border-left:4px solid var(--cruise)" data-segment-mode="detail" onclick="handleSegmentTap(this,'cruise-browse','cruise-detail')">
+    <div class="flex-between">
+      <span class="seg-type-pill" style="background:var(--cruise)">&#128674; Cruise</span>
+      <span class="badge badge-mock">Mock</span>
+    </div>
+    <div class="seg-dates"><span class="cal-icon">&#128197;</span> Jun 15 &ndash; Jun 21, 2026</div>
+    <div class="seg-route">Whittier, Alaska, USA &rarr; Seward, Alaska, USA &middot; 7 days</div>
+    <div class="seg-sub-row"><span class="seg-sub-icon">&#128674;</span> Celebrity Edge &middot; Celebrity Cruises</div>
+    <div class="seg-price">$4,200 CAD</div>
+  </div>
+
+  <!-- Between Seg 1 → 2 -->
+  <div class="between-seg-cta">
+    <div class="bsc-line"></div>
+    <div class="bsc-inner">
+      <span class="bsc-label">&#9992; Optional connecting flight</span>
+      <button class="btn btn-sm btn-outline bsc-btn" onclick="showView('travel')">+ Add Flight</button>
+    </div>
+    <div class="bsc-line"></div>
+  </div>
+
+  <!-- Segment 2: Adventure -->
+  <div class="card seg-card-v2 mb-12" style="border-left:4px solid var(--adventure)" data-segment-mode="detail" onclick="handleSegmentTap(this,'land-activities','land-activities')">
+    <div class="flex-between">
+      <span class="seg-type-pill" style="background:var(--adventure)">&#9968; Adventure</span>
+      <span class="badge badge-verified">Verified &middot; Mar 14</span>
+    </div>
+    <div class="seg-dates"><span class="cal-icon">&#128197;</span> Jun 21 &ndash; Jun 22, 2026</div>
+    <div class="seg-route">Seward, Alaska, USA &middot; 2 days</div>
+    <div class="seg-sub-row"><span class="seg-sub-icon">&#127757;</span> Kenai Fjords Boat Tour</div>
+    <div class="seg-sub-row muted-tap" onclick="event.stopPropagation();showView('accommodations')"><span class="seg-sub-icon">&#127976;</span> No accommodation — tap to add</div>
+    <div class="seg-sub-row muted-tap" onclick="event.stopPropagation();showView('travel')"><span class="seg-sub-icon">&#128663;</span> No transport — tap to add</div>
+    <div class="seg-price">$189 CAD</div>
+  </div>
+
+  <!-- Between Seg 2 → 3 -->
+  <div class="between-seg-cta">
+    <div class="bsc-line"></div>
+    <div class="bsc-inner">
+      <span class="bsc-label">&#9992; Optional connecting flight</span>
+      <button class="btn btn-sm btn-outline bsc-btn" onclick="showView('travel')">+ Add Flight</button>
+    </div>
+    <div class="bsc-line"></div>
+  </div>
+
+  <!-- Segment 3: Land -->
+  <div class="card seg-card-v2 mb-12" style="border-left:4px solid var(--land)" data-segment-mode="detail" onclick="handleSegmentTap(this,'accommodations','accommodations')">
+    <div class="flex-between">
+      <span class="seg-type-pill" style="background:var(--land)">&#127968; Land / Resort</span>
+      <span class="badge badge-mock">Mock</span>
+    </div>
+    <div class="seg-dates"><span class="cal-icon">&#128197;</span> Jun 22 &ndash; Jun 25, 2026</div>
+    <div class="seg-route">Denali National Park, Alaska, USA &middot; 4 days</div>
+    <div class="seg-sub-row" onclick="event.stopPropagation();showView('accommodations')"><span class="seg-sub-icon">&#127976;</span> Denali Princess Lodge</div>
+    <div class="seg-sub-row" onclick="event.stopPropagation();showView('travel')"><span class="seg-sub-icon">&#128663;</span> SUV rental &mdash; $95/day</div>
+    <div class="seg-price">$1,200 CAD</div>
+  </div>
+
+  <button class="btn btn-outline btn-block" onclick="showView('wizard-2')">Edit Trip Segments</button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 6: CRUISE BROWSE
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-cruise-browse">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <!-- Trip Context Header -->
+  <div class="price-header trip-context-header">
+    <div class="breadcrumb"><a onclick="showView('trip-overview')">Alaska 2026</a> › Cruise Segment</div>
+    <div class="flex-between"><div class="total">$8,450 CAD</div><span class="badge badge-live" style="font-size:.7rem">Live</span></div>
+    <div class="breakdown"><span>Cruise $4,200</span><span>|</span><span>Flights $1,800</span><span>|</span><span>Hotels $1,200</span></div>
+  </div>
+  <div class="calendar-timeline"><div class="cal-track" id="calTrackBrowse"></div></div>
+  <h2 class="section-title">Browse Cruises</h2>
+  <div class="filter-bar">
+    <select><option>All Cruise Lines</option><option>Holland America</option><option>Princess</option><option>Celebrity</option><option>Norwegian</option></select>
+    <select><option>Any Price</option><option>Under $2,000</option><option>$2,000–$4,000</option><option>$4,000+</option></select>
+    <select><option>Any Duration</option><option>5–7 days</option><option>8–10 days</option><option>11+ days</option></select>
+  </div>
+
+  <div class="card-grid cols-2" id="cruiseGrid">
+    <!-- Card 1 -->
+    <div class="card browse-card">
+      <div class="img-placeholder">&#128674; Ship Image</div>
+      <span class="top-badge badge badge-mock">Mock</span>
+      <h4>Noordam</h4>
+      <div class="subtitle">Holland America Line</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.2</div>
+      <div class="flex-between">
+        <span class="price">$1,899 CAD<span class="text-xs text-muted">/pp</span></span>
+        <label class="inline-flex gap-8" style="cursor:pointer"><input type="checkbox" class="compare-cb" onchange="updateCompare()" style="width:18px;height:18px;accent-color:var(--primary)"> Compare</label>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="card browse-card">
+      <div class="img-placeholder">&#128674; Ship Image</div>
+      <span class="top-badge badge badge-mock">Mock</span>
+      <h4>Royal Princess</h4>
+      <div class="subtitle">Princess Cruises</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.6</div>
+      <div class="flex-between">
+        <span class="price">$2,199 CAD<span class="text-xs text-muted">/pp</span></span>
+        <label class="inline-flex gap-8" style="cursor:pointer"><input type="checkbox" class="compare-cb" onchange="updateCompare()" checked style="width:18px;height:18px;accent-color:var(--primary)"> Compare</label>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="card browse-card">
+      <div class="img-placeholder">&#128674; Ship Image</div>
+      <span class="top-badge badge badge-verified">Verified &middot; Mar 14</span>
+      <h4>Celebrity Edge</h4>
+      <div class="subtitle">Celebrity Cruises</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8</div>
+      <div class="flex-between">
+        <span class="price">$2,549 CAD<span class="text-xs text-muted">/pp</span></span>
+        <label class="inline-flex gap-8" style="cursor:pointer"><input type="checkbox" class="compare-cb" onchange="updateCompare()" checked style="width:18px;height:18px;accent-color:var(--primary)"> Compare</label>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="card browse-card">
+      <div class="img-placeholder">&#128674; Ship Image</div>
+      <span class="top-badge badge badge-mock">Mock</span>
+      <h4>Norwegian Bliss</h4>
+      <div class="subtitle">Norwegian Cruise Line</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.3</div>
+      <div class="flex-between">
+        <span class="price">$1,749 CAD<span class="text-xs text-muted">/pp</span></span>
+        <label class="inline-flex gap-8" style="cursor:pointer"><input type="checkbox" class="compare-cb" onchange="updateCompare()" style="width:18px;height:18px;accent-color:var(--primary)"> Compare</label>
+      </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="card browse-card">
+      <div class="img-placeholder">&#128674; Ship Image</div>
+      <span class="top-badge badge badge-live">Live</span>
+      <h4>Ovation of the Seas</h4>
+      <div class="subtitle">Royal Caribbean</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.1</div>
+      <div class="flex-between">
+        <span class="price">$2,099 CAD<span class="text-xs text-muted">/pp</span></span>
+        <label class="inline-flex gap-8" style="cursor:pointer"><input type="checkbox" class="compare-cb" onchange="updateCompare()" style="width:18px;height:18px;accent-color:var(--primary)"> Compare</label>
+      </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="card browse-card">
+      <div class="img-placeholder">&#128674; Ship Image</div>
+      <span class="top-badge badge badge-mock">Mock</span>
+      <h4>Westerdam</h4>
+      <div class="subtitle">Holland America Line</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.0</div>
+      <div class="flex-between">
+        <span class="price">$1,649 CAD<span class="text-xs text-muted">/pp</span></span>
+        <label class="inline-flex gap-8" style="cursor:pointer"><input type="checkbox" class="compare-cb" onchange="updateCompare()" style="width:18px;height:18px;accent-color:var(--primary)"> Compare</label>
+      </div>
+    </div>
+  </div>
+
+  <button class="compare-float" id="compareFloat" onclick="showView('cruise-compare')">Compare Selected (<span id="compareCount">2</span>)</button>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 7: CRUISE COMPARE
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-cruise-compare">
+  <h2 class="section-title">Compare Cruises</h2>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr><th></th><td><strong>Royal Princess</strong><br><span class="text-xs text-muted">Princess</span></td>
+        <td><strong>Celebrity Edge</strong><br><span class="text-xs text-muted">Celebrity</span></td>
+        <td><strong>Norwegian Bliss</strong><br><span class="text-xs text-muted">Norwegian</span></td></tr>
+      </thead>
+      <tbody>
+        <tr><th>Tonnage</th><td>142,714</td><td>130,818</td><td class="best">168,028</td></tr>
+        <tr><th>Capacity</th><td>3,560</td><td>2,918</td><td>4,004</td></tr>
+        <tr><th>Year Built</th><td>2013</td><td class="best">2018</td><td>2018</td></tr>
+        <tr><th>Decks</th><td>19</td><td>16</td><td class="best">20</td></tr>
+        <tr><th>Interior</th><td>$899</td><td>$1,049</td><td class="best">$849</td></tr>
+        <tr><th>Balcony</th><td>$1,599</td><td>$1,749</td><td class="best">$1,449</td></tr>
+        <tr><th>Suite</th><td class="best">$2,999</td><td>$3,499</td><td>$3,199</td></tr>
+        <tr><th>Dining</th><td>7 venues</td><td class="best">11 venues</td><td>9 venues</td></tr>
+        <tr><th>Activities</th><td>12</td><td class="best">18</td><td>16</td></tr>
+        <tr><th>Rating</th><td>4.6</td><td class="best">4.8</td><td>4.3</td></tr>
+        <tr><th>Ports</th><td>5</td><td>5</td><td class="best">6</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top:16px">
+    <button class="btn btn-primary" onclick="showView('cruise-detail')">View Celebrity Edge Details</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 8: CRUISE DETAIL
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-cruise-detail">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <!-- Trip Context Header -->
+  <div class="price-header trip-context-header">
+    <div class="breadcrumb"><a onclick="showView('trip-overview')">Alaska 2026</a> › <a onclick="showView('cruise-browse')">Cruise Segment</a> › Detail</div>
+    <div class="flex-between"><div class="total">$8,450 CAD</div><span class="badge badge-live" style="font-size:.7rem">Live</span></div>
+    <div class="breakdown"><span>Jun 15–21 &middot; 7 nights</span></div>
+  </div>
+  <div class="flex-between mb-12">
+    <div>
+      <h2 style="font-size:1.3rem;font-weight:800">Celebrity Edge</h2>
+      <p class="text-sm text-muted">Celebrity Cruises &middot; Alaska Inside Passage</p>
+    </div>
+    <span class="badge badge-mock">Mock</span>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-placeholder mb-16">
+    <div>Main Ship Photo</div>
+    <div>Pool Deck</div>
+    <div>Dining</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs" id="cruiseDetailTabs">
+    <button class="active" data-tab="cd-overview">Overview</button>
+    <button data-tab="cd-staterooms">Staterooms</button>
+    <button data-tab="cd-dining">Dining</button>
+    <button data-tab="cd-ports">Ports</button>
+    <button data-tab="cd-activities">Activities</button>
+    <button data-tab="cd-entertainment">Entertainment</button>
+    <button data-tab="cd-reviews">Reviews</button>
+  </div>
+
+  <!-- Tab: Overview -->
+  <div class="tab-content active" data-panel="cd-overview">
+    <table class="specs-table mb-16">
+      <tbody>
+        <tr class="specs-group-header"><td colspan="2">Ship Size</td></tr>
+        <tr>
+          <th><span class="tooltip-wrap">Gross Tonnage <span class="tip-icon">&#9432;</span><span class="tooltip-tip">Total interior volume of the ship. Higher = larger ship. Not a weight measurement.</span></span></th>
+          <td>130,818 GT</td>
+        </tr>
+        <tr>
+          <th><span class="tooltip-wrap">Length <span class="tip-icon">&#9432;</span><span class="tooltip-tip">Ship length in metres. Longer ships tend to be more stable in open water.</span></span></th>
+          <td>306 m</td>
+        </tr>
+        <tr>
+          <th><span class="tooltip-wrap">Decks <span class="tip-icon">&#9432;</span><span class="tooltip-tip">Number of passenger decks.</span></span></th>
+          <td>16</td>
+        </tr>
+        <tr class="specs-group-header"><td colspan="2">Capacity</td></tr>
+        <tr>
+          <th><span class="tooltip-wrap">Passenger Capacity <span class="tip-icon">&#9432;</span><span class="tooltip-tip">Maximum number of guests at double occupancy.</span></span></th>
+          <td>2,918</td>
+        </tr>
+        <tr>
+          <th><span class="tooltip-wrap">Crew <span class="tip-icon">&#9432;</span><span class="tooltip-tip">Total crew members. Higher crew-to-guest ratio = better service.</span></span></th>
+          <td>1,320</td>
+        </tr>
+        <tr class="specs-group-header"><td colspan="2">Onboard</td></tr>
+        <tr>
+          <th><span class="tooltip-wrap">Space Ratio <span class="tip-icon">&#9432;</span><span class="tooltip-tip">Gross tonnage ÷ passenger capacity. Higher = more space per person. 40+ is considered spacious.</span></span></th>
+          <td>44.8</td>
+        </tr>
+        <tr>
+          <th>Year Built</th>
+          <td>2018</td>
+        </tr>
+        <tr>
+          <th>Refurbished</th>
+          <td>2022</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 class="text-sm mb-8" style="font-weight:700">Sailing Dates</h3>
+    <div class="card mb-16">
+      <p class="text-sm">Jun 15, 2026 &mdash; Jun 21, 2026 (7 nights)</p>
+      <p class="text-sm text-muted">Whittier &rarr; Hubbard Glacier &rarr; Juneau &rarr; Skagway &rarr; Glacier Bay &rarr; Ketchikan &rarr; Seward</p>
+    </div>
+    <div class="map-placeholder" style="height:160px">
+      <div class="route"></div>
+      <span style="z-index:1;background:rgba(255,255,255,.8);padding:4px 12px;border-radius:6px">Cruise Route Map</span>
+    </div>
+  </div>
+
+  <!-- Tab: Staterooms -->
+  <div class="tab-content" data-panel="cd-staterooms" style="display:none">
+    <h3 class="section-title">Choose Your Stateroom</h3>
+    <div class="card-grid cols-2 cols-4">
+      <div class="stateroom-card" onclick="selectRoom(this)">
+        <div class="room-icon">&#128719;</div>
+        <div class="room-type">Interior</div>
+        <div class="room-price">$899 <span class="text-xs">CAD/pp</span></div>
+        <span class="badge badge-mock">Mock</span>
+      </div>
+      <div class="stateroom-card" onclick="selectRoom(this)">
+        <div class="room-icon">&#127754;</div>
+        <div class="room-type">Oceanview</div>
+        <div class="room-price">$1,199 <span class="text-xs">CAD/pp</span></div>
+        <span class="badge badge-mock">Mock</span>
+      </div>
+      <div class="stateroom-card selected" onclick="selectRoom(this)">
+        <div class="room-icon">&#127748;</div>
+        <div class="room-type">Balcony</div>
+        <div class="room-price">$1,599 <span class="text-xs">CAD/pp</span></div>
+        <span class="badge badge-mock">Mock</span>
+      </div>
+      <div class="stateroom-card" onclick="selectRoom(this)">
+        <div class="room-icon">&#128081;</div>
+        <div class="room-type">Suite</div>
+        <div class="room-price">$2,999 <span class="text-xs">CAD/pp</span></div>
+        <span class="badge badge-mock">Mock</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Dining -->
+  <div class="tab-content" data-panel="cd-dining" style="display:none">
+    <h3 class="section-title">Dining Venues (11)</h3>
+    <div class="card mb-12"><h4>Normandie Restaurant</h4><p class="text-sm text-muted">French fine dining &middot; Included</p></div>
+    <div class="card mb-12"><h4>Raw on 5</h4><p class="text-sm text-muted">Seafood bar &middot; Specialty ($45/pp)</p></div>
+    <div class="card mb-12"><h4>Eden Restaurant</h4><p class="text-sm text-muted">Experiential dining &middot; Specialty ($65/pp)</p></div>
+    <div class="card mb-12"><h4>Oceanview Cafe</h4><p class="text-sm text-muted">Buffet &middot; Included</p></div>
+  </div>
+
+  <!-- Tab: Ports -->
+  <div class="tab-content" data-panel="cd-ports" style="display:none">
+    <h3 class="section-title">Ports of Call</h3>
+    <div class="card mb-12"><h4>Day 1: Whittier</h4><p class="text-sm text-muted">Embarkation &middot; 4:00 PM departure</p></div>
+    <div class="card mb-12"><h4>Day 2: Hubbard Glacier</h4><p class="text-sm text-muted">Scenic cruising</p></div>
+    <div class="card mb-12"><h4>Day 3: Juneau</h4><p class="text-sm text-muted">8:00 AM &ndash; 5:00 PM &middot; Whale watching, Mendenhall Glacier</p></div>
+    <div class="card mb-12"><h4>Day 4: Skagway</h4><p class="text-sm text-muted">7:00 AM &ndash; 6:00 PM &middot; White Pass Railway</p></div>
+    <div class="card mb-12"><h4>Day 5: Glacier Bay</h4><p class="text-sm text-muted">Scenic cruising &middot; National Park rangers on board</p></div>
+    <div class="card mb-12"><h4>Day 6: Ketchikan</h4><p class="text-sm text-muted">7:00 AM &ndash; 4:00 PM &middot; Totem poles, Creek Street</p></div>
+    <div class="card mb-12"><h4>Day 7: Seward</h4><p class="text-sm text-muted">Disembarkation &middot; 7:00 AM</p></div>
+  </div>
+
+  <!-- Tab: Activities -->
+  <div class="tab-content" data-panel="cd-activities" style="display:none">
+    <h3 class="section-title">Onboard Activities</h3>
+    <div class="card mb-12"><h4>The Magic Carpet</h4><p class="text-sm text-muted">Cantilevered floating platform &middot; Deck 2–16</p></div>
+    <div class="card mb-12"><h4>Eden</h4><p class="text-sm text-muted">Multi-level experiential venue</p></div>
+    <div class="card mb-12"><h4>Rooftop Garden</h4><p class="text-sm text-muted">Open-air garden with live topiary</p></div>
+    <div class="card mb-12"><h4>Resort Deck Pool</h4><p class="text-sm text-muted">Infinity-style main pool &middot; 2 hot tubs</p></div>
+  </div>
+
+  <!-- Tab: Entertainment -->
+  <div class="tab-content" data-panel="cd-entertainment" style="display:none">
+    <h3 class="section-title">Entertainment</h3>
+    <div class="card mb-12"><h4>The Theatre</h4><p class="text-sm text-muted">Broadway-style productions nightly</p></div>
+    <div class="card mb-12"><h4>The Club</h4><p class="text-sm text-muted">Live music, DJ, dancing</p></div>
+    <div class="card mb-12"><h4>Hot Glass Show</h4><p class="text-sm text-muted">Live glass-blowing at sea (Corning partnership)</p></div>
+  </div>
+
+  <!-- Tab: Reviews -->
+  <div class="tab-content" data-panel="cd-reviews" style="display:none">
+    <h3 class="section-title">Guest Reviews</h3>
+    <div class="card mb-12">
+      <div class="flex-between mb-4"><strong>Excellent ship!</strong><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+      <p class="text-sm text-muted">The Edge class is a game-changer. Beautiful design, excellent food, and the Magic Carpet is incredible. Highly recommend the Balcony staterooms.</p>
+      <p class="text-xs text-muted" style="margin-top:6px">&mdash; Sarah M., Feb 2026</p>
+    </div>
+    <div class="card mb-12">
+      <div class="flex-between mb-4"><strong>Great for Alaska</strong><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+      <p class="text-sm text-muted">Perfect ship for Alaska itineraries. The outward-facing design means great glacier views from almost everywhere. Service was top-notch.</p>
+      <p class="text-xs text-muted" style="margin-top:6px">&mdash; James T., Jul 2025</p>
+    </div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn btn-primary btn-block">Select This Ship</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 9: LAND ACTIVITIES
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-land-activities">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <!-- Trip Context Header -->
+  <div class="price-header trip-context-header">
+    <div class="breadcrumb"><a onclick="showView('trip-overview')">Alaska 2026</a> › Land / Adventure Segment</div>
+    <div class="flex-between"><div class="total">$8,450 CAD</div><span class="badge badge-live" style="font-size:.7rem">Live</span></div>
+    <div class="breakdown"><span>Jun 22–25 &middot; Seward + Denali</span></div>
+  </div>
+  <div class="calendar-timeline"><div class="cal-track" id="calTrackLand"></div></div>
+  <h2 class="section-title">Land Activities</h2>
+  <div class="filter-bar">
+    <select><option>All Regions</option><option>Denali</option><option>Anchorage</option><option>Seward</option><option>Fairbanks</option></select>
+    <select><option>Any Price</option><option>Under $100</option><option>$100–$300</option><option>$300+</option></select>
+  </div>
+
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>Kenai Fjords Boat Tour</h4>
+      <span class="badge badge-mock">Mock</span>
+    </div>
+    <p class="text-sm text-muted mb-4">6 hours &middot; Seward</p>
+    <div class="flex-between mb-8">
+      <span class="price" style="font-size:1rem">$189 CAD</span>
+      <div><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9</span> <span class="level-badge level-easy">Easy</span></div>
+    </div>
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-size:.85rem">
+      &#127890; Recommended: waterproof jacket, binoculars
+      <button class="btn btn-sm btn-outline" style="margin-left:8px;vertical-align:middle" onclick="alert('Added to packing list!')">Add to packing list</button>
+    </div>
+  </div>
+
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>Denali Backcountry Hike</h4>
+      <span class="badge badge-verified">Verified &middot; Mar 14</span>
+    </div>
+    <p class="text-sm text-muted mb-4">Full day &middot; Denali National Park</p>
+    <div class="flex-between mb-8">
+      <span class="price" style="font-size:1rem">$249 CAD</span>
+      <div><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.5</span> <span class="level-badge level-hard">Strenuous</span></div>
+    </div>
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-size:.85rem">
+      &#127890; Recommended: hiking boots, layers, bear spray
+      <button class="btn btn-sm btn-outline" style="margin-left:8px;vertical-align:middle" onclick="alert('Added to packing list!')">Add to packing list</button>
+    </div>
+  </div>
+
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>Glacier Landing Helicopter Tour</h4>
+      <span class="badge badge-mock">Mock</span>
+    </div>
+    <p class="text-sm text-muted mb-4">3 hours &middot; Juneau</p>
+    <div class="flex-between mb-8">
+      <span class="price" style="font-size:1rem">$425 CAD</span>
+      <div><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9</span> <span class="level-badge level-easy">Easy</span></div>
+    </div>
+  </div>
+
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>Wildlife Safari &amp; ATV Tour</h4>
+      <span class="badge badge-mock">Mock</span>
+    </div>
+    <p class="text-sm text-muted mb-4">4 hours &middot; Anchorage</p>
+    <div class="flex-between mb-8">
+      <span class="price" style="font-size:1rem">$179 CAD</span>
+      <div><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.3</span> <span class="level-badge level-mod">Moderate</span></div>
+    </div>
+  </div>
+
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>Gold Panning &amp; History Tour</h4>
+      <span class="badge badge-live">Live</span>
+    </div>
+    <p class="text-sm text-muted mb-4">2 hours &middot; Fairbanks</p>
+    <div class="flex-between mb-8">
+      <span class="price" style="font-size:1rem">$89 CAD</span>
+      <div><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.1</span> <span class="level-badge level-easy">Easy</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 10: ACCOMMODATIONS
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-accommodations">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <!-- Trip Context Header -->
+  <div class="price-header trip-context-header">
+    <div class="breadcrumb"><a onclick="showView('trip-overview')">Alaska 2026</a> › Land Segment › Accommodations</div>
+    <div class="flex-between"><div class="total">$8,450 CAD</div></div>
+    <div class="breakdown"><span>Jun 23–25 &middot; Denali area</span></div>
+  </div>
+  <h2 class="section-title">Accommodations</h2>
+  <div class="toggle-group mb-16" id="accomToggle">
+    <button class="active">Hotels</button>
+    <button>Airbnb</button>
+    <button>All</button>
+  </div>
+
+  <div class="card-grid cols-2">
+    <div class="card browse-card">
+      <div class="img-placeholder">&#127976; Hotel Photo</div>
+      <span class="top-badge badge badge-mock">Mock</span>
+      <h4>Denali Princess Lodge</h4>
+      <div class="subtitle">Denali National Park</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.2</div>
+      <div class="price">$289 CAD<span class="text-xs text-muted">/night</span></div>
+      <div style="margin-top:8px">
+        <span class="chip">WiFi</span> <span class="chip">Restaurant</span> <span class="chip">Parking</span>
+      </div>
+    </div>
+    <div class="card browse-card">
+      <div class="img-placeholder">&#127976; Hotel Photo</div>
+      <span class="top-badge badge badge-mock">Mock</span>
+      <h4>Hotel Captain Cook</h4>
+      <div class="subtitle">Anchorage</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.5</div>
+      <div class="price">$219 CAD<span class="text-xs text-muted">/night</span></div>
+      <div style="margin-top:8px">
+        <span class="chip">Pool</span> <span class="chip">Spa</span> <span class="chip">Gym</span>
+      </div>
+    </div>
+    <div class="card browse-card">
+      <div class="img-placeholder">&#127968; Airbnb Photo</div>
+      <span class="top-badge badge badge-verified">Verified &middot; Mar 14</span>
+      <h4>Mountain View Cabin</h4>
+      <div class="subtitle">Seward</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8</div>
+      <div class="price">$175 CAD<span class="text-xs text-muted">/night</span></div>
+      <div style="margin-top:8px">
+        <span class="chip">Kitchen</span> <span class="chip">Hot Tub</span> <span class="chip">Views</span>
+      </div>
+    </div>
+    <div class="card browse-card">
+      <div class="img-placeholder">&#127976; Hotel Photo</div>
+      <span class="top-badge badge badge-mock">Mock</span>
+      <h4>Pike's Waterfront Lodge</h4>
+      <div class="subtitle">Fairbanks</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.0</div>
+      <div class="price">$159 CAD<span class="text-xs text-muted">/night</span></div>
+      <div style="margin-top:8px">
+        <span class="chip">River View</span> <span class="chip">Restaurant</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Accommodation Input -->
+  <details class="custom-input-section">
+    <summary>Enter your own accommodation</summary>
+    <div class="form-grid cols-2">
+      <div>
+        <label class="form-label">Property Name</label>
+        <input type="text" placeholder="e.g. Airbnb on Maple St.">
+      </div>
+      <div>
+        <label class="form-label">Location / Address</label>
+        <input type="text" placeholder="City or full address">
+      </div>
+      <div>
+        <label class="form-label">Check-in Date</label>
+        <input type="date" value="2026-06-22">
+      </div>
+      <div>
+        <label class="form-label">Check-out Date</label>
+        <input type="date" value="2026-06-25">
+      </div>
+      <div>
+        <label class="form-label">Price per Night (CAD)</label>
+        <input type="number" placeholder="e.g. 185">
+      </div>
+      <div>
+        <label class="form-label">Confirmation #</label>
+        <input type="text" placeholder="Booking reference">
+      </div>
+      <div style="grid-column:1/-1">
+        <label class="form-label">Notes</label>
+        <input type="text" placeholder="e.g. Self check-in, code is 4821">
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="btn btn-primary btn-sm">Save Accommodation</button>
+      <button class="btn btn-secondary btn-sm" onclick="this.closest('details').removeAttribute('open')">Cancel</button>
+    </div>
+  </details>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 11: TRAVEL (FLIGHTS + CAR RENTAL)
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-travel">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <h2 class="section-title">Travel</h2>
+
+  <!-- Flights -->
+  <h3 class="mb-12" style="font-weight:700">&#9992; Flights</h3>
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <span class="text-sm" style="font-weight:600">Departure</span>
+      <span class="text-sm text-muted">Jun 14, 2026</span>
+    </div>
+    <div class="flex-between mb-4">
+      <span class="text-sm" style="font-weight:600">Return</span>
+      <span class="text-sm text-muted">Jun 28, 2026</span>
+    </div>
+  </div>
+
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>Air Canada</h4>
+      <span class="badge badge-mock">Mock</span>
+    </div>
+    <p class="text-sm text-muted mb-4">YYZ &rarr; ANC &middot; 1 stop (YVR) &middot; 8h 45m</p>
+    <div class="flex-between">
+      <span class="price" style="font-size:1rem">$849 CAD<span class="text-xs text-muted"> /pp round trip</span></span>
+    </div>
+  </div>
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>WestJet</h4>
+      <span class="badge badge-mock">Mock</span>
+    </div>
+    <p class="text-sm text-muted mb-4">YYZ &rarr; ANC &middot; 1 stop (YYC) &middot; 9h 20m</p>
+    <div class="flex-between">
+      <span class="price" style="font-size:1rem">$779 CAD<span class="text-xs text-muted"> /pp round trip</span></span>
+    </div>
+  </div>
+  <div class="card mb-12">
+    <div class="flex-between mb-4">
+      <h4>Alaska Airlines</h4>
+      <span class="badge badge-live">Live</span>
+    </div>
+    <p class="text-sm text-muted mb-4">YYZ &rarr; ANC &middot; 1 stop (SEA) &middot; 8h 10m</p>
+    <div class="flex-between">
+      <span class="price" style="font-size:1rem">$899 CAD<span class="text-xs text-muted"> /pp round trip</span></span>
+    </div>
+  </div>
+
+  <!-- Car Rental -->
+  <h3 class="mb-12" style="font-weight:700;margin-top:24px">&#128663; Car Rental</h3>
+  <div class="card-grid cols-3">
+    <div class="card" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:8px">&#128664;</div>
+      <h4>Economy</h4>
+      <div class="text-sm text-muted mb-8">Toyota Corolla or similar</div>
+      <div class="price" style="font-size:1rem">$65 CAD<span class="text-xs text-muted">/day</span></div>
+      <span class="badge badge-mock" style="margin-top:6px">Mock</span>
+    </div>
+    <div class="card" style="text-align:center;border:2px solid var(--primary)">
+      <div style="font-size:2.5rem;margin-bottom:8px">&#128665;</div>
+      <h4>SUV</h4>
+      <div class="text-sm text-muted mb-8">Jeep Grand Cherokee or similar</div>
+      <div class="price" style="font-size:1rem">$95 CAD<span class="text-xs text-muted">/day</span></div>
+      <span class="badge badge-mock" style="margin-top:6px">Mock</span>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:8px">&#128666;</div>
+      <h4>Truck</h4>
+      <div class="text-sm text-muted mb-8">Ford F-150 or similar</div>
+      <div class="price" style="font-size:1rem">$110 CAD<span class="text-xs text-muted">/day</span></div>
+      <span class="badge badge-mock" style="margin-top:6px">Mock</span>
+    </div>
+  </div>
+
+  <!-- Custom Transport Input -->
+  <details class="custom-input-section" style="margin-top:24px">
+    <summary>Enter your own transport details</summary>
+    <div class="form-grid cols-2">
+      <div>
+        <label class="form-label">Transport Type</label>
+        <select>
+          <option>✈ Flight</option>
+          <option>🚂 Train</option>
+          <option>🚌 Bus / Coach</option>
+          <option>⛴ Ferry</option>
+          <option>🚗 Car Rental</option>
+          <option>🚕 Private Transfer</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Provider / Carrier</label>
+        <input type="text" placeholder="e.g. Air Canada, Hertz">
+      </div>
+      <div>
+        <label class="form-label">From</label>
+        <input type="text" placeholder="City or airport code">
+      </div>
+      <div>
+        <label class="form-label">To</label>
+        <input type="text" placeholder="City or airport code">
+      </div>
+      <div>
+        <label class="form-label">Departure Date &amp; Time</label>
+        <input type="datetime-local">
+      </div>
+      <div>
+        <label class="form-label">Arrival Date &amp; Time</label>
+        <input type="datetime-local">
+      </div>
+      <div>
+        <label class="form-label">Total Cost (CAD)</label>
+        <input type="number" placeholder="e.g. 850">
+      </div>
+      <div>
+        <label class="form-label">Confirmation / Booking #</label>
+        <input type="text" placeholder="Booking reference">
+      </div>
+      <div style="grid-column:1/-1">
+        <label class="form-label">Notes</label>
+        <input type="text" placeholder="e.g. Window seat requested, extra baggage paid">
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="btn btn-primary btn-sm">Save Transport</button>
+      <button class="btn btn-secondary btn-sm" onclick="this.closest('details').removeAttribute('open')">Cancel</button>
+    </div>
+  </details>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 12: PACKING LIST
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-packing">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <h2 class="section-title">Packing List</h2>
+
+  <!-- Traveller tabs -->
+  <div class="tabs mb-16" id="travellerTabs">
+    <button class="active" data-tab="pk-ken">Ken</button>
+    <button data-tab="pk-lan">Lan</button>
+    <button style="font-size:1.1rem;padding:8px 14px">+</button>
+  </div>
+
+  <!-- Progress -->
+  <div class="flex-between mb-8">
+    <span class="text-sm" style="font-weight:600">Packing Progress</span>
+    <span class="text-sm text-muted" id="packProgress">12 of 28 items packed (43%)</span>
+  </div>
+  <div class="progress mb-20"><div class="bar" id="packBar" style="width:43%;background:var(--primary)"></div></div>
+
+  <!-- Categories -->
+  <div id="packingList">
+    <div class="pack-category">Clothing</div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Rain jacket / waterproof shell</label></div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Fleece / warm mid-layer</label></div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Thermal base layers (2 sets)</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Hiking pants (2 pairs)</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Formal dinner outfit (cruise)</label></div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Casual evening wear</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Swimsuit</label></div>
+
+    <div class="pack-category">Gear</div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Hiking boots (broken in)</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Binoculars</label></div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Daypack / backpack</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Trekking poles</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Bear spray</label></div>
+
+    <div class="pack-category">Documents</div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Passport</label></div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Travel insurance docs</label></div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Cruise booking confirmation</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Flight boarding passes</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Car rental reservation</label></div>
+
+    <div class="pack-category">Toiletries</div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>Sunscreen SPF 50+</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Insect repellent</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Motion sickness medication</label></div>
+    <div class="pack-item checked"><input type="checkbox" checked onchange="updatePacking()"><label>First aid kit</label></div>
+
+    <div class="pack-category">Electronics</div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Camera + lenses</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Portable battery pack</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Universal adapter</label></div>
+
+    <div class="pack-category">Cruise Formal</div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Suit / dress</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Dress shoes</label></div>
+    <div class="pack-item"><input type="checkbox" onchange="updatePacking()"><label>Tie / accessories</label></div>
+  </div>
+
+  <!-- Add custom item -->
+  <div style="display:flex;gap:8px;margin-top:16px">
+    <input type="text" placeholder="Add custom item..." id="customItemInput">
+    <button class="btn btn-primary btn-sm" onclick="addPackItem()">Add</button>
+  </div>
+
+  <!-- Smart recommendations -->
+  <h3 class="section-title" style="margin-top:28px">Smart Recommendations</h3>
+  <p class="text-sm text-muted mb-12">Based on your trip:</p>
+  <div class="smart-rec">
+    <div>
+      <span style="font-weight:600">&#127782; Weather-based:</span>
+      <span class="text-sm"> Waterproof gloves (avg 8&deg;C in Glacier Bay)</span>
+    </div>
+    <button class="btn btn-sm btn-outline" onclick="alert('Added!')">Add</button>
+  </div>
+  <div class="smart-rec">
+    <div>
+      <span style="font-weight:600">&#127782; Weather-based:</span>
+      <span class="text-sm"> Wool beanie / warm hat</span>
+    </div>
+    <button class="btn btn-sm btn-outline" onclick="alert('Added!')">Add</button>
+  </div>
+  <div class="smart-rec">
+    <div>
+      <span style="font-weight:600">&#9968; Activity-based:</span>
+      <span class="text-sm"> Dry bag for boat tours</span>
+    </div>
+    <button class="btn btn-sm btn-outline" onclick="alert('Added!')">Add</button>
+  </div>
+  <div class="smart-rec">
+    <div>
+      <span style="font-weight:600">&#9968; Activity-based:</span>
+      <span class="text-sm"> Hiking gaiters for Denali</span>
+    </div>
+    <button class="btn btn-sm btn-outline" onclick="alert('Added!')">Add</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VIEW 13: SETTINGS
+     ═══════════════════════════════════════════════════════ -->
+<section class="view" id="view-settings">
+  <button class="desktop-back" onclick="goBack()">&#8592; Back</button>
+  <h2 class="section-title">Settings</h2>
+
+  <div class="card mb-16">
+    <h3 class="mb-16" style="font-size:1rem;font-weight:700">API Usage</h3>
+    <div class="api-row">
+      <div class="api-label"><span>Weather API</span><span class="text-muted">45 / unlimited</span></div>
+      <div class="progress"><div class="bar" style="width:15%;background:var(--land)"></div></div>
+    </div>
+    <div class="api-row">
+      <div class="api-label"><span>Exchange Rate API</span><span class="text-muted">120 / 1,500</span></div>
+      <div class="progress"><div class="bar" style="width:8%;background:var(--cruise)"></div></div>
+    </div>
+    <div class="api-row">
+      <div class="api-label"><span>Cruise Data API</span><span class="text-muted">340 / 5,000</span></div>
+      <div class="progress"><div class="bar" style="width:7%;background:var(--adventure)"></div></div>
+    </div>
+    <div class="api-row">
+      <div class="api-label"><span>Google Maps API</span><span class="text-muted">89 / 28,000</span></div>
+      <div class="progress"><div class="bar" style="width:0.3%;background:var(--cultural)"></div></div>
+    </div>
+    <div class="api-row">
+      <div class="api-label"><span>Flight Data API</span><span class="text-muted">215 / 500</span></div>
+      <div class="progress"><div class="bar" style="width:43%;background:var(--beach)"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="mb-16" style="font-size:1rem;font-weight:700">Preferences</h3>
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Default Currency</label>
+    <select class="mb-16"><option>CAD — Canadian Dollar</option><option>USD — US Dollar</option><option>EUR — Euro</option></select>
+
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Temperature Unit</label>
+    <div class="toggle-group mb-16">
+      <button class="active">Celsius</button>
+      <button>Fahrenheit</button>
+    </div>
+
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Distance Unit</label>
+    <div class="toggle-group mb-16">
+      <button class="active">Kilometres</button>
+      <button>Miles</button>
+    </div>
+
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Home Airport</label>
+    <input type="text" value="YYZ — Toronto Pearson" class="mb-16">
+
+    <label class="text-sm" style="font-weight:600;display:block;margin-bottom:6px">Number of Travellers</label>
+    <input type="number" value="2" min="1" max="10" style="max-width:100px">
+  </div>
+</section>
+
+</main>
+</div><!-- /main-wrap -->
+
+<!-- ── Day Detail Drawer ─────────────────────────────────── -->
+<div id="dayBackdrop" onclick="closeDayDetail()"></div>
+<div id="dayDrawer">
+  <div class="flex-between mb-16">
+    <h3 id="dayDrawerTitle" style="font-size:1rem;font-weight:700"></h3>
+    <button onclick="closeDayDetail()" style="font-size:1.4rem;color:var(--text-secondary)">&#215;</button>
+  </div>
+  <p class="text-xs text-muted mb-12" style="margin-top:-8px">(Drag to reorder)</p>
+  <div id="dayEventList"></div>
+  <button class="btn btn-outline btn-sm" style="margin-top:12px;width:100%" onclick="toggleAddEvent()">&#43; Add Event</button>
+  <div class="add-event-form" id="addEventForm">
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <input type="time" id="newEvTime" style="flex:0 0 120px">
+      <input type="text" id="newEvDesc" placeholder="Description" style="flex:1">
+    </div>
+    <select id="newEvCat" class="mb-8">
+      <option>Port</option><option>Dining</option><option>Excursion</option><option>Onboard</option><option>Transit</option>
+    </select>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-primary btn-sm" onclick="saveNewEvent()">Save</button>
+      <button class="btn btn-secondary btn-sm" onclick="toggleAddEvent()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Bottom Nav (mobile) ──────────────────────────────── -->
+<nav class="bottom-nav" id="bottomNav">
+  <button class="active" data-view="dashboard"><span class="icon">&#128205;</span>Home</button>
+  <button data-view="trip-overview"><span class="icon">&#128506;</span>Trip</button>
+  <button data-view="cruise-browse"><span class="icon">&#128674;</span>Cruise</button>
+  <button data-view="packing"><span class="icon">&#127890;</span>Packing</button>
+  <button data-view="settings"><span class="icon">&#9881;</span>More</button>
+</nav>
+
+</div><!-- /app -->
+
+<script>
+/* ── Navigation ───────────────────────────────────────────── */
+const viewHistory = ['dashboard'];
+const viewTitles = {
+  'dashboard':'Vacation Planner','wizard-1':'New Trip','wizard-2':'Segment Builder',
+  'wizard-3':'Review Trip','trip-overview':'Alaska 2026','cruise-browse':'Browse Cruises',
+  'cruise-compare':'Compare Cruises','cruise-detail':'Cruise Detail',
+  'land-activities':'Land Activities','accommodations':'Accommodations',
+  'travel':'Travel','packing':'Packing List','settings':'Settings'
+};
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const el = document.getElementById('view-' + id);
+  if (el) el.classList.add('active');
+
+  // Update header
+  const title = document.getElementById('headerTitle');
+  const backBtn = document.getElementById('backBtn');
+  title.textContent = viewTitles[id] || 'Vacation Planner';
+  if (id !== 'dashboard') {
+    backBtn.classList.add('show');
+    if (viewHistory[viewHistory.length - 1] !== id) viewHistory.push(id);
+  } else {
+    backBtn.classList.remove('show');
+    viewHistory.length = 0;
+    viewHistory.push('dashboard');
+  }
+
+  // Update nav active states
+  document.querySelectorAll('.bottom-nav button').forEach(b => {
+    b.classList.toggle('active', b.dataset.view === id);
+  });
+
+  // Show compare button on cruise browse
+  if (id === 'cruise-browse') updateCompare();
+  else document.getElementById('compareFloat').style.display = 'none';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBack() {
+  viewHistory.pop();
+  const prev = viewHistory[viewHistory.length - 1] || 'dashboard';
+  showView(prev);
+}
+
+// Nav button listeners
+document.querySelectorAll('.bottom-nav button[data-view]').forEach(btn => {
+  btn.addEventListener('click', () => showView(btn.dataset.view));
+});
+
+/* ── Segment Mode Toggle ──────────────────────────────────── */
+function handleSegmentTap(el, searchView, detailView) {
+  const mode = el.dataset.segmentMode || 'detail';
+  showView(mode === 'search' ? searchView : detailView);
+}
+
+/* ── Duration Toggle ──────────────────────────────────────── */
+function setDurationMode(btn, mode) {
+  document.querySelectorAll('#durationToggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('durationExact').style.display = mode === 'exact' ? '' : 'none';
+  document.getElementById('durationFlex').style.display = mode === 'flexible' ? '' : 'none';
+}
+
+/* ── Segment Builder ──────────────────────────────────────── */
+let selectedType = null;
+let allocatedDays = 8;
+const totalDays = 14;
+
+document.querySelectorAll('.seg-type-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.seg-type-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedType = btn.dataset.type;
+  });
+});
+
+const segColors = {
+  'Cruise':'var(--cruise)','Land/Resort':'var(--land)','Adventure':'var(--adventure)',
+  'Beach':'var(--beach)','Cultural':'var(--cultural)','Safari':'var(--safari)',
+  'Road Trip':'var(--roadtrip)','Backpacking':'var(--backpacking)','Ski':'var(--ski)',
+  'River Cruise':'var(--river)','Island Hopping':'var(--island)','Wellness/Spa':'var(--wellness)'
+};
+const segIcons = {
+  'Cruise':'\u{1F6F3}','Land/Resort':'\u{1F3E0}','Adventure':'\u26F0',
+  'Beach':'\u{1F3D6}','Cultural':'\u{1F3DB}','Safari':'\u{1F98B}',
+  'Road Trip':'\u{1F697}','Backpacking':'\u{1F392}','Ski':'\u26F7',
+  'River Cruise':'\u{1F6F6}','Island Hopping':'\u{1F3DD}','Wellness/Spa':'\u{1F486}'
+};
+
+function addSegment() {
+  if (!selectedType) { alert('Please select a segment type'); return; }
+  const days = parseInt(document.getElementById('newSegDays').value) || 1;
+  const loc = document.getElementById('newSegLoc').value || 'Location TBD';
+  const color = segColors[selectedType] || 'var(--primary)';
+  const icon = segIcons[selectedType] || '';
+
+  const card = document.createElement('div');
+  card.className = 'card segment-card';
+  card.style.borderLeftColor = color;
+  card.innerHTML = `
+    <span class="drag-handle">&#9776;</span>
+    <div class="flex-between mb-8">
+      <h4>${icon} ${selectedType}</h4>
+      <span class="text-sm text-muted">${days} day${days > 1 ? 's' : ''}</span>
+    </div>
+    <div class="text-sm text-muted">${loc}</div>
+  `;
+  document.getElementById('segmentList').appendChild(card);
+
+  allocatedDays += days;
+  const remaining = totalDays - allocatedDays;
+  document.getElementById('dayCounter').textContent =
+    `${allocatedDays} of ${totalDays} days allocated \u2014 ${remaining >= 0 ? remaining + ' remaining' : Math.abs(remaining) + ' over!'}`;
+
+  // Reset
+  document.getElementById('newSegLoc').value = '';
+  document.querySelectorAll('.seg-type-btn').forEach(b => b.classList.remove('selected'));
+  selectedType = null;
+}
+
+/* ── Cruise Compare ───────────────────────────────────────── */
+function updateCompare() {
+  const checked = document.querySelectorAll('.compare-cb:checked').length;
+  const btn = document.getElementById('compareFloat');
+  const count = document.getElementById('compareCount');
+  if (checked > 0) {
+    btn.style.display = 'block';
+    count.textContent = checked;
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+/* ── Tabs ──────────────────────────────────────────────────── */
+function setupTabs(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.querySelectorAll('button[data-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      container.querySelectorAll('button').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const panel = tab.dataset.tab;
+      // Find sibling tab-content panels
+      const parent = container.parentElement;
+      parent.querySelectorAll('.tab-content').forEach(tc => {
+        tc.style.display = tc.dataset.panel === panel ? '' : 'none';
+        tc.classList.toggle('active', tc.dataset.panel === panel);
+      });
+    });
+  });
+}
+setupTabs('cruiseDetailTabs');
+
+// Traveller tabs (just visual toggle)
+document.querySelectorAll('#travellerTabs button[data-tab]').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('#travellerTabs button').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+// Accommodation toggle
+document.querySelectorAll('#accomToggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#accomToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* ── Stateroom Selection ──────────────────────────────────── */
+function selectRoom(el) {
+  document.querySelectorAll('.stateroom-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+/* ── Packing List ─────────────────────────────────────────── */
+function updatePacking() {
+  const items = document.querySelectorAll('#packingList .pack-item');
+  let total = 0, packed = 0;
+  items.forEach(item => {
+    total++;
+    const cb = item.querySelector('input[type=checkbox]');
+    if (cb.checked) { packed++; item.classList.add('checked'); }
+    else { item.classList.remove('checked'); }
+  });
+  const pct = total > 0 ? Math.round((packed / total) * 100) : 0;
+  document.getElementById('packProgress').textContent = `${packed} of ${total} items packed (${pct}%)`;
+  document.getElementById('packBar').style.width = pct + '%';
+}
+
+function addPackItem() {
+  const input = document.getElementById('customItemInput');
+  const val = input.value.trim();
+  if (!val) return;
+  const list = document.getElementById('packingList');
+  const item = document.createElement('div');
+  item.className = 'pack-item';
+  item.innerHTML = `<input type="checkbox" onchange="updatePacking()"><label>${val}</label>`;
+  list.appendChild(item);
+  input.value = '';
+  updatePacking();
+}
+
+/* ── Calendar Timeline (Trip Overview) ────────────────────── */
+function buildCalendar() {
+  const track = document.getElementById('calTrack');
+  const days = [
+    { d: 14, m: 'Jun', city: 'Toronto', weather: '\u2601', seg: '' },
+    { d: 15, m: 'Jun', city: 'Whittier', weather: '\u26C5', seg: 'seg-cruise' },
+    { d: 16, m: 'Jun', city: 'Hubbard Gl.', weather: '\u2601', seg: 'seg-cruise' },
+    { d: 17, m: 'Jun', city: 'Juneau', weather: '\u{1F324}', seg: 'seg-cruise' },
+    { d: 18, m: 'Jun', city: 'Skagway', weather: '\u2600', seg: 'seg-cruise' },
+    { d: 19, m: 'Jun', city: 'Glacier Bay', weather: '\u2601', seg: 'seg-cruise' },
+    { d: 20, m: 'Jun', city: 'Ketchikan', weather: '\u{1F327}', seg: 'seg-cruise' },
+    { d: 21, m: 'Jun', city: 'Seward', weather: '\u26C5', seg: 'seg-cruise' },
+    { d: 22, m: 'Jun', city: 'Seward', weather: '\u2600', seg: 'seg-adventure' },
+    { d: 23, m: 'Jun', city: 'Denali', weather: '\u{1F324}', seg: 'seg-land' },
+    { d: 24, m: 'Jun', city: 'Denali', weather: '\u2600', seg: 'seg-land' },
+    { d: 25, m: 'Jun', city: 'Denali', weather: '\u26C5', seg: 'seg-land' },
+    { d: 26, m: 'Jun', city: 'Anchorage', weather: '\u2600', seg: '' },
+    { d: 27, m: 'Jun', city: 'Anchorage', weather: '\u{1F324}', seg: '' },
+    { d: 28, m: 'Jun', city: 'Toronto', weather: '\u2600', seg: '' },
+  ];
+  track.innerHTML = days.map((day,i) => `
+    <div class="cal-day ${day.seg}" style="cursor:pointer" onclick="openDayDetail(${i})">
+      <div class="day-num">${day.d}</div>
+      <div style="font-size:.6rem;opacity:.7">${day.m}</div>
+      <div class="weather">${day.weather}</div>
+      <div class="city">${day.city}</div>
+    </div>
+  `).join('');
+  window._calDays = days;
+}
+buildCalendar();
+
+/* ── Day Detail Drawer ────────────────────────────────────── */
+const dayEvents = [
+  [{time:'7:00 AM',desc:'Depart Toronto Pearson',cat:'Transit'},{time:'5:30 PM',desc:'Arrive Anchorage',cat:'Transit'}],
+  [{time:'12:00 PM',desc:'Board Celebrity Edge in Whittier',cat:'Port'},{time:'4:00 PM',desc:'Sail away deck party',cat:'Onboard'},{time:'7:00 PM',desc:'Dinner at Normandie',cat:'Dining'}],
+  [{time:'8:00 AM',desc:'Scenic Hubbard Glacier cruising',cat:'Onboard'},{time:'12:00 PM',desc:'Lunch at Oceanview Cafe',cat:'Dining'},{time:'8:00 PM',desc:'Broadway show at The Theatre',cat:'Onboard'}],
+  [{time:'7:00 AM',desc:'Arrive Juneau port',cat:'Port'},{time:'9:00 AM',desc:'Whale watching excursion',cat:'Excursion'},{time:'12:00 PM',desc:'Lunch on board',cat:'Dining'},{time:'5:00 PM',desc:'Return to ship',cat:'Port'}],
+  [{time:'7:00 AM',desc:'Arrive Skagway',cat:'Port'},{time:'8:30 AM',desc:'White Pass Railway tour',cat:'Excursion'},{time:'2:00 PM',desc:'Explore downtown Skagway',cat:'Excursion'},{time:'6:00 PM',desc:'All aboard',cat:'Port'}],
+  [{time:'8:00 AM',desc:'Enter Glacier Bay National Park',cat:'Onboard'},{time:'10:00 AM',desc:'Park rangers board ship',cat:'Onboard'},{time:'2:00 PM',desc:'Johns Hopkins Glacier viewing',cat:'Onboard'}],
+  [{time:'7:00 AM',desc:'Arrive Ketchikan',cat:'Port'},{time:'9:00 AM',desc:'Creek Street & totem poles tour',cat:'Excursion'},{time:'4:00 PM',desc:'Return to ship',cat:'Port'}],
+  [{time:'7:00 AM',desc:'Disembark in Seward',cat:'Port'},{time:'10:00 AM',desc:'Transfer to hotel',cat:'Transit'},{time:'2:00 PM',desc:'Explore Seward waterfront',cat:'Excursion'}],
+  [{time:'8:00 AM',desc:'Kenai Fjords boat tour departs',cat:'Excursion'},{time:'12:00 PM',desc:'Lunch on board tour boat',cat:'Dining'},{time:'4:00 PM',desc:'Return to Seward',cat:'Excursion'}],
+  [{time:'9:00 AM',desc:'Drive to Denali (4 hrs)',cat:'Transit'},{time:'2:00 PM',desc:'Check in Denali Princess Lodge',cat:'Onboard'},{time:'5:00 PM',desc:'Welcome dinner at lodge',cat:'Dining'}],
+  [{time:'7:00 AM',desc:'Denali backcountry hike',cat:'Excursion'},{time:'12:00 PM',desc:'Trail lunch',cat:'Dining'},{time:'6:00 PM',desc:'Wildlife viewing at dusk',cat:'Excursion'}],
+  [{time:'8:00 AM',desc:'Tundra Wilderness Tour',cat:'Excursion'},{time:'1:00 PM',desc:'Lunch at lodge',cat:'Dining'},{time:'4:00 PM',desc:'Sled dog demonstration',cat:'Excursion'}],
+  [{time:'9:00 AM',desc:'Drive Denali to Anchorage',cat:'Transit'},{time:'2:00 PM',desc:'Anchorage Museum visit',cat:'Excursion'},{time:'7:00 PM',desc:'Farewell dinner',cat:'Dining'}],
+  [{time:'10:00 AM',desc:'Last morning in Anchorage',cat:'Excursion'},{time:'2:00 PM',desc:'Transfer to airport',cat:'Transit'},{time:'5:30 PM',desc:'Depart Anchorage',cat:'Transit'}],
+  [{time:'7:00 AM',desc:'Arrive Toronto Pearson',cat:'Transit'},{time:'9:00 AM',desc:'Home!',cat:'Transit'}]
+];
+
+function openDayDetail(idx) {
+  const day = window._calDays[idx];
+  const events = dayEvents[idx] || [];
+  const drawer = document.getElementById('dayDrawer');
+  const backdrop = document.getElementById('dayBackdrop');
+  document.getElementById('dayDrawerTitle').textContent = `Jun ${day.d} — ${day.city}, Alaska`;
+  const list = document.getElementById('dayEventList');
+  const catColors = {Port:'#dbeafe',Excursion:'#dcfce7',Dining:'#fef3c7',Onboard:'#ede9fe',Transit:'#f1f5f9'};
+  list.innerHTML = events.map((ev,ei) => `
+    <div class="day-event">
+      <span class="ev-time">${ev.time}</span>
+      <span class="ev-desc">${ev.desc} <span class="ev-cat" style="background:${catColors[ev.cat]||'#f1f5f9'}">${ev.cat}</span></span>
+      <span class="ev-actions">
+        <button title="Edit" onclick="alert('Edit event')">&#9998;</button>
+        <button title="Delete" onclick="this.closest('.day-event').remove()">&#128465;</button>
+      </span>
+    </div>
+  `).join('');
+  drawer.classList.add('open');
+  backdrop.classList.add('show');
+}
+function closeDayDetail() {
+  document.getElementById('dayDrawer').classList.remove('open');
+  document.getElementById('dayBackdrop').classList.remove('show');
+}
+function toggleAddEvent() {
+  const form = document.getElementById('addEventForm');
+  form.classList.toggle('show');
+}
+function saveNewEvent() {
+  const t = document.getElementById('newEvTime').value;
+  const d = document.getElementById('newEvDesc').value;
+  const c = document.getElementById('newEvCat').value;
+  if (!t || !d) { alert('Fill in time and description'); return; }
+  const catColors = {Port:'#dbeafe',Excursion:'#dcfce7',Dining:'#fef3c7',Onboard:'#ede9fe',Transit:'#f1f5f9'};
+  const item = document.createElement('div');
+  item.className = 'day-event';
+  item.innerHTML = `<span class="ev-time">${t}</span><span class="ev-desc">${d} <span class="ev-cat" style="background:${catColors[c]||'#f1f5f9'}">${c}</span></span><span class="ev-actions"><button onclick="alert('Edit')">&#9998;</button><button onclick="this.closest('.day-event').remove()">&#128465;</button></span>`;
+  document.getElementById('dayEventList').appendChild(item);
+  document.getElementById('newEvTime').value='';
+  document.getElementById('newEvDesc').value='';
+  document.getElementById('addEventForm').classList.remove('show');
+}
+
+/* ── Populate extra calendar tracks ──────────────────────── */
+function cloneCalTrack(targetId, highlightSegs) {
+  const target = document.getElementById(targetId);
+  if (!target || !window._calDays) return;
+  target.innerHTML = window._calDays.map((day,i) => {
+    const hl = highlightSegs.includes(day.seg) ? 'outline:2px solid #fff;transform:scale(1.08);' : 'opacity:.6;';
+    return `<div class="cal-day ${day.seg}" style="${hl}cursor:pointer" onclick="openDayDetail(${i})">
+      <div class="day-num">${day.d}</div>
+      <div style="font-size:.6rem;opacity:.7">${day.m}</div>
+      <div class="weather">${day.weather}</div>
+      <div class="city">${day.city}</div>
+    </div>`;
+  }).join('');
+}
+// Delay to ensure buildCalendar() has run
+setTimeout(() => {
+  cloneCalTrack('calTrackBrowse', ['seg-cruise']);
+  cloneCalTrack('calTrackLand', ['seg-adventure','seg-land']);
+}, 50);
+
+/* ── Init compare float state ─────────────────────────────── */
+updateCompare();
+document.getElementById('compareFloat').style.display = 'none';
+</script>
+</body>
+</html>
