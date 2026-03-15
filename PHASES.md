@@ -41,7 +41,7 @@
 - [ ] Exchange rate service stub (reads from localStorage, falls back to hardcoded rate)
 - [ ] `PriceDisplay` component (always renders in CAD)
 - [ ] `MockBadge` component (renders Mock / Verified / Live badges from `_meta`)
-- [ ] Layout shell: bottom nav (mobile), desktop top bar, back button logic
+- [ ] Layout shell: bottom nav (mobile: Trips, Pack, Settings), desktop top bar (title, Pack, settings gear), back button logic
 
 **End-of-phase validation**: Ask Ken to confirm the app boots, routes work, and the design system looks correct before proceeding.
 
@@ -63,7 +63,7 @@
 - [ ] Trip Overview — segment events toggle (show/hide events per card)
 - [ ] "Edit Trip Segments" button → wizard step 2
 - [ ] View history stack + back navigation working on all views
-- [ ] Mobile bottom nav + desktop top bar active state synced to current view
+- [ ] Bottom nav (Trips, Pack, Settings) + desktop top bar active state synced to current view
 
 **End-of-phase validation**: Ask Ken to walk through creating a trip and confirm the overview looks and feels right.
 

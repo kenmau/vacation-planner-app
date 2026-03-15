@@ -1,0 +1,166 @@
+[
+  {
+    "id": "ak-car-budget-economy",
+    "provider": "Budget",
+    "vehicleType": "Economy",
+    "vehicleName": "Toyota Corolla or similar",
+    "pricePerDay": { "amount": 79, "currency": "USD" },
+    "pickupLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "dropoffLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "features": [
+      "Automatic transmission",
+      "Air conditioning",
+      "Bluetooth",
+      "USB charging",
+      "Unlimited mileage",
+      "30 MPG average"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-car-enterprise-suv",
+    "provider": "Enterprise",
+    "vehicleType": "SUV",
+    "vehicleName": "Toyota RAV4 or similar",
+    "pricePerDay": { "amount": 119, "currency": "USD" },
+    "pickupLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "dropoffLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "features": [
+      "All-wheel drive",
+      "Automatic transmission",
+      "Air conditioning",
+      "Bluetooth & Apple CarPlay",
+      "Roof rack",
+      "Unlimited mileage",
+      "28 MPG average"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-car-hertz-fullsize-suv",
+    "provider": "Hertz",
+    "vehicleType": "Full-Size SUV",
+    "vehicleName": "Chevrolet Tahoe or similar",
+    "pricePerDay": { "amount": 169, "currency": "USD" },
+    "pickupLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "dropoffLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "features": [
+      "4x4 capable",
+      "Automatic transmission",
+      "Air conditioning",
+      "Third-row seating",
+      "Bluetooth & CarPlay/Android Auto",
+      "Towing capable",
+      "Unlimited mileage",
+      "Roof rack",
+      "22 MPG average"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-car-avis-truck",
+    "provider": "Avis",
+    "vehicleType": "Truck",
+    "vehicleName": "Ford F-150 or similar",
+    "pricePerDay": { "amount": 149, "currency": "USD" },
+    "pickupLocation": "Fairbanks International Airport (FAI)",
+    "dropoffLocation": "Fairbanks International Airport (FAI)",
+    "features": [
+      "4x4 capable",
+      "Automatic transmission",
+      "Extended cab",
+      "Truck bed",
+      "Bluetooth",
+      "Towing package",
+      "Unlimited mileage",
+      "20 MPG average"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-car-national-midsize",
+    "provider": "National",
+    "vehicleType": "Midsize",
+    "vehicleName": "Honda Civic or similar",
+    "pricePerDay": { "amount": 89, "currency": "USD" },
+    "pickupLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "dropoffLocation": "Fairbanks International Airport (FAI)",
+    "features": [
+      "Automatic transmission",
+      "Air conditioning",
+      "Bluetooth",
+      "USB charging",
+      "One-way rental allowed",
+      "Unlimited mileage",
+      "32 MPG average"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-car-enterprise-minivan",
+    "provider": "Enterprise",
+    "vehicleType": "Minivan",
+    "vehicleName": "Chrysler Pacifica or similar",
+    "pricePerDay": { "amount": 139, "currency": "USD" },
+    "pickupLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "dropoffLocation": "Anchorage Ted Stevens International Airport (ANC)",
+    "features": [
+      "Automatic transmission",
+      "Air conditioning",
+      "Seats 7 passengers",
+      "Rear entertainment system",
+      "Bluetooth & CarPlay/Android Auto",
+      "Stow-and-go seating",
+      "Unlimited mileage",
+      "22 MPG average"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-car-budget-suv-juneau",
+    "provider": "Budget",
+    "vehicleType": "SUV",
+    "vehicleName": "Jeep Cherokee or similar",
+    "pricePerDay": { "amount": 129, "currency": "USD" },
+    "pickupLocation": "Juneau International Airport (JNU)",
+    "dropoffLocation": "Juneau International Airport (JNU)",
+    "features": [
+      "All-wheel drive",
+      "Automatic transmission",
+      "Air conditioning",
+      "Bluetooth",
+      "USB charging",
+      "Unlimited mileage",
+      "26 MPG average"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  }
+]

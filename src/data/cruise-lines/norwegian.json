@@ -1,0 +1,328 @@
+{
+  "id": "norwegian",
+  "name": "Norwegian Cruise Line",
+  "logo": {
+    "url": "/images/placeholder.jpg",
+    "alt": "Norwegian Cruise Line logo"
+  },
+  "description": "Norwegian Cruise Line pioneered Freestyle Cruising with no fixed dining times or dress codes. Their newest and most innovative ships sail Alaska, featuring The Haven luxury enclave, world-class entertainment, and some of the best observation lounges at sea for glacier viewing.",
+  "ships": [
+    {
+      "id": "ncl-bliss",
+      "cruiseLineId": "norwegian",
+      "name": "Norwegian Bliss",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Norwegian Bliss cruise ship"
+      },
+      "yearBuilt": 2018,
+      "grossTonnage": 168028,
+      "length": 1094,
+      "passengerCapacity": 4004,
+      "crewSize": 1716,
+      "numberOfDecks": 20,
+      "staterooms": [
+        {
+          "id": "ncl-bliss-interior",
+          "name": "Interior",
+          "description": "Modern interior stateroom with contemporary decor, two lower beds convertible to queen, and en-suite bathroom.",
+          "pricePerPerson": { "amount": 1399, "currency": "USD" },
+          "squareFeet": 155,
+          "maxOccupancy": 2,
+          "amenities": ["Flat-panel TV", "USB outlets", "Safe", "Hair dryer", "Complimentary toiletries"]
+        },
+        {
+          "id": "ncl-bliss-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with picture window and additional seating area. Some categories feature virtual balconies.",
+          "pricePerPerson": { "amount": 1699, "currency": "USD" },
+          "squareFeet": 175,
+          "maxOccupancy": 2,
+          "amenities": ["Picture window", "Flat-panel TV", "USB outlets", "Safe", "Hair dryer", "Sitting area"]
+        },
+        {
+          "id": "ncl-bliss-balcony",
+          "name": "Balcony",
+          "description": "Spacious balcony stateroom designed for Alaska viewing. Features floor-to-ceiling glass doors opening to a private balcony.",
+          "pricePerPerson": { "amount": 2349, "currency": "USD" },
+          "squareFeet": 212,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "Flat-panel TV", "USB outlets", "Safe", "Sitting area", "Bathrobe and slippers"]
+        },
+        {
+          "id": "ncl-bliss-suite",
+          "name": "Suite",
+          "description": "The Haven Suite with private courtyard access, 24-hour butler service, premium bedding, and exclusive sun deck with pool and hot tub.",
+          "pricePerPerson": { "amount": 5499, "currency": "USD" },
+          "squareFeet": 524,
+          "maxOccupancy": 4,
+          "amenities": ["The Haven access", "Private balcony", "Butler service", "Concierge", "Premium bedding", "Jacuzzi tub", "Exclusive sun deck", "Priority embarkation", "In-suite dining", "Premium bath amenities"]
+        }
+      ],
+      "dining": [
+        "The Manhattan Room",
+        "Taste",
+        "Savor",
+        "Ocean Blue",
+        "Le Bistro French Restaurant",
+        "Cagney's Steakhouse",
+        "Teppanyaki",
+        "Food Republic",
+        "Q Texas Smokehouse",
+        "The Local Bar & Grill",
+        "Garden Cafe Buffet",
+        "Starbucks"
+      ],
+      "entertainment": [
+        "Jersey Boys (Broadway show)",
+        "Observation Lounge",
+        "The Cavern Club (Beatles tribute)",
+        "Social Comedy & Night Club",
+        "Bliss Casino",
+        "Spice H2O (adults-only)"
+      ],
+      "activities": [
+        "Go-Kart Racetrack (top deck)",
+        "Aqua Park with waterslides",
+        "Laser Tag Arena",
+        "Mandara Spa",
+        "Fitness Center",
+        "Pool Deck & Hot Tubs",
+        "Observation Lounge (360-degree glacier viewing)",
+        "Galaxy Pavilion (VR gaming)",
+        "Running Track"
+      ],
+      "ports": [
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "17:00",
+          "dayNumber": 1,
+          "highlights": ["Pike Place Market", "Space Needle", "Museum of Pop Culture"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "08:00",
+          "departureTime": "17:00",
+          "dayNumber": 3,
+          "highlights": ["Mendenhall Glacier helicopter tour", "Whale watching", "Dog sledding on glacier"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "20:00",
+          "dayNumber": 4,
+          "highlights": ["White Pass & Yukon Route Railroad", "Liarsville Gold Rush Camp", "Chilkoot Trail hike"]
+        },
+        {
+          "name": "Glacier Bay (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "15:00",
+          "dayNumber": 5,
+          "highlights": ["Margerie Glacier", "Park Rangers narration", "Observation Lounge viewing"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "10:00",
+          "departureTime": "18:00",
+          "dayNumber": 6,
+          "highlights": ["Misty Fjords floatplane", "Creek Street", "Totem Heritage Center"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "18:00",
+          "departureTime": "23:59",
+          "dayNumber": 7,
+          "highlights": ["Butchart Gardens", "Inner Harbour", "Chinatown"]
+        },
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Seattle, WA",
+      "route": "Alaska Inside Passage",
+      "rating": 4.4,
+      "reviewCount": 4521,
+      "reviewSummary": "The Observation Lounge is considered the best at sea for glacier viewing. Go-karts and waterslides are a hit with families. Freestyle dining offers great flexibility. Jersey Boys show receives standing ovations nightly.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    },
+    {
+      "id": "ncl-encore",
+      "cruiseLineId": "norwegian",
+      "name": "Norwegian Encore",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Norwegian Encore cruise ship"
+      },
+      "yearBuilt": 2019,
+      "grossTonnage": 169116,
+      "length": 1094,
+      "passengerCapacity": 3998,
+      "crewSize": 1735,
+      "numberOfDecks": 20,
+      "staterooms": [
+        {
+          "id": "ncl-encore-interior",
+          "name": "Interior",
+          "description": "Contemporary interior stateroom with modern amenities and comfortable bedding.",
+          "pricePerPerson": { "amount": 1449, "currency": "USD" },
+          "squareFeet": 157,
+          "maxOccupancy": 2,
+          "amenities": ["Flat-panel TV", "USB outlets", "Safe", "Hair dryer", "Complimentary toiletries"]
+        },
+        {
+          "id": "ncl-encore-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with picture window providing natural light and ocean views.",
+          "pricePerPerson": { "amount": 1749, "currency": "USD" },
+          "squareFeet": 178,
+          "maxOccupancy": 2,
+          "amenities": ["Picture window", "Flat-panel TV", "USB outlets", "Safe", "Hair dryer", "Sitting area"]
+        },
+        {
+          "id": "ncl-encore-balcony",
+          "name": "Balcony",
+          "description": "Private balcony stateroom perfect for Alaska scenic viewing with floor-to-ceiling glass doors.",
+          "pricePerPerson": { "amount": 2399, "currency": "USD" },
+          "squareFeet": 215,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "Flat-panel TV", "USB outlets", "Safe", "Sitting area", "Bathrobe and slippers"]
+        },
+        {
+          "id": "ncl-encore-suite",
+          "name": "Suite",
+          "description": "The Haven Penthouse with floor-to-ceiling windows, butler and concierge service, and exclusive Haven courtyard access.",
+          "pricePerPerson": { "amount": 5699, "currency": "USD" },
+          "squareFeet": 540,
+          "maxOccupancy": 4,
+          "amenities": ["The Haven access", "Large private balcony", "Butler service", "Concierge", "Premium bedding", "Rain shower", "Exclusive sun deck", "Priority embarkation", "In-suite dining"]
+        }
+      ],
+      "dining": [
+        "The Manhattan Room",
+        "Taste",
+        "Savor",
+        "Ocean Blue",
+        "Le Bistro",
+        "Cagney's Steakhouse",
+        "Teppanyaki",
+        "Food Republic",
+        "Q Texas Smokehouse",
+        "The Local Bar & Grill",
+        "Garden Cafe",
+        "Starbucks",
+        "Dolce Gelato"
+      ],
+      "entertainment": [
+        "Kinky Boots (Broadway show)",
+        "Observation Lounge",
+        "The Cavern Club",
+        "Social Comedy & Night Club",
+        "Encore Casino",
+        "Spice H2O"
+      ],
+      "activities": [
+        "Speedway Go-Kart Track",
+        "Aqua Park with Ocean Loops slide",
+        "Laser Tag",
+        "Mandara Spa",
+        "Fitness Center",
+        "Pool Deck & Hot Tubs",
+        "Observation Lounge",
+        "Galaxy Pavilion (VR gaming)",
+        "Running Track",
+        "Mini Golf"
+      ],
+      "ports": [
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "16:00",
+          "dayNumber": 1,
+          "highlights": ["Pike Place Market", "Space Needle"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "16:00",
+          "dayNumber": 3,
+          "highlights": ["Totem Bight State Park", "Creek Street", "Misty Fjords"]
+        },
+        {
+          "name": "Endicott Arm & Dawes Glacier (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "12:00",
+          "dayNumber": 4,
+          "highlights": ["Dawes Glacier", "Icebergs", "Waterfalls"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "14:00",
+          "departureTime": "23:00",
+          "dayNumber": 4,
+          "highlights": ["Mendenhall Glacier", "Whale watching", "Mount Roberts Tramway"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "17:00",
+          "dayNumber": 5,
+          "highlights": ["White Pass Railroad", "Klondike Gold Rush history"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "20:00",
+          "departureTime": "23:59",
+          "dayNumber": 7,
+          "highlights": ["Butchart Gardens", "Inner Harbour"]
+        },
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Seattle, WA",
+      "route": "Alaska Dawes Glacier & Inside Passage",
+      "rating": 4.5,
+      "reviewCount": 3876,
+      "reviewSummary": "One of NCL's newest ships brings Kinky Boots Broadway show and an incredible Observation Lounge. The Endicott Arm/Dawes Glacier route is less crowded than Glacier Bay. The Haven suites provide an exclusive ship-within-a-ship experience.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    }
+  ],
+  "_meta": {
+    "source": "mock",
+    "lastUpdated": "2026-03-15",
+    "updatedBy": "claude"
+  }
+}

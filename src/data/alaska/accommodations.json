@@ -1,0 +1,324 @@
+[
+  {
+    "id": "ak-hotel-captain-cook",
+    "name": "Hotel Captain Cook",
+    "type": "hotel",
+    "description": "Anchorage's premier full-service hotel, centrally located downtown with stunning views of Cook Inlet and the Chugach Mountains. Features three restaurants, fitness center, and athletic club. A landmark hotel since 1965.",
+    "location": {
+      "city": "Anchorage",
+      "stateOrCountry": "Alaska",
+      "address": "939 W 5th Ave, Anchorage, AK 99501"
+    },
+    "pricePerNight": { "amount": 289, "currency": "USD" },
+    "rating": 4.4,
+    "reviewCount": 3456,
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness center & pool",
+      "Three restaurants",
+      "Room service",
+      "Business center",
+      "Concierge",
+      "Valet parking",
+      "Mountain views",
+      "Airport shuttle"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Hotel Captain Cook in downtown Anchorage"
+    },
+    "checkInTime": "15:00",
+    "checkOutTime": "12:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-hotel-westmark-juneau",
+    "name": "Westmark Baranof Hotel",
+    "type": "hotel",
+    "description": "Historic downtown Juneau hotel within walking distance of the cruise ship terminal, Alaska State Capitol, and Mendenhall Glacier bus tours. Recently renovated rooms blend classic charm with modern comforts.",
+    "location": {
+      "city": "Juneau",
+      "stateOrCountry": "Alaska",
+      "address": "127 N Franklin St, Juneau, AK 99801"
+    },
+    "pricePerNight": { "amount": 219, "currency": "USD" },
+    "rating": 4.1,
+    "reviewCount": 2187,
+    "amenities": [
+      "Free Wi-Fi",
+      "On-site restaurant & bar",
+      "Fitness room",
+      "Business center",
+      "Meeting rooms",
+      "Gift shop",
+      "Downtown location"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Westmark Baranof Hotel in downtown Juneau"
+    },
+    "checkInTime": "15:00",
+    "checkOutTime": "11:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-airbnb-juneau-cabin",
+    "name": "Auke Bay Waterfront Cabin",
+    "type": "cabin",
+    "description": "Charming waterfront cabin on Auke Bay, just 12 miles from downtown Juneau. Private beach access, stunning sunset views over the water, and frequent whale sightings from the deck. Fully equipped kitchen and cozy wood stove.",
+    "location": {
+      "city": "Juneau",
+      "stateOrCountry": "Alaska",
+      "address": "Auke Bay, Juneau, AK 99801"
+    },
+    "pricePerNight": { "amount": 185, "currency": "USD" },
+    "rating": 4.8,
+    "reviewCount": 342,
+    "amenities": [
+      "Waterfront views",
+      "Private beach access",
+      "Full kitchen",
+      "Wood-burning stove",
+      "Free parking",
+      "Wi-Fi",
+      "Washer/dryer",
+      "BBQ grill",
+      "Kayak available"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Waterfront cabin on Auke Bay near Juneau"
+    },
+    "checkInTime": "16:00",
+    "checkOutTime": "10:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-hotel-denali-princess",
+    "name": "Denali Princess Wilderness Lodge",
+    "type": "resort",
+    "description": "Perched on a bluff overlooking the Nenana River, this wilderness lodge is the gateway to Denali National Park. Features timber-frame main lodge, riverside dining, and tour desk for park excursions. Connected to the Alaska Railroad depot.",
+    "location": {
+      "city": "Denali Park",
+      "stateOrCountry": "Alaska",
+      "address": "Mile 238.5 Parks Highway, Denali, AK 99755"
+    },
+    "pricePerNight": { "amount": 329, "currency": "USD" },
+    "rating": 4.3,
+    "reviewCount": 1876,
+    "amenities": [
+      "River views",
+      "Two restaurants",
+      "Dinner theater",
+      "Gift shops",
+      "Tour desk",
+      "Free shuttle to park entrance",
+      "Outdoor hot tubs",
+      "Free parking",
+      "Wi-Fi in lobby"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Denali Princess Wilderness Lodge overlooking Nenana River"
+    },
+    "checkInTime": "16:00",
+    "checkOutTime": "11:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-airbnb-denali-cabin",
+    "name": "Cozy Denali Log Cabin with Mountain Views",
+    "type": "cabin",
+    "description": "Rustic-chic log cabin nestled in the boreal forest near Denali National Park. Floor-to-ceiling windows frame spectacular mountain views. Private hot tub on the deck, fully equipped kitchen, and fire pit. Perfect for couples or small families.",
+    "location": {
+      "city": "Denali Park",
+      "stateOrCountry": "Alaska",
+      "address": "Mile 231 Parks Highway, Denali, AK 99755"
+    },
+    "pricePerNight": { "amount": 245, "currency": "USD" },
+    "rating": 4.9,
+    "reviewCount": 267,
+    "amenities": [
+      "Mountain views",
+      "Private hot tub",
+      "Full kitchen",
+      "Fire pit",
+      "Free parking",
+      "Wi-Fi",
+      "BBQ grill",
+      "Board games",
+      "Washer/dryer"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Log cabin with Denali mountain views"
+    },
+    "checkInTime": "15:00",
+    "checkOutTime": "10:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-hotel-anchorage-hilton",
+    "name": "Hilton Anchorage",
+    "type": "hotel",
+    "description": "Modern downtown Anchorage hotel connected to the Egan Civic & Convention Center. Walking distance to shops, restaurants, and the Tony Knowles Coastal Trail. Comfortable rooms with city or mountain views.",
+    "location": {
+      "city": "Anchorage",
+      "stateOrCountry": "Alaska",
+      "address": "500 W 3rd Ave, Anchorage, AK 99501"
+    },
+    "pricePerNight": { "amount": 259, "currency": "USD" },
+    "rating": 4.2,
+    "reviewCount": 2876,
+    "amenities": [
+      "Free Wi-Fi",
+      "Fitness center",
+      "Restaurant & bar",
+      "Room service",
+      "Business center",
+      "Concierge",
+      "Self parking",
+      "Pet friendly"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Hilton Anchorage hotel exterior"
+    },
+    "checkInTime": "15:00",
+    "checkOutTime": "12:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-airbnb-anchorage-modern",
+    "name": "Modern Downtown Anchorage Apartment",
+    "type": "airbnb",
+    "description": "Stylish, fully furnished apartment in the heart of downtown Anchorage. Walk to restaurants, the Anchorage Museum, and Saturday Market. Two bedrooms, modern kitchen, and mountain views from the living room. Ideal base for exploring Southcentral Alaska.",
+    "location": {
+      "city": "Anchorage",
+      "stateOrCountry": "Alaska",
+      "address": "Downtown Anchorage, AK 99501"
+    },
+    "pricePerNight": { "amount": 175, "currency": "USD" },
+    "rating": 4.6,
+    "reviewCount": 189,
+    "amenities": [
+      "Full kitchen",
+      "Two bedrooms",
+      "Mountain views",
+      "Free Wi-Fi",
+      "Free parking",
+      "Washer/dryer",
+      "Smart TV",
+      "Coffee maker",
+      "Keyless entry"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Modern apartment in downtown Anchorage"
+    },
+    "checkInTime": "15:00",
+    "checkOutTime": "11:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-hotel-pike-waterfront-lodge",
+    "name": "Pike's Waterfront Lodge",
+    "type": "hotel",
+    "description": "Riverside lodge on the banks of the Chena River in Fairbanks. Features Alaska-themed rooms, on-site restaurant with local cuisine, and a great location for aurora viewing in shoulder season. Popular base for interior Alaska adventures.",
+    "location": {
+      "city": "Fairbanks",
+      "stateOrCountry": "Alaska",
+      "address": "1850 Hoselton Rd, Fairbanks, AK 99709"
+    },
+    "pricePerNight": { "amount": 199, "currency": "USD" },
+    "rating": 4.1,
+    "reviewCount": 1543,
+    "amenities": [
+      "River views",
+      "On-site restaurant",
+      "Free Wi-Fi",
+      "Free airport shuttle",
+      "Free parking",
+      "Gift shop",
+      "Tour desk",
+      "Laundry facilities",
+      "Aurora wake-up calls (seasonal)"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Pike's Waterfront Lodge on the Chena River"
+    },
+    "checkInTime": "15:00",
+    "checkOutTime": "11:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-resort-alyeska",
+    "name": "Alyeska Resort",
+    "type": "resort",
+    "description": "Alaska's premier year-round resort nestled at the base of Mount Alyeska in Girdwood, 40 miles south of Anchorage. Features an aerial tramway, saltwater pool, Nordic spa, and fine dining. Gateway to Portage Glacier and the Kenai Peninsula.",
+    "location": {
+      "city": "Girdwood",
+      "stateOrCountry": "Alaska",
+      "address": "1000 Arlberg Ave, Girdwood, AK 99587"
+    },
+    "pricePerNight": { "amount": 379, "currency": "USD" },
+    "rating": 4.5,
+    "reviewCount": 2345,
+    "amenities": [
+      "Aerial tramway",
+      "Saltwater pool",
+      "Nordic spa & hot tubs",
+      "Fine dining restaurant",
+      "Fitness center",
+      "Ski-in/ski-out (winter)",
+      "Hiking trails (summer)",
+      "Free Wi-Fi",
+      "Valet parking",
+      "Mountain views"
+    ],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Alyeska Resort with mountain backdrop"
+    },
+    "checkInTime": "16:00",
+    "checkOutTime": "11:00",
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  }
+]

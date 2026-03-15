@@ -1,0 +1,182 @@
+[
+  {
+    "id": "flight-yyz-anc-ac-direct",
+    "airline": "Air Canada",
+    "flightNumber": "AC 287",
+    "from": "YYZ",
+    "to": "ANC",
+    "departureTime": "2026-06-15T07:30:00-04:00",
+    "arrivalTime": "2026-06-15T12:45:00-08:00",
+    "duration": "9h 15m",
+    "stops": 1,
+    "stopCities": ["YVR"],
+    "price": { "amount": 687, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-yyz-anc-aa",
+    "airline": "American Airlines",
+    "flightNumber": "AA 1432",
+    "from": "YYZ",
+    "to": "ANC",
+    "departureTime": "2026-06-15T06:00:00-04:00",
+    "arrivalTime": "2026-06-15T13:20:00-08:00",
+    "duration": "11h 20m",
+    "stops": 1,
+    "stopCities": ["SEA"],
+    "price": { "amount": 612, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-yyz-anc-dl",
+    "airline": "Delta Air Lines",
+    "flightNumber": "DL 5678",
+    "from": "YYZ",
+    "to": "ANC",
+    "departureTime": "2026-06-15T09:15:00-04:00",
+    "arrivalTime": "2026-06-15T16:30:00-08:00",
+    "duration": "11h 15m",
+    "stops": 1,
+    "stopCities": ["MSP"],
+    "price": { "amount": 598, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-yyz-jnu-ac",
+    "airline": "Air Canada",
+    "flightNumber": "AC 319",
+    "from": "YYZ",
+    "to": "JNU",
+    "departureTime": "2026-06-15T08:00:00-04:00",
+    "arrivalTime": "2026-06-15T15:45:00-08:00",
+    "duration": "11h 45m",
+    "stops": 2,
+    "stopCities": ["YVR", "SEA"],
+    "price": { "amount": 749, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-yyz-jnu-as",
+    "airline": "Alaska Airlines",
+    "flightNumber": "AS 2045",
+    "from": "YYZ",
+    "to": "JNU",
+    "departureTime": "2026-06-15T06:30:00-04:00",
+    "arrivalTime": "2026-06-15T14:10:00-08:00",
+    "duration": "11h 40m",
+    "stops": 1,
+    "stopCities": ["SEA"],
+    "price": { "amount": 723, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-yyz-fai-ua",
+    "airline": "United Airlines",
+    "flightNumber": "UA 4521",
+    "from": "YYZ",
+    "to": "FAI",
+    "departureTime": "2026-06-15T07:00:00-04:00",
+    "arrivalTime": "2026-06-15T15:55:00-08:00",
+    "duration": "12h 55m",
+    "stops": 2,
+    "stopCities": ["ORD", "ANC"],
+    "price": { "amount": 812, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-yyz-anc-ws",
+    "airline": "WestJet",
+    "flightNumber": "WS 1876",
+    "from": "YYZ",
+    "to": "ANC",
+    "departureTime": "2026-06-15T10:30:00-04:00",
+    "arrivalTime": "2026-06-15T17:15:00-08:00",
+    "duration": "10h 45m",
+    "stops": 1,
+    "stopCities": ["YYC"],
+    "price": { "amount": 645, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-yyz-anc-ua-2stop",
+    "airline": "United Airlines",
+    "flightNumber": "UA 3342",
+    "from": "YYZ",
+    "to": "ANC",
+    "departureTime": "2026-06-15T11:00:00-04:00",
+    "arrivalTime": "2026-06-15T20:30:00-08:00",
+    "duration": "13h 30m",
+    "stops": 2,
+    "stopCities": ["DEN", "SEA"],
+    "price": { "amount": 534, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-anc-yyz-ac-return",
+    "airline": "Air Canada",
+    "flightNumber": "AC 288",
+    "from": "ANC",
+    "to": "YYZ",
+    "departureTime": "2026-06-22T14:00:00-08:00",
+    "arrivalTime": "2026-06-23T06:15:00-04:00",
+    "duration": "8h 15m",
+    "stops": 1,
+    "stopCities": ["YVR"],
+    "price": { "amount": 699, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "flight-jnu-yyz-as-return",
+    "airline": "Alaska Airlines",
+    "flightNumber": "AS 2046",
+    "from": "JNU",
+    "to": "YYZ",
+    "departureTime": "2026-06-22T08:00:00-08:00",
+    "arrivalTime": "2026-06-22T23:45:00-04:00",
+    "duration": "11h 45m",
+    "stops": 2,
+    "stopCities": ["SEA", "YVR"],
+    "price": { "amount": 756, "currency": "USD" },
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  }
+]
