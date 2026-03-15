@@ -1,0 +1,319 @@
+{
+  "id": "royal-caribbean",
+  "name": "Royal Caribbean International",
+  "logo": {
+    "url": "/images/placeholder.jpg",
+    "alt": "Royal Caribbean International logo"
+  },
+  "description": "Royal Caribbean International brings its signature bold, innovative ships to Alaska waters. Known for industry-first features like the North Star observation pod, bumper cars, and FlowRider surf simulators, Royal Caribbean combines thrilling onboard experiences with stunning Alaska scenery.",
+  "ships": [
+    {
+      "id": "rci-ovation",
+      "cruiseLineId": "royal-caribbean",
+      "name": "Ovation of the Seas",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Ovation of the Seas cruise ship"
+      },
+      "yearBuilt": 2016,
+      "grossTonnage": 168666,
+      "length": 1138,
+      "passengerCapacity": 4180,
+      "crewSize": 1500,
+      "numberOfDecks": 18,
+      "staterooms": [
+        {
+          "id": "rci-ovation-interior",
+          "name": "Interior",
+          "description": "Interior stateroom with virtual balcony providing real-time ocean views on an 80-inch LED screen. Includes two twin beds convertible to Royal King.",
+          "pricePerPerson": { "amount": 1349, "currency": "USD" },
+          "squareFeet": 166,
+          "maxOccupancy": 2,
+          "amenities": ["Virtual balcony (80-inch LED)", "Flat-panel TV", "USB outlets", "Safe", "Hair dryer", "Interactive TV"]
+        },
+        {
+          "id": "rci-ovation-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with large picture window offering natural light and ocean views. Two twin beds convertible to Royal King.",
+          "pricePerPerson": { "amount": 1649, "currency": "USD" },
+          "squareFeet": 182,
+          "maxOccupancy": 2,
+          "amenities": ["Picture window", "Flat-panel TV", "USB outlets", "Safe", "Hair dryer", "Sitting area"]
+        },
+        {
+          "id": "rci-ovation-balcony",
+          "name": "Balcony",
+          "description": "Spacious balcony stateroom with private balcony for Alaska glacier viewing. Floor-to-ceiling glass doors with sitting area.",
+          "pricePerPerson": { "amount": 2249, "currency": "USD" },
+          "squareFeet": 210,
+          "maxOccupancy": 4,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "Flat-panel TV", "USB outlets", "Safe", "Sitting area", "Sofa bed"]
+        },
+        {
+          "id": "rci-ovation-suite",
+          "name": "Suite",
+          "description": "Grand Suite with spacious balcony, separate living area, Royal Suite Class perks including Suite Lounge access and dedicated concierge.",
+          "pricePerPerson": { "amount": 4899, "currency": "USD" },
+          "squareFeet": 590,
+          "maxOccupancy": 4,
+          "amenities": ["Large private balcony", "Separate living area", "Suite Lounge access", "Concierge service", "Priority boarding", "Complimentary specialty dining", "Premium bath amenities", "Bathrobe and slippers", "Espresso machine"]
+        }
+      ],
+      "dining": [
+        "Main Dining Room",
+        "Jamie's Italian by Jamie Oliver",
+        "Wonderland Imaginative Cuisine",
+        "Chops Grille",
+        "Izumi Japanese Cuisine",
+        "Kung Fu Panda Noodle Shop",
+        "Windjammer Marketplace",
+        "Cafe @ Two70",
+        "Sorrento's Pizza",
+        "SeaPlex Dog House"
+      ],
+      "entertainment": [
+        "Two70 (transformative entertainment venue)",
+        "North Star (glass observation capsule)",
+        "Music Hall",
+        "Casino Royale",
+        "Bionic Bar (robotic bartenders)"
+      ],
+      "activities": [
+        "North Star observation capsule",
+        "RipCord by iFLY (skydiving simulator)",
+        "FlowRider surf simulator",
+        "SeaPlex (bumper cars, roller skating, basketball)",
+        "Vitality Spa",
+        "Fitness Center",
+        "Pool & Solarium",
+        "Rock Climbing Wall",
+        "Jogging Track"
+      ],
+      "ports": [
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "16:30",
+          "dayNumber": 1,
+          "highlights": ["Pike Place Market", "Space Needle"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "21:00",
+          "dayNumber": 3,
+          "highlights": ["Mendenhall Glacier", "Whale watching", "Alaska Salmon Bake"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "20:30",
+          "dayNumber": 4,
+          "highlights": ["White Pass & Yukon Route Railroad", "Liarsville Gold Panning"]
+        },
+        {
+          "name": "Endicott Arm (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "11:00",
+          "dayNumber": 5,
+          "highlights": ["Dawes Glacier from North Star", "Icebergs", "Fjord scenery"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "16:00",
+          "dayNumber": 6,
+          "highlights": ["Misty Fjords", "Totem Bight", "Creek Street"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "17:00",
+          "departureTime": "23:59",
+          "dayNumber": 7,
+          "highlights": ["Butchart Gardens", "Inner Harbour"]
+        },
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Seattle, WA",
+      "route": "Alaska Glacier Cruise",
+      "rating": 4.3,
+      "reviewCount": 5234,
+      "reviewSummary": "The North Star provides unparalleled 360-degree glacier views from 300 feet above sea level. Families love the variety of activities including FlowRider and bumper cars. Two70 lounge offers spectacular viewing during scenic cruising. Virtual balconies in interior rooms are a nice touch for budget-conscious travelers.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    },
+    {
+      "id": "rci-quantum",
+      "cruiseLineId": "royal-caribbean",
+      "name": "Quantum of the Seas",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Quantum of the Seas cruise ship"
+      },
+      "yearBuilt": 2014,
+      "grossTonnage": 168666,
+      "length": 1138,
+      "passengerCapacity": 4180,
+      "crewSize": 1500,
+      "numberOfDecks": 18,
+      "staterooms": [
+        {
+          "id": "rci-quantum-interior",
+          "name": "Interior",
+          "description": "Interior stateroom with virtual balcony. Two twin beds convertible to Royal King bed.",
+          "pricePerPerson": { "amount": 1249, "currency": "USD" },
+          "squareFeet": 166,
+          "maxOccupancy": 2,
+          "amenities": ["Virtual balcony (80-inch LED)", "Flat-panel TV", "USB outlets", "Safe", "Hair dryer"]
+        },
+        {
+          "id": "rci-quantum-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with ocean-view window and sitting area.",
+          "pricePerPerson": { "amount": 1549, "currency": "USD" },
+          "squareFeet": 182,
+          "maxOccupancy": 2,
+          "amenities": ["Picture window", "Flat-panel TV", "USB outlets", "Safe", "Hair dryer", "Sitting area"]
+        },
+        {
+          "id": "rci-quantum-balcony",
+          "name": "Balcony",
+          "description": "Private balcony stateroom with floor-to-ceiling glass doors. Two twin beds convertible to Royal King with sofa bed.",
+          "pricePerPerson": { "amount": 2099, "currency": "USD" },
+          "squareFeet": 210,
+          "maxOccupancy": 4,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "Flat-panel TV", "USB outlets", "Safe", "Sitting area", "Sofa bed"]
+        },
+        {
+          "id": "rci-quantum-suite",
+          "name": "Suite",
+          "description": "Grand Suite with large balcony, living room, and Royal Suite Class privileges.",
+          "pricePerPerson": { "amount": 4599, "currency": "USD" },
+          "squareFeet": 590,
+          "maxOccupancy": 4,
+          "amenities": ["Large private balcony", "Separate living area", "Suite Lounge access", "Concierge service", "Priority boarding", "Complimentary specialty dining", "Bathrobe and slippers"]
+        }
+      ],
+      "dining": [
+        "Main Dining Room",
+        "Jamie's Italian",
+        "Wonderland",
+        "Chops Grille",
+        "Izumi",
+        "Windjammer Marketplace",
+        "Cafe @ Two70",
+        "Sorrento's Pizza",
+        "SeaPlex Dog House"
+      ],
+      "entertainment": [
+        "Two70",
+        "North Star",
+        "Music Hall",
+        "Casino Royale",
+        "Bionic Bar"
+      ],
+      "activities": [
+        "North Star",
+        "RipCord by iFLY",
+        "FlowRider",
+        "SeaPlex (bumper cars, roller skating)",
+        "Vitality Spa",
+        "Fitness Center",
+        "Pool & Solarium",
+        "Rock Climbing Wall",
+        "Jogging Track"
+      ],
+      "ports": [
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "16:00",
+          "dayNumber": 1,
+          "highlights": ["Pike Place Market", "Space Needle"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "10:00",
+          "departureTime": "19:00",
+          "dayNumber": 3,
+          "highlights": ["Creek Street", "Totem Heritage Center", "Lumberjack Show"]
+        },
+        {
+          "name": "Icy Strait Point",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "16:00",
+          "dayNumber": 4,
+          "highlights": ["ZipRider (world's largest zipline)", "Whale watching", "Wildlife museum"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "08:00",
+          "departureTime": "17:00",
+          "dayNumber": 5,
+          "highlights": ["Mendenhall Glacier", "Dog sledding", "Mount Roberts Tramway"]
+        },
+        {
+          "name": "Hubbard Glacier (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "08:00",
+          "departureTime": "14:00",
+          "dayNumber": 6,
+          "highlights": ["Hubbard Glacier from North Star", "Glacier calving", "Photo ops"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "19:00",
+          "departureTime": "23:59",
+          "dayNumber": 7,
+          "highlights": ["Butchart Gardens", "Inner Harbour"]
+        },
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Seattle, WA",
+      "route": "Alaska Hubbard Glacier Cruise",
+      "rating": 4.2,
+      "reviewCount": 3876,
+      "reviewSummary": "The Quantum Class ship brings cutting-edge features to Alaska. Icy Strait Point is a unique port not offered by most lines. Hubbard Glacier viewing from North Star is unforgettable. Great for families seeking onboard excitement alongside natural beauty.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    }
+  ],
+  "_meta": {
+    "source": "mock",
+    "lastUpdated": "2026-03-15",
+    "updatedBy": "claude"
+  }
+}

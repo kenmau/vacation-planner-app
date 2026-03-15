@@ -28,24 +28,24 @@
 
 ---
 
-## Phase 1 — Foundation ⏳
+## Phase 1 — Foundation ✅
 **Goal**: Next.js app runs locally with routing shell, types, mock data, and design system in place. No real features yet — just the skeleton everything else builds on.
 
 ### Checklist
-- [ ] Next.js 15 (App Router) + TypeScript scaffold
-- [ ] Tailwind CSS v4 + shadcn/ui configured
-- [ ] Zustand store shells (`tripStore`, `priceStore`, `compareStore`)
-- [ ] All TypeScript interfaces in `src/lib/types/` (Trip, Segment, CruiseLine, Ship, Activity, Accommodation, Flight, CarRental, PackingItem, Event)
-- [ ] Mock JSON data files (`src/data/cruise-lines/`, `src/data/alaska/`, `src/data/flights/`) — all with `_meta`
-- [ ] Route structure scaffolded (dashboard, wizard, trip overview, cruise, land, travel, packing, settings)
-- [ ] Exchange rate service stub (reads from localStorage, falls back to hardcoded rate)
-- [ ] `PriceDisplay` component (always renders in CAD)
-- [ ] `MockBadge` component (renders Mock / Verified / Live badges from `_meta`)
-- [ ] Layout shell: bottom nav (mobile), desktop top bar, back button logic
+- [x] Next.js 15 (App Router) + TypeScript scaffold
+- [x] Tailwind CSS v4 + shadcn/ui configured
+- [x] Zustand store shells (`tripStore`, `priceStore`, `compareStore`)
+- [x] All TypeScript interfaces in `src/lib/types/` (Trip, Segment, CruiseLine, Ship, Activity, Accommodation, Flight, CarRental, PackingItem, Event)
+- [x] Mock JSON data files (`src/data/cruise-lines/`, `src/data/alaska/`, `src/data/flights/`) — all with `_meta`
+- [x] Route structure scaffolded (dashboard, wizard, trip overview, cruise, land, travel, packing, settings)
+- [x] Exchange rate service stub (reads from localStorage, falls back to hardcoded rate)
+- [x] `PriceDisplay` component (always renders in CAD)
+- [x] `MockBadge` component (renders Mock / Verified / Live badges from `_meta`)
+- [x] Layout shell: bottom nav (mobile: Trips, Pack, Settings), desktop top bar (title, Pack, settings gear), back button logic
 
 **End-of-phase validation**: Ask Ken to confirm the app boots, routes work, and the design system looks correct before proceeding.
 
-**Validated by Ken**: ⏳
+**Validated by Ken**: ✅ 2026-03-15
 
 ---
 
@@ -63,7 +63,7 @@
 - [ ] Trip Overview — segment events toggle (show/hide events per card)
 - [ ] "Edit Trip Segments" button → wizard step 2
 - [ ] View history stack + back navigation working on all views
-- [ ] Mobile bottom nav + desktop top bar active state synced to current view
+- [ ] Bottom nav (Trips, Pack, Settings) + desktop top bar active state synced to current view
 
 **End-of-phase validation**: Ask Ken to walk through creating a trip and confirm the overview looks and feels right.
 
@@ -226,7 +226,7 @@
 | Phase | Description | Status |
 |-------|-------------|--------|
 | 0 | Wireframe & Requirements | ✅ |
-| 1 | Foundation | ⏳ |
+| 1 | Foundation | ✅ |
 | 2 | Trip Structure | ⏳ |
 | 3 | Calendar & Day Detail | ⏳ |
 | 4 | Cruise Module | ⏳ |

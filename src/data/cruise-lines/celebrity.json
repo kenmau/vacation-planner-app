@@ -1,0 +1,328 @@
+{
+  "id": "celebrity",
+  "name": "Celebrity Cruises",
+  "logo": {
+    "url": "/images/placeholder.jpg",
+    "alt": "Celebrity Cruises logo"
+  },
+  "description": "Celebrity Cruises delivers modern luxury with a focus on design, culinary excellence, and wellness. Their Alaska sailings feature award-winning ships with the Solarium, Rooftop Garden, and always-included pricing that covers Wi-Fi, drinks, and gratuities.",
+  "ships": [
+    {
+      "id": "celebrity-solstice",
+      "cruiseLineId": "celebrity",
+      "name": "Celebrity Solstice",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Celebrity Solstice cruise ship"
+      },
+      "yearBuilt": 2008,
+      "yearRefurbished": 2023,
+      "grossTonnage": 121878,
+      "length": 1041,
+      "passengerCapacity": 2852,
+      "crewSize": 1253,
+      "numberOfDecks": 16,
+      "staterooms": [
+        {
+          "id": "celebrity-solstice-interior",
+          "name": "Interior",
+          "description": "Stylish interior stateroom with eXhale bedding, interactive TV system, and spacious bathroom.",
+          "pricePerPerson": { "amount": 1499, "currency": "USD" },
+          "squareFeet": 183,
+          "maxOccupancy": 2,
+          "amenities": ["eXhale bedding", "Interactive TV", "Mini-bar", "Safe", "Hair dryer", "Premium bath amenities"]
+        },
+        {
+          "id": "celebrity-solstice-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with large picture window, eXhale bedding, and sitting area with sofa.",
+          "pricePerPerson": { "amount": 1799, "currency": "USD" },
+          "squareFeet": 196,
+          "maxOccupancy": 2,
+          "amenities": ["Picture window", "eXhale bedding", "Interactive TV", "Mini-bar", "Safe", "Sitting area"]
+        },
+        {
+          "id": "celebrity-solstice-balcony",
+          "name": "Balcony",
+          "description": "Veranda stateroom with private balcony, floor-to-ceiling sliding glass doors, and lounge seating. Always Included pricing covers drinks, Wi-Fi, and tips.",
+          "pricePerPerson": { "amount": 2449, "currency": "USD" },
+          "squareFeet": 215,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "eXhale bedding", "Interactive TV", "Mini-bar", "Safe", "Sitting area", "Bathrobe"]
+        },
+        {
+          "id": "celebrity-solstice-suite",
+          "name": "Suite",
+          "description": "Penthouse Suite with panoramic balcony, separate living and dining areas, butler service, and exclusive suite-class perks including The Retreat lounge and sundeck.",
+          "pricePerPerson": { "amount": 5199, "currency": "USD" },
+          "squareFeet": 590,
+          "maxOccupancy": 4,
+          "amenities": ["Panoramic balcony", "Separate living area", "Dining area", "Butler service", "The Retreat access", "Premium drinks package", "Whirlpool tub", "Walk-in closet", "Espresso machine", "Priority everything"]
+        }
+      ],
+      "dining": [
+        "Grand Epernay Main Dining Room",
+        "Murano (French fine dining)",
+        "Tuscan Grille",
+        "Sushi on Five",
+        "Blu (for AquaClass guests)",
+        "Oceanview Cafe",
+        "Mast Grill",
+        "Gelateria",
+        "Cafe al Bacio"
+      ],
+      "entertainment": [
+        "Celebrity Central (theater)",
+        "Sky Lounge",
+        "Ensemble Lounge",
+        "Fortunes Casino",
+        "Hot Glass Show (glassblowing at sea)",
+        "Celebrity iLounge"
+      ],
+      "activities": [
+        "Lawn Club (real grass lawn)",
+        "Solarium (adults-only pool)",
+        "Canyon Ranch SpaClub",
+        "Fitness Center",
+        "Pool Deck",
+        "Hot Glass Show (artisan glassblowing)",
+        "Art Studio",
+        "Basketball Court",
+        "Jogging Track",
+        "Library"
+      ],
+      "ports": [
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "16:00",
+          "dayNumber": 1,
+          "highlights": ["Pike Place Market", "Space Needle"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "16:00",
+          "dayNumber": 3,
+          "highlights": ["Totem Heritage Center", "Creek Street", "Misty Fjords"]
+        },
+        {
+          "name": "Endicott Arm & Dawes Glacier (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "05:30",
+          "departureTime": "10:30",
+          "dayNumber": 4,
+          "highlights": ["Dawes Glacier", "Icebergs", "Waterfall viewing"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "13:00",
+          "departureTime": "22:00",
+          "dayNumber": 4,
+          "highlights": ["Mendenhall Glacier", "Whale watching", "Mount Roberts Tramway"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "18:00",
+          "dayNumber": 5,
+          "highlights": ["White Pass Railroad", "Chilkoot Trail", "Klondike Gold Rush history"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "19:00",
+          "departureTime": "23:59",
+          "dayNumber": 7,
+          "highlights": ["Butchart Gardens", "Inner Harbour", "Royal BC Museum"]
+        },
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Seattle, WA",
+      "route": "Alaska Inside Passage & Dawes Glacier",
+      "rating": 4.4,
+      "reviewCount": 2987,
+      "reviewSummary": "Celebrity offers a more upscale, adult-focused Alaska cruise experience. The Lawn Club and Hot Glass Show are unique touches. Always Included pricing is popular since it covers Wi-Fi, drinks, and tips. Canyon Ranch spa is a highlight. The Solarium provides a serene glacier viewing spot.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    },
+    {
+      "id": "celebrity-millennium",
+      "cruiseLineId": "celebrity",
+      "name": "Celebrity Millennium",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Celebrity Millennium cruise ship"
+      },
+      "yearBuilt": 2000,
+      "yearRefurbished": 2023,
+      "grossTonnage": 90940,
+      "length": 965,
+      "passengerCapacity": 2138,
+      "crewSize": 999,
+      "numberOfDecks": 12,
+      "staterooms": [
+        {
+          "id": "celebrity-mill-interior",
+          "name": "Interior",
+          "description": "Refreshed interior stateroom with modern decor, eXhale bedding, and interactive TV.",
+          "pricePerPerson": { "amount": 1349, "currency": "USD" },
+          "squareFeet": 170,
+          "maxOccupancy": 2,
+          "amenities": ["eXhale bedding", "Interactive TV", "Mini-bar", "Safe", "Hair dryer"]
+        },
+        {
+          "id": "celebrity-mill-oceanview",
+          "name": "Ocean View",
+          "description": "Recently renovated stateroom with ocean-view window and contemporary furnishings.",
+          "pricePerPerson": { "amount": 1649, "currency": "USD" },
+          "squareFeet": 171,
+          "maxOccupancy": 2,
+          "amenities": ["Ocean-view window", "eXhale bedding", "Interactive TV", "Mini-bar", "Safe"]
+        },
+        {
+          "id": "celebrity-mill-balcony",
+          "name": "Balcony",
+          "description": "Private balcony stateroom with updated furnishings and floor-to-ceiling glass doors. Always Included pricing.",
+          "pricePerPerson": { "amount": 2199, "currency": "USD" },
+          "squareFeet": 215,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "eXhale bedding", "Interactive TV", "Mini-bar", "Safe", "Bathrobe"]
+        },
+        {
+          "id": "celebrity-mill-suite",
+          "name": "Suite",
+          "description": "Celebrity Suite with floor-to-ceiling windows, whirlpool tub on balcony, separate living room, and The Retreat access.",
+          "pricePerPerson": { "amount": 4799, "currency": "USD" },
+          "squareFeet": 467,
+          "maxOccupancy": 4,
+          "amenities": ["Large balcony with whirlpool tub", "Separate living room", "Butler service", "The Retreat access", "Premium drinks", "Walk-in closet", "Espresso machine"]
+        }
+      ],
+      "dining": [
+        "Metropolitan Restaurant",
+        "Murano",
+        "Tuscan Grille",
+        "Sushi on Five",
+        "Oceanview Cafe",
+        "Mast Grill",
+        "Cafe al Bacio",
+        "AquaSpa Cafe"
+      ],
+      "entertainment": [
+        "Celebrity Theater",
+        "Rendezvous Lounge",
+        "Fortunes Casino",
+        "Team Trivia",
+        "Martini Bar"
+      ],
+      "activities": [
+        "Solarium (adults-only)",
+        "Canyon Ranch SpaClub",
+        "Fitness Center",
+        "Pool Deck & Hot Tubs",
+        "Basketball Court",
+        "Library",
+        "Art Auction",
+        "Jogging Track"
+      ],
+      "ports": [
+        {
+          "name": "Vancouver, BC",
+          "country": "Canada",
+          "arrivalTime": "",
+          "departureTime": "16:30",
+          "dayNumber": 1,
+          "highlights": ["Stanley Park", "Gastown", "Granville Island"]
+        },
+        {
+          "name": "Inside Passage (Scenic Cruising)",
+          "country": "USA/Canada",
+          "arrivalTime": "08:00",
+          "departureTime": "18:00",
+          "dayNumber": 2,
+          "highlights": ["Scenic Inside Passage cruising"]
+        },
+        {
+          "name": "Icy Strait Point",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "16:00",
+          "dayNumber": 3,
+          "highlights": ["ZipRider zipline", "Whale watching", "Tribal heritage center"]
+        },
+        {
+          "name": "Hubbard Glacier (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "09:00",
+          "departureTime": "17:00",
+          "dayNumber": 4,
+          "highlights": ["North America's largest tidewater glacier", "Glacier calving"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "21:00",
+          "dayNumber": 5,
+          "highlights": ["Mendenhall Glacier", "Whale watching", "Gold Creek Salmon Bake"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "14:00",
+          "dayNumber": 6,
+          "highlights": ["Creek Street", "Totem Bight", "Rainforest hike"]
+        },
+        {
+          "name": "Inside Passage (Scenic Cruising)",
+          "country": "USA/Canada",
+          "arrivalTime": "06:00",
+          "departureTime": "18:00",
+          "dayNumber": 7,
+          "highlights": ["Final scenic cruising day"]
+        },
+        {
+          "name": "Vancouver, BC",
+          "country": "Canada",
+          "arrivalTime": "06:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Vancouver, BC",
+      "route": "Alaska Hubbard Glacier from Vancouver",
+      "rating": 4.2,
+      "reviewCount": 2345,
+      "reviewSummary": "A more intimate, premium cruise experience with the Vancouver departure adding convenience for Canadian travelers. The recently refurbished interiors feel fresh and modern. Hubbard Glacier is the star attraction. Canyon Ranch spa and Solarium are guests' favorite relaxation spots.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    }
+  ],
+  "_meta": {
+    "source": "mock",
+    "lastUpdated": "2026-03-15",
+    "updatedBy": "claude"
+  }
+}

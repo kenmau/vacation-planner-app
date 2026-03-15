@@ -1,0 +1,318 @@
+{
+  "id": "princess",
+  "name": "Princess Cruises",
+  "logo": {
+    "url": "/images/placeholder.jpg",
+    "alt": "Princess Cruises logo"
+  },
+  "description": "Princess Cruises is renowned for its Alaska expertise, having sailed these waters for over 50 years. Known for the MedallionClass experience, premium dining, and shore excursion programs, Princess offers both roundtrip and one-way Gulf of Alaska voyages with optional Denali land tours.",
+  "ships": [
+    {
+      "id": "princess-ruby",
+      "cruiseLineId": "princess",
+      "name": "Ruby Princess",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Ruby Princess cruise ship"
+      },
+      "yearBuilt": 2008,
+      "yearRefurbished": 2023,
+      "grossTonnage": 113561,
+      "length": 947,
+      "passengerCapacity": 3080,
+      "crewSize": 1200,
+      "numberOfDecks": 19,
+      "staterooms": [
+        {
+          "id": "princess-ruby-interior",
+          "name": "Interior",
+          "description": "Well-appointed interior stateroom with Princess Luxury Bed, interactive TV, and refrigerator.",
+          "pricePerPerson": { "amount": 1149, "currency": "USD" },
+          "squareFeet": 162,
+          "maxOccupancy": 2,
+          "amenities": ["Princess Luxury Bed", "Interactive TV", "Refrigerator", "Safe", "Hair dryer"]
+        },
+        {
+          "id": "princess-ruby-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with a picture window or porthole, Princess Luxury Bed, and sitting area.",
+          "pricePerPerson": { "amount": 1499, "currency": "USD" },
+          "squareFeet": 180,
+          "maxOccupancy": 2,
+          "amenities": ["Ocean-view window", "Princess Luxury Bed", "Interactive TV", "Refrigerator", "Safe", "Sitting area"]
+        },
+        {
+          "id": "princess-ruby-balcony",
+          "name": "Balcony",
+          "description": "Stateroom with private balcony ideal for whale and glacier watching. Includes Princess Luxury Bed and sitting area.",
+          "pricePerPerson": { "amount": 1999, "currency": "USD" },
+          "squareFeet": 222,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Princess Luxury Bed", "Interactive TV", "Refrigerator", "Safe", "Sitting area", "Bathrobe"]
+        },
+        {
+          "id": "princess-ruby-suite",
+          "name": "Suite",
+          "description": "Premium Suite with separate sitting area, walk-in closet, jacuzzi tub, and exclusive Club Class amenities.",
+          "pricePerPerson": { "amount": 3799, "currency": "USD" },
+          "squareFeet": 468,
+          "maxOccupancy": 4,
+          "amenities": ["Large private balcony", "Separate sitting area", "Walk-in closet", "Jacuzzi tub", "Club Class dining", "Priority embarkation", "Complimentary mini-bar", "Premium bath amenities"]
+        }
+      ],
+      "dining": [
+        "Main Dining Rooms (3)",
+        "Crown Grill",
+        "Sabatini's Italian Trattoria",
+        "Horizon Court Buffet",
+        "International Cafe",
+        "Alfredo's Pizzeria",
+        "Salty Dog Gastropub",
+        "Gelato"
+      ],
+      "entertainment": [
+        "Princess Theater",
+        "Movies Under the Stars",
+        "Vista Lounge",
+        "Explorers Lounge",
+        "Piazza entertainment",
+        "Casino"
+      ],
+      "activities": [
+        "The Sanctuary (adults-only retreat)",
+        "Lotus Spa",
+        "Fitness Center",
+        "Neptune's Reef & Pool",
+        "Sports Court",
+        "Discovery at SEA programs",
+        "North to Alaska enrichment talks",
+        "Art Gallery",
+        "Library"
+      ],
+      "ports": [
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "16:00",
+          "dayNumber": 1,
+          "highlights": ["Pike Place Market", "Space Needle"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "11:00",
+          "departureTime": "22:00",
+          "dayNumber": 3,
+          "highlights": ["Mendenhall Glacier", "Whale watching", "Alaska State Capitol"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "19:00",
+          "dayNumber": 4,
+          "highlights": ["White Pass Railroad", "Chilkoot Trail", "Red Onion Saloon"]
+        },
+        {
+          "name": "Glacier Bay (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "15:00",
+          "dayNumber": 5,
+          "highlights": ["Margerie Glacier", "Lamplugh Glacier", "National Park Rangers aboard"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "14:00",
+          "dayNumber": 6,
+          "highlights": ["Totem Bight State Park", "Creek Street", "Great Alaskan Lumberjack Show"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "19:00",
+          "departureTime": "23:59",
+          "dayNumber": 7,
+          "highlights": ["Butchart Gardens", "Inner Harbour", "Afternoon tea at Empress Hotel"]
+        },
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Seattle, WA",
+      "route": "Alaska Inside Passage",
+      "rating": 4.1,
+      "reviewCount": 3456,
+      "reviewSummary": "Passengers enjoy the MedallionClass touchless experience and the excellent North to Alaska enrichment program. Movies Under the Stars on glacier days is a favorite. Some find the ship showing its age despite recent refurbishment.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    },
+    {
+      "id": "princess-grand",
+      "cruiseLineId": "princess",
+      "name": "Grand Princess",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Grand Princess cruise ship"
+      },
+      "yearBuilt": 1998,
+      "yearRefurbished": 2022,
+      "grossTonnage": 108806,
+      "length": 951,
+      "passengerCapacity": 2600,
+      "crewSize": 1100,
+      "numberOfDecks": 18,
+      "staterooms": [
+        {
+          "id": "princess-grand-interior",
+          "name": "Interior",
+          "description": "Comfortable interior stateroom with Princess Luxury Bed and all standard amenities.",
+          "pricePerPerson": { "amount": 1049, "currency": "USD" },
+          "squareFeet": 160,
+          "maxOccupancy": 2,
+          "amenities": ["Princess Luxury Bed", "Interactive TV", "Refrigerator", "Safe", "Hair dryer"]
+        },
+        {
+          "id": "princess-grand-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with ocean-view window and sitting area.",
+          "pricePerPerson": { "amount": 1399, "currency": "USD" },
+          "squareFeet": 175,
+          "maxOccupancy": 2,
+          "amenities": ["Ocean-view window", "Princess Luxury Bed", "Interactive TV", "Refrigerator", "Safe"]
+        },
+        {
+          "id": "princess-grand-balcony",
+          "name": "Balcony",
+          "description": "Private balcony stateroom with unobstructed views. Perfect for scenic Alaska cruising.",
+          "pricePerPerson": { "amount": 1849, "currency": "USD" },
+          "squareFeet": 215,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Princess Luxury Bed", "Interactive TV", "Refrigerator", "Safe", "Sitting area", "Bathrobe"]
+        },
+        {
+          "id": "princess-grand-suite",
+          "name": "Suite",
+          "description": "Spacious suite with large balcony, separate living room, and premium Club Class benefits.",
+          "pricePerPerson": { "amount": 3499, "currency": "USD" },
+          "squareFeet": 440,
+          "maxOccupancy": 4,
+          "amenities": ["Large private balcony", "Separate living room", "Walk-in closet", "Jacuzzi tub", "Club Class dining", "Priority embarkation", "Complimentary mini-bar"]
+        }
+      ],
+      "dining": [
+        "Main Dining Rooms (3)",
+        "Crown Grill",
+        "Sabatini's",
+        "Horizon Court Buffet",
+        "International Cafe",
+        "Alfredo's Pizzeria",
+        "Trident Grill"
+      ],
+      "entertainment": [
+        "Princess Theater",
+        "Movies Under the Stars",
+        "Explorer's Lounge",
+        "Wheelhouse Bar",
+        "Casino"
+      ],
+      "activities": [
+        "The Sanctuary",
+        "Lotus Spa",
+        "Fitness Center",
+        "Pool Deck",
+        "Sports Court",
+        "Discovery at SEA programs",
+        "Art Gallery",
+        "Library",
+        "Jogging Track"
+      ],
+      "ports": [
+        {
+          "name": "San Francisco",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "16:00",
+          "dayNumber": 1,
+          "highlights": ["Golden Gate Bridge", "Fisherman's Wharf"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "13:00",
+          "departureTime": "22:00",
+          "dayNumber": 5,
+          "highlights": ["Mendenhall Glacier", "Whale watching"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "20:00",
+          "dayNumber": 6,
+          "highlights": ["White Pass Railroad", "Gold Rush history"]
+        },
+        {
+          "name": "Hubbard Glacier (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "12:00",
+          "dayNumber": 7,
+          "highlights": ["Hubbard Glacier calving", "Photo opportunities"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "13:00",
+          "dayNumber": 8,
+          "highlights": ["Totem poles", "Creek Street", "Floatplane tours"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "19:00",
+          "departureTime": "23:59",
+          "dayNumber": 9,
+          "highlights": ["Butchart Gardens", "Inner Harbour"]
+        },
+        {
+          "name": "San Francisco",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "",
+          "dayNumber": 11,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 10,
+      "departurePort": "San Francisco, CA",
+      "route": "Alaska Inside Passage (from San Francisco)",
+      "rating": 4.0,
+      "reviewCount": 1987,
+      "reviewSummary": "Unique San Francisco departure appeals to West Coast travelers. The longer itinerary allows for more sea days to enjoy the ship. Hubbard Glacier cruising is a highlight not available on all Alaska itineraries.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    }
+  ],
+  "_meta": {
+    "source": "mock",
+    "lastUpdated": "2026-03-15",
+    "updatedBy": "claude"
+  }
+}

@@ -5,6 +5,8 @@
 
 ## Main Orchestrator
 - [2026-03-14] Project initialized. Phase 1: Wireframe & Documentation started.
+- [2026-03-15] Phase 1 foundation built: Next.js 15 scaffold, Tailwind v4 + shadcn/ui, TypeScript interfaces, mock data (5 cruise lines, activities, accommodations, car rentals, flights), Zustand stores, exchange rate service, PriceDisplay/MockBadge components, route structure, layout shell.
+- [2026-03-15] Navigation updated per Ken's feedback: Cruise/Activities removed from global nav. Bottom nav reduced to 3 tabs (Trips, Pack, Settings). Desktop top bar shows title + Pack + settings gear. Cruise, Activities, Accommodations, Travel are trip-contextual views only.
 
 ## Cruise Data Agent
 _No updates yet._

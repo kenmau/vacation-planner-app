@@ -17,6 +17,7 @@ Built for Ken and Lan, but fully reusable for any trip to any destination.
 - **3-tier data sourcing** — Mock (yellow badge), Manual/Verified with fetch date (blue badge), Live API (green badge). You always know what's real vs estimated.
 - **API usage tracking** — Settings page shows per-domain API call counts, free tier limits, and warnings at 80%.
 - **Everything is editable** — Trip name, duration, segments, locations, and all selections can be modified after creation.
+- **Trip-contextual navigation** — Cruise, Activities, Accommodations, and Travel views are accessed through a trip's segments, not via standalone nav. Global nav has only Trips, Pack, and Settings.
 - **Mobile-first responsive** — Works on phone, tablet, and desktop.
 
 ## Tech Stack

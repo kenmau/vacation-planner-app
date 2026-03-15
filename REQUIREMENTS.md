@@ -102,8 +102,9 @@
 
 ## Navigation
 
-- **Mobile**: Bottom nav (5 tabs: Trip, Cruise, Activities, Pack, Settings) + top header with back button.
-- **Desktop** (≥900px): Sticky top bar (trip title + settings gear). No sidebar. Single centered column. Desktop back button in content area above page title.
+- **Trip-contextual views**: Cruise Browse, Cruise Detail, Land Activities, Accommodations, and Travel are **not** top-level destinations. Users reach them by tapping into a trip's segments from the Trip Overview. They are always shown in the context of a specific trip and segment.
+- **Mobile**: Bottom nav (3 tabs: **Trips**, **Pack**, **Settings**) + top header with back button.
+- **Desktop** (≥900px): Sticky top bar (trip title + **Pack** link + settings gear). No sidebar. Single centered column. Desktop back button in content area above page title.
 - View history stack (`viewHistory[]`) for back navigation.
 - Back button hidden on root/dashboard view.
 

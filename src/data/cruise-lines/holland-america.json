@@ -1,0 +1,323 @@
+{
+  "id": "holland-america",
+  "name": "Holland America Line",
+  "logo": {
+    "url": "/images/placeholder.jpg",
+    "alt": "Holland America Line logo"
+  },
+  "description": "Holland America Line offers premium cruises with a focus on enriching destinations and classic elegance. Their Alaska sailings feature smaller mid-sized ships that can navigate the Inside Passage with an emphasis on destination immersion, culinary excellence, and onboard enrichment programs.",
+  "ships": [
+    {
+      "id": "hal-koningsdam",
+      "cruiseLineId": "holland-america",
+      "name": "Koningsdam",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Holland America Koningsdam cruise ship"
+      },
+      "yearBuilt": 2016,
+      "grossTonnage": 99500,
+      "length": 975,
+      "passengerCapacity": 2650,
+      "crewSize": 1036,
+      "numberOfDecks": 14,
+      "staterooms": [
+        {
+          "id": "hal-koningsdam-interior",
+          "name": "Interior",
+          "description": "Comfortable interior stateroom with two lower beds convertible to one queen-size bed, flat-panel TV, and en-suite bathroom with shower.",
+          "pricePerPerson": { "amount": 1299, "currency": "USD" },
+          "squareFeet": 183,
+          "maxOccupancy": 2,
+          "amenities": ["Flat-panel TV", "Mini-fridge", "Safe", "Hair dryer", "Complimentary toiletries"]
+        },
+        {
+          "id": "hal-koningsdam-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with an ocean-view window, two lower beds convertible to queen-size, and sitting area.",
+          "pricePerPerson": { "amount": 1649, "currency": "USD" },
+          "squareFeet": 215,
+          "maxOccupancy": 2,
+          "amenities": ["Ocean-view window", "Flat-panel TV", "Mini-fridge", "Safe", "Hair dryer", "Sitting area"]
+        },
+        {
+          "id": "hal-koningsdam-balcony",
+          "name": "Balcony",
+          "description": "Spacious stateroom with private balcony, perfect for glacier viewing. Two lower beds convertible to queen-size, sitting area, and floor-to-ceiling glass doors.",
+          "pricePerPerson": { "amount": 2199, "currency": "USD" },
+          "squareFeet": 231,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "Flat-panel TV", "Mini-fridge", "Safe", "Sitting area", "Bathrobe"]
+        },
+        {
+          "id": "hal-koningsdam-suite",
+          "name": "Suite",
+          "description": "Luxurious Neptune Suite with separate living area, large private balcony, whirlpool bath, and exclusive Neptune Lounge access.",
+          "pricePerPerson": { "amount": 4299, "currency": "USD" },
+          "squareFeet": 500,
+          "maxOccupancy": 4,
+          "amenities": ["Large private balcony", "Separate living area", "Whirlpool bath", "Neptune Lounge access", "Concierge service", "Premium bar setup", "Flat-panel TV", "Mini-bar", "Complimentary laundry"]
+        }
+      ],
+      "dining": [
+        "The Dining Room",
+        "Pinnacle Grill",
+        "Tamarind",
+        "Canaletto",
+        "Lido Market",
+        "New York Pizza",
+        "Dive-In Burgers",
+        "Grand Dutch Cafe"
+      ],
+      "entertainment": [
+        "World Stage (theater)",
+        "B.B. King's Blues Club",
+        "Lincoln Center Stage",
+        "Billboard Onboard",
+        "Rolling Stone Rock Room"
+      ],
+      "activities": [
+        "Explorations Central (port talks)",
+        "Digital Workshop powered by Windows",
+        "Greenhouse Spa & Salon",
+        "Pool & Whirlpools",
+        "Fitness Center",
+        "Basketball/Volleyball Court",
+        "Art Gallery",
+        "Casino",
+        "Library"
+      ],
+      "ports": [
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "",
+          "departureTime": "16:00",
+          "dayNumber": 1,
+          "highlights": ["Pike Place Market", "Space Needle", "Pioneer Square"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "08:00",
+          "departureTime": "21:00",
+          "dayNumber": 3,
+          "highlights": ["Mendenhall Glacier", "Whale watching", "Downtown shopping"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "20:00",
+          "dayNumber": 4,
+          "highlights": ["White Pass & Yukon Route Railroad", "Klondike Gold Rush NHP", "Chilkoot Trail"]
+        },
+        {
+          "name": "Glacier Bay (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "15:00",
+          "dayNumber": 5,
+          "highlights": ["Margerie Glacier", "Grand Pacific Glacier", "Wildlife viewing"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "16:00",
+          "dayNumber": 6,
+          "highlights": ["Totem Bight State Park", "Creek Street", "Misty Fjords flightseeing"]
+        },
+        {
+          "name": "Victoria, BC",
+          "country": "Canada",
+          "arrivalTime": "17:00",
+          "departureTime": "23:59",
+          "dayNumber": 7,
+          "highlights": ["Butchart Gardens", "Inner Harbour", "Royal BC Museum"]
+        },
+        {
+          "name": "Seattle",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Seattle, WA",
+      "route": "Alaska Inside Passage",
+      "rating": 4.3,
+      "reviewCount": 2847,
+      "reviewSummary": "Guests praise the enrichment programs and classic ambiance. The Music Walk venues and Pinnacle Grill consistently receive high marks. Some note the ship appeals more to experienced cruisers than families.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    },
+    {
+      "id": "hal-nieuw-amsterdam",
+      "cruiseLineId": "holland-america",
+      "name": "Nieuw Amsterdam",
+      "image": {
+        "url": "/images/placeholder.jpg",
+        "alt": "Holland America Nieuw Amsterdam cruise ship"
+      },
+      "yearBuilt": 2010,
+      "yearRefurbished": 2024,
+      "grossTonnage": 86700,
+      "length": 936,
+      "passengerCapacity": 2106,
+      "crewSize": 929,
+      "numberOfDecks": 12,
+      "staterooms": [
+        {
+          "id": "hal-na-interior",
+          "name": "Interior",
+          "description": "Cozy interior stateroom with premium bedding, flat-panel TV, and en-suite bathroom.",
+          "pricePerPerson": { "amount": 1199, "currency": "USD" },
+          "squareFeet": 170,
+          "maxOccupancy": 2,
+          "amenities": ["Flat-panel TV", "Mini-fridge", "Safe", "Hair dryer", "Complimentary toiletries"]
+        },
+        {
+          "id": "hal-na-oceanview",
+          "name": "Ocean View",
+          "description": "Stateroom with ocean-view window, two lower beds convertible to queen-size, and ample storage.",
+          "pricePerPerson": { "amount": 1549, "currency": "USD" },
+          "squareFeet": 196,
+          "maxOccupancy": 2,
+          "amenities": ["Ocean-view window", "Flat-panel TV", "Mini-fridge", "Safe", "Hair dryer"]
+        },
+        {
+          "id": "hal-na-balcony",
+          "name": "Balcony",
+          "description": "Veranda stateroom with private balcony for scenic glacier viewing. Includes sitting area and premium bedding.",
+          "pricePerPerson": { "amount": 2049, "currency": "USD" },
+          "squareFeet": 213,
+          "maxOccupancy": 3,
+          "amenities": ["Private balcony", "Floor-to-ceiling glass doors", "Flat-panel TV", "Mini-fridge", "Safe", "Sitting area", "Bathrobe"]
+        },
+        {
+          "id": "hal-na-suite",
+          "name": "Suite",
+          "description": "Spacious Signature Suite with wraparound balcony, separate living room, and exclusive Neptune Lounge access.",
+          "pricePerPerson": { "amount": 3899, "currency": "USD" },
+          "squareFeet": 456,
+          "maxOccupancy": 4,
+          "amenities": ["Wraparound balcony", "Separate living area", "Whirlpool bath", "Neptune Lounge access", "Concierge service", "Premium bar setup", "Flat-panel TV", "Mini-bar"]
+        }
+      ],
+      "dining": [
+        "The Dining Room",
+        "Pinnacle Grill",
+        "Canaletto",
+        "Lido Market",
+        "New York Pizza",
+        "Dive-In Burgers",
+        "Explorations Cafe"
+      ],
+      "entertainment": [
+        "Mainstage (theater)",
+        "B.B. King's Blues Club",
+        "Lincoln Center Stage",
+        "Billboard Onboard",
+        "Casino"
+      ],
+      "activities": [
+        "Explorations Central (port talks)",
+        "Greenhouse Spa & Salon",
+        "Pool & Whirlpools",
+        "Fitness Center",
+        "Sports Court",
+        "Art Gallery",
+        "Library",
+        "Culinary Arts Center"
+      ],
+      "ports": [
+        {
+          "name": "Vancouver, BC",
+          "country": "Canada",
+          "arrivalTime": "",
+          "departureTime": "16:30",
+          "dayNumber": 1,
+          "highlights": ["Stanley Park", "Gastown", "Granville Island"]
+        },
+        {
+          "name": "Inside Passage (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "18:00",
+          "dayNumber": 2,
+          "highlights": ["Scenic cruising through narrow channels", "Wildlife spotting"]
+        },
+        {
+          "name": "Juneau",
+          "country": "USA",
+          "arrivalTime": "08:00",
+          "departureTime": "22:00",
+          "dayNumber": 3,
+          "highlights": ["Mendenhall Glacier", "Whale watching", "Tracy Arm Fjord excursion"]
+        },
+        {
+          "name": "Skagway",
+          "country": "USA",
+          "arrivalTime": "07:00",
+          "departureTime": "18:00",
+          "dayNumber": 4,
+          "highlights": ["White Pass & Yukon Route Railroad", "Gold Rush history"]
+        },
+        {
+          "name": "Glacier Bay (Scenic Cruising)",
+          "country": "USA",
+          "arrivalTime": "06:00",
+          "departureTime": "16:00",
+          "dayNumber": 5,
+          "highlights": ["Margerie Glacier", "Johns Hopkins Glacier", "Humpback whales"]
+        },
+        {
+          "name": "Ketchikan",
+          "country": "USA",
+          "arrivalTime": "10:00",
+          "departureTime": "18:00",
+          "dayNumber": 6,
+          "highlights": ["Totem Heritage Center", "Creek Street", "Lumberjack Show"]
+        },
+        {
+          "name": "Inside Passage (Scenic Cruising)",
+          "country": "USA/Canada",
+          "arrivalTime": "06:00",
+          "departureTime": "18:00",
+          "dayNumber": 7,
+          "highlights": ["Final scenic cruising", "Farewell events"]
+        },
+        {
+          "name": "Vancouver, BC",
+          "country": "Canada",
+          "arrivalTime": "07:00",
+          "departureTime": "",
+          "dayNumber": 8,
+          "highlights": ["Disembarkation"]
+        }
+      ],
+      "duration": 7,
+      "departurePort": "Vancouver, BC",
+      "route": "Alaska Glacier Discovery",
+      "rating": 4.2,
+      "reviewCount": 2134,
+      "reviewSummary": "Guests love the intimate feel of this mid-sized ship and the Vancouver departure. The recently refurbished public spaces receive high praise. Glacier Bay scenic cruising is a standout highlight.",
+      "_meta": {
+        "source": "mock",
+        "lastUpdated": "2026-03-15",
+        "updatedBy": "claude"
+      }
+    }
+  ],
+  "_meta": {
+    "source": "mock",
+    "lastUpdated": "2026-03-15",
+    "updatedBy": "claude"
+  }
+}

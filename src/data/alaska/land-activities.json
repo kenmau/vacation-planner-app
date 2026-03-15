@@ -1,0 +1,409 @@
+[
+  {
+    "id": "ak-activity-glacier-helicopter",
+    "name": "Mendenhall Glacier Helicopter Tour & Trek",
+    "description": "Soar over the Juneau Icefield and land on Mendenhall Glacier for a guided trek across ancient blue ice. Includes hiking boots, rain gear, and experienced glacier guide. One of Alaska's most iconic experiences.",
+    "location": {
+      "city": "Juneau",
+      "stateOrCountry": "Alaska",
+      "region": "Southeast Alaska"
+    },
+    "type": "Glacier Tour",
+    "physicalLevel": "moderate",
+    "duration": "3.5 hours",
+    "price": { "amount": 389, "currency": "USD" },
+    "rating": 4.8,
+    "reviewCount": 3245,
+    "seasonalAvailability": ["May", "June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Helicopter on Mendenhall Glacier"
+    },
+    "packingRecommendations": [
+      "Layered clothing",
+      "Waterproof jacket",
+      "Sunglasses",
+      "Sunscreen",
+      "Camera with strap",
+      "Warm gloves"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-whale-watching",
+    "name": "Juneau Whale Watching & Wildlife Cruise",
+    "description": "Board a small group catamaran for a whale watching expedition in the whale-rich waters of Stephens Passage. Virtually guaranteed humpback whale sightings May through September. May also spot orcas, sea lions, eagles, and bears along the coastline.",
+    "location": {
+      "city": "Juneau",
+      "stateOrCountry": "Alaska",
+      "region": "Southeast Alaska"
+    },
+    "type": "Wildlife",
+    "physicalLevel": "easy",
+    "duration": "3 hours",
+    "price": { "amount": 179, "currency": "USD" },
+    "rating": 4.7,
+    "reviewCount": 5672,
+    "seasonalAvailability": ["May", "June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Humpback whale breaching in Juneau waters"
+    },
+    "packingRecommendations": [
+      "Warm waterproof jacket",
+      "Binoculars",
+      "Camera with zoom lens",
+      "Motion sickness medication (if prone)",
+      "Layered clothing",
+      "Hat and gloves"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-dog-sledding",
+    "name": "Glacier Dog Sledding Experience",
+    "description": "Fly by helicopter to a glacier camp and ride a dog sled team across pristine glacier ice. Meet Alaskan Huskies, learn mushing commands, and experience the thrill of this quintessential Alaska adventure. Suitable for all ages.",
+    "location": {
+      "city": "Juneau",
+      "stateOrCountry": "Alaska",
+      "region": "Southeast Alaska"
+    },
+    "type": "Dog Sledding",
+    "physicalLevel": "easy",
+    "duration": "3 hours",
+    "price": { "amount": 549, "currency": "USD" },
+    "rating": 4.9,
+    "reviewCount": 2189,
+    "seasonalAvailability": ["May", "June", "July", "August"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Dog sled team on glacier near Juneau"
+    },
+    "packingRecommendations": [
+      "Warm layered clothing",
+      "Waterproof jacket and pants",
+      "Sunglasses",
+      "Sunscreen",
+      "Camera",
+      "Gloves"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-denali-hike",
+    "name": "Denali National Park Guided Wilderness Hike",
+    "description": "Join a certified naturalist for a full-day guided hike into the Denali backcountry. Traverse tundra, cross glacial streams, and spot wildlife including grizzly bears, caribou, and Dall sheep with the towering peak of Denali as your backdrop.",
+    "location": {
+      "city": "Denali Park",
+      "stateOrCountry": "Alaska",
+      "region": "Interior Alaska"
+    },
+    "type": "Hiking",
+    "physicalLevel": "challenging",
+    "duration": "Full day (8 hours)",
+    "price": { "amount": 225, "currency": "USD" },
+    "rating": 4.6,
+    "reviewCount": 1876,
+    "seasonalAvailability": ["June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Hikers on trail with Denali mountain in background"
+    },
+    "packingRecommendations": [
+      "Sturdy hiking boots (broken in)",
+      "Rain gear",
+      "Bear spray",
+      "Packed lunch and snacks",
+      "Water bottles (2L minimum)",
+      "Insect repellent",
+      "Trekking poles",
+      "Layered clothing",
+      "Backpack"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-misty-fjords",
+    "name": "Misty Fjords Floatplane Adventure",
+    "description": "Fly by floatplane over the breathtaking Misty Fjords National Monument, a wilderness of towering granite cliffs, cascading waterfalls, and pristine alpine lakes. Land on a remote lake for a short nature walk before flying back.",
+    "location": {
+      "city": "Ketchikan",
+      "stateOrCountry": "Alaska",
+      "region": "Southeast Alaska"
+    },
+    "type": "Flightseeing",
+    "physicalLevel": "easy",
+    "duration": "2 hours",
+    "price": { "amount": 299, "currency": "USD" },
+    "rating": 4.8,
+    "reviewCount": 2456,
+    "seasonalAvailability": ["May", "June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Floatplane over Misty Fjords National Monument"
+    },
+    "packingRecommendations": [
+      "Camera",
+      "Light jacket",
+      "Sunglasses",
+      "Motion sickness medication (if prone)"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-bear-viewing",
+    "name": "Katmai Bear Viewing Day Trip",
+    "description": "Fly from Anchorage to Katmai National Park for a day of brown bear viewing at one of the world's premier bear-watching locations. Watch bears fishing for salmon at Brooks Falls during the annual salmon run. Includes bush plane flight, park entry, and guide.",
+    "location": {
+      "city": "Anchorage",
+      "stateOrCountry": "Alaska",
+      "region": "Southwest Alaska"
+    },
+    "type": "Wildlife",
+    "physicalLevel": "moderate",
+    "duration": "Full day (10 hours)",
+    "price": { "amount": 875, "currency": "USD" },
+    "rating": 4.9,
+    "reviewCount": 987,
+    "seasonalAvailability": ["July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Brown bears fishing at Brooks Falls in Katmai"
+    },
+    "packingRecommendations": [
+      "Waterproof boots",
+      "Rain gear",
+      "Binoculars",
+      "Camera with zoom lens",
+      "Snacks",
+      "Insect repellent",
+      "Warm layers"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-kayak-kenai",
+    "name": "Kenai Fjords Sea Kayaking",
+    "description": "Paddle through the pristine waters of Kenai Fjords National Park, navigating among icebergs calved from tidewater glaciers. Spot sea otters, puffins, and harbor seals while your guide shares insights about the fjord ecosystem.",
+    "location": {
+      "city": "Seward",
+      "stateOrCountry": "Alaska",
+      "region": "Southcentral Alaska"
+    },
+    "type": "Kayaking",
+    "physicalLevel": "moderate",
+    "duration": "5 hours",
+    "price": { "amount": 199, "currency": "USD" },
+    "rating": 4.7,
+    "reviewCount": 1543,
+    "seasonalAvailability": ["May", "June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Kayakers paddling near glacier in Kenai Fjords"
+    },
+    "packingRecommendations": [
+      "Quick-dry clothing",
+      "Waterproof jacket",
+      "Water shoes or sandals with straps",
+      "Sunscreen",
+      "Sunglasses with strap",
+      "Water bottle",
+      "Camera (waterproof or in dry bag)"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-white-pass-railroad",
+    "name": "White Pass & Yukon Route Railroad",
+    "description": "Ride the historic narrow-gauge railway from Skagway through dramatic mountain scenery, climbing nearly 3,000 feet in just 20 miles. Built during the 1898 Klondike Gold Rush, this engineering marvel offers breathtaking views of waterfalls, tunnels, and trestle bridges.",
+    "location": {
+      "city": "Skagway",
+      "stateOrCountry": "Alaska",
+      "region": "Southeast Alaska"
+    },
+    "type": "Scenic Rail",
+    "physicalLevel": "easy",
+    "duration": "3.5 hours",
+    "price": { "amount": 139, "currency": "USD" },
+    "rating": 4.6,
+    "reviewCount": 8765,
+    "seasonalAvailability": ["May", "June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "White Pass railroad train on mountain tracks"
+    },
+    "packingRecommendations": [
+      "Warm jacket",
+      "Camera",
+      "Binoculars",
+      "Comfortable shoes"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-salmon-fishing",
+    "name": "Kenai River Salmon Fishing Charter",
+    "description": "Fish for world-class King and Silver salmon on the legendary Kenai River with an experienced local guide. All gear, tackle, and fishing licenses included. Fish cleaning and vacuum packing available for your catch.",
+    "location": {
+      "city": "Soldotna",
+      "stateOrCountry": "Alaska",
+      "region": "Kenai Peninsula"
+    },
+    "type": "Fishing",
+    "physicalLevel": "moderate",
+    "duration": "6 hours",
+    "price": { "amount": 325, "currency": "USD" },
+    "rating": 4.5,
+    "reviewCount": 2134,
+    "seasonalAvailability": ["June", "July", "August"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Angler holding King salmon on Kenai River"
+    },
+    "packingRecommendations": [
+      "Rain gear",
+      "Warm layers",
+      "Waterproof boots",
+      "Sunscreen",
+      "Polarized sunglasses",
+      "Snacks and water"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-northern-lights",
+    "name": "Northern Lights Viewing Tour (Fairbanks)",
+    "description": "Travel to a prime aurora viewing location outside Fairbanks, away from city lights. Enjoy hot drinks in a heated viewing lodge while waiting for the aurora borealis. Photography tips included. Best viewed late August through early April.",
+    "location": {
+      "city": "Fairbanks",
+      "stateOrCountry": "Alaska",
+      "region": "Interior Alaska"
+    },
+    "type": "Aurora Viewing",
+    "physicalLevel": "easy",
+    "duration": "4 hours (evening)",
+    "price": { "amount": 149, "currency": "USD" },
+    "rating": 4.4,
+    "reviewCount": 1987,
+    "seasonalAvailability": ["August", "September", "October", "November", "December", "January", "February", "March"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Northern lights over Fairbanks Alaska"
+    },
+    "packingRecommendations": [
+      "Very warm layers (temperatures can drop below freezing)",
+      "Insulated boots",
+      "Warm hat and gloves",
+      "Tripod for camera",
+      "Hand warmers",
+      "Thermos for hot drinks"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-glacier-cruise-kenai",
+    "name": "Kenai Fjords National Park Glacier Cruise",
+    "description": "Full-day cruise through Kenai Fjords National Park visiting Aialik Glacier and the Holgate Arm. See tidewater glaciers calving into the sea, spot whales, puffins, sea otters, and sea lions. Lunch included aboard.",
+    "location": {
+      "city": "Seward",
+      "stateOrCountry": "Alaska",
+      "region": "Southcentral Alaska"
+    },
+    "type": "Glacier Tour",
+    "physicalLevel": "easy",
+    "duration": "Full day (8 hours)",
+    "price": { "amount": 249, "currency": "USD" },
+    "rating": 4.7,
+    "reviewCount": 4321,
+    "seasonalAvailability": ["May", "June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "Cruise boat near Aialik Glacier in Kenai Fjords"
+    },
+    "packingRecommendations": [
+      "Warm waterproof jacket",
+      "Layered clothing",
+      "Binoculars",
+      "Camera",
+      "Motion sickness medication",
+      "Hat and gloves"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  },
+  {
+    "id": "ak-activity-zipline-icy-strait",
+    "name": "Icy Strait Point ZipRider",
+    "description": "Experience the world's largest zipline at Icy Strait Point, soaring 1,300 feet above the forest floor at speeds up to 60 mph with panoramic views of Icy Strait and the surrounding mountains. The ride covers 5,330 feet in about 90 seconds.",
+    "location": {
+      "city": "Hoonah",
+      "stateOrCountry": "Alaska",
+      "region": "Southeast Alaska"
+    },
+    "type": "Adventure",
+    "physicalLevel": "moderate",
+    "duration": "1 hour",
+    "price": { "amount": 159, "currency": "USD" },
+    "rating": 4.6,
+    "reviewCount": 1234,
+    "seasonalAvailability": ["May", "June", "July", "August", "September"],
+    "image": {
+      "url": "/images/placeholder.jpg",
+      "alt": "ZipRider zipline at Icy Strait Point"
+    },
+    "packingRecommendations": [
+      "Closed-toe shoes",
+      "Warm layers",
+      "Windbreaker",
+      "Secure camera mount or GoPro"
+    ],
+    "_meta": {
+      "source": "mock",
+      "lastUpdated": "2026-03-15",
+      "updatedBy": "claude"
+    }
+  }
+]
