@@ -197,10 +197,15 @@ export function SegmentEditCard({
             <Input
               type="number"
               min={1}
-              value={segment.durationDays}
-              onChange={(e) =>
-                onUpdate({ durationDays: Math.max(1, parseInt(e.target.value) || 1) })
-              }
+              value={segment.durationDays || ''}
+              onChange={(e) => {
+                const raw = e.target.value;
+                const parsed = parseInt(raw);
+                onUpdate({ durationDays: raw === '' ? 0 : (isNaN(parsed) ? 1 : Math.max(0, parsed)) });
+              }}
+              onBlur={() => {
+                if (segment.durationDays < 1) onUpdate({ durationDays: 1 });
+              }}
             />
           </div>
           <div className="flex flex-col gap-1.5 flex-1">
@@ -209,9 +214,11 @@ export function SegmentEditCard({
               type="number"
               min={0}
               value={segment.flexDays}
-              onChange={(e) =>
-                onUpdate({ flexDays: Math.max(0, parseInt(e.target.value) || 0) })
-              }
+              onChange={(e) => {
+                const raw = e.target.value;
+                const parsed = parseInt(raw);
+                onUpdate({ flexDays: raw === '' ? 0 : (isNaN(parsed) ? 0 : Math.max(0, parsed)) });
+              }}
             />
           </div>
         </div>

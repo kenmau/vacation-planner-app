@@ -36,12 +36,19 @@ export function SegmentCard({ segment }: SegmentCardProps) {
           </div>
         </div>
 
+        {/* Segment title */}
+        {segment.title && (
+          <h3 className="text-base font-semibold leading-tight">{segment.title}</h3>
+        )}
+
         {/* Location */}
         <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
           <MapPin className="h-3.5 w-3.5" />
           {isCruise && segment.endLocation?.city
             ? `${segment.location.city} \u2192 ${segment.endLocation.city}`
-            : `${segment.location.city}, ${segment.location.stateOrCountry}`}
+            : segment.location.stateOrCountry
+              ? `${segment.location.city}, ${segment.location.stateOrCountry}`
+              : segment.location.city}
         </div>
 
         {/* Conditional rows */}
