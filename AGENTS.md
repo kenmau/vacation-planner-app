@@ -159,10 +159,20 @@ This applies to all agents. No agent may skip validation to start the next phase
 
 When Ken makes suggestions, asks questions, or adds ideas that affect how the app should work:
 
-1. **Update `REQUIREMENTS.md`** — reflect the change immediately, in the appropriate section.
-2. **Update `README.md`** — if the change affects the feature list, tech stack, getting started steps, or any other README content, update it at the same time.
-3. **Confirm the changes** — after updating, tell Ken exactly what was added, changed, or removed in each file (1–3 sentences per file). Do not silently update files.
+1. **Propose changes first** — before editing `REQUIREMENTS.md` or `README.md`, tell Ken exactly what you plan to add, change, or remove. Wait for his approval.
+2. **Update only after confirmation** — once Ken approves, update `REQUIREMENTS.md` and `README.md` as agreed.
+3. **Confirm the result** — after updating, summarize what was changed in each file (1–3 sentences per file). Do not silently update files.
 4. **Scope**: Any change to user-facing behavior, data model, navigation, UI patterns, or business rules counts. Cosmetic/wording tweaks do not need updates.
+
+### Wireframe-Driven Changes
+
+When Ken requests design changes in the wireframe, **do not automatically update requirements**. Instead:
+
+1. **Implement the wireframe change** as requested.
+2. **Ask Ken** whether the associated requirements should be: **(a)** updated to reflect the new design, **(b)** tweaked (and clarify what needs adjustment), or **(c)** completely discarded.
+3. **Only then** update `REQUIREMENTS.md` and `README.md` based on Ken's answer.
+
+This applies to all agents. Never silently propagate wireframe changes into requirements.
 
 ---
 
