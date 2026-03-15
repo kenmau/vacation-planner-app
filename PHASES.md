@@ -49,7 +49,7 @@
 
 ---
 
-## Phase 2 — Trip Structure ⏳
+## Phase 2 — Trip Structure 🔄
 **Goal**: A user can create a trip through the wizard, see their segments on the Trip Overview, and navigate between views.
 
 ### Checklist
@@ -227,7 +227,7 @@
 |-------|-------------|--------|
 | 0 | Wireframe & Requirements | ✅ |
 | 1 | Foundation | ✅ |
-| 2 | Trip Structure | ⏳ |
+| 2 | Trip Structure | 🔄 |
 | 3 | Calendar & Day Detail | ⏳ |
 | 4 | Cruise Module | ⏳ |
 | 5 | Land & Accommodations | ⏳ |

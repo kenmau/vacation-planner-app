@@ -13,6 +13,11 @@ export interface Segment {
     city: string;
     stateOrCountry: string;
   };
+  /** End location — used for cruise/river-cruise segments with different start/end ports */
+  endLocation?: {
+    city: string;
+    stateOrCountry: string;
+  };
   startDate: string; // ISO date
   endDate: string;   // ISO date
   flexDays: number;  // ± days flexibility

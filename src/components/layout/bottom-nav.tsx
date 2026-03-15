@@ -14,15 +14,25 @@ const NAV_ITEMS = [
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
+/** Determine which tab href should be active for a given pathname. */
+function getActiveTab(pathname: string): string {
+  if (pathname.startsWith("/packing")) return "/packing";
+  if (pathname.startsWith("/settings")) return "/settings";
+
+  // Everything else is trip-contextual and maps to the "Trips" tab
+  // This covers: /, /dashboard, /trip-overview, /wizard-*, /cruise-*, /land-activities, /accommodations, /travel
+  return "/";
+}
+
 export function BottomNav() {
   const pathname = usePathname();
+  const activeTab = getActiveTab(pathname);
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background lg:hidden">
       <div className="flex items-center justify-around h-16">
         {NAV_ITEMS.map((item) => {
-          const isActive =
-            pathname === item.href || pathname.startsWith(item.href + "/");
+          const isActive = item.href === activeTab;
           const Icon = item.icon;
           return (
             <Link
