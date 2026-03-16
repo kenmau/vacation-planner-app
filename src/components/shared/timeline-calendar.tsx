@@ -42,12 +42,20 @@ export interface TimelineCalendarProps {
     type: string;
     title: string;
     durationDays: number;
+    location?: string;
   }>;
+  /** When provided, day cells become clickable buttons */
+  onDayClick?: (date: string) => void;
+  /** Currently selected date — highlighted in the calendar */
+  selectedDate?: string;
+  /** Dim segments whose type is NOT in this list (for cruise-browse / land-activities) */
+  highlightSegmentTypes?: string[];
 }
 
 interface SegmentBlock {
   type: string;
   title: string;
+  location?: string;
   color: string;
   gridStart: number; // 1-based grid column start
   span: number;
@@ -57,18 +65,22 @@ export function TimelineCalendar({
   startDate,
   totalDays,
   segments,
+  onDayClick,
+  selectedDate,
+  highlightSegmentTypes,
 }: TimelineCalendarProps) {
   // Ensure at least 1 day
   const days = Math.max(totalDays, 1);
 
-  // Build day headers
+  // Build day headers with ISO date strings
   const dayHeaders = useMemo(() => {
-    const headers: Array<{ dayNumber: number; dateLabel: string }> = [];
+    const headers: Array<{ dayNumber: number; dateLabel: string; dateISO: string }> = [];
     for (let i = 0; i < days; i++) {
       const dateStr = addDays(startDate, i);
       headers.push({
         dayNumber: i + 1,
         dateLabel: formatDateShort(dateStr),
+        dateISO: dateStr,
       });
     }
     return headers;
@@ -85,6 +97,7 @@ export function TimelineCalendar({
       blocks.push({
         type: seg.type,
         title: seg.title,
+        location: seg.location,
         color,
         gridStart: currentCol,
         span: seg.durationDays,
@@ -99,6 +112,8 @@ export function TimelineCalendar({
   const totalSegmentDays = segments.reduce((sum, s) => sum + s.durationDays, 0);
   const gapDays = days - totalSegmentDays;
 
+  const isInteractive = !!onDayClick;
+
   return (
     <div className="rounded-lg border border-border bg-background shadow-sm">
       <div className="overflow-x-auto">
@@ -111,30 +126,61 @@ export function TimelineCalendar({
           }}
         >
           {/* Row 1: Day headers */}
-          {dayHeaders.map((header) => (
-            <div
-              key={header.dayNumber}
-              className="flex flex-col items-center justify-center border-r border-border px-0.5 py-1.5 last:border-r-0"
-              style={{ gridRow: 1 }}
-            >
-              <span className="text-[10px] font-semibold text-foreground leading-tight">
-                {header.dayNumber}
-              </span>
-              <span className="text-[9px] text-muted-foreground leading-tight">
-                {header.dateLabel}
-              </span>
-            </div>
-          ))}
+          {dayHeaders.map((header) => {
+            const isSelected = selectedDate === header.dateISO;
+            const cellContent = (
+              <>
+                <span className="text-[10px] font-semibold text-foreground leading-tight">
+                  {header.dayNumber}
+                </span>
+                <span className="text-[9px] text-muted-foreground leading-tight">
+                  {header.dateLabel}
+                </span>
+              </>
+            );
+
+            if (isInteractive) {
+              return (
+                <button
+                  key={header.dayNumber}
+                  type="button"
+                  onClick={() => onDayClick(header.dateISO)}
+                  className={`flex flex-col items-center justify-center border-r border-border px-0.5 py-1.5 last:border-r-0 transition-colors cursor-pointer hover:bg-accent/50 ${
+                    isSelected ? 'bg-primary/10 ring-1 ring-primary/30' : ''
+                  }`}
+                  style={{ gridRow: 1 }}
+                >
+                  {cellContent}
+                </button>
+              );
+            }
+
+            return (
+              <div
+                key={header.dayNumber}
+                className="flex flex-col items-center justify-center border-r border-border px-0.5 py-1.5 last:border-r-0"
+                style={{ gridRow: 1 }}
+              >
+                {cellContent}
+              </div>
+            );
+          })}
 
           {/* Row 2: Segment blocks */}
           {segmentBlocks.map((block, i) => {
             const bgClasses = BG_COLOR_MAP[block.color] ?? BG_COLOR_MAP.blue;
             const textClass = TEXT_COLOR_MAP[block.color] ?? TEXT_COLOR_MAP.blue;
+            const isDimmed =
+              highlightSegmentTypes &&
+              highlightSegmentTypes.length > 0 &&
+              !highlightSegmentTypes.includes(block.type);
 
             return (
               <div
                 key={i}
-                className={`flex items-center border-t-2 rounded-sm px-1.5 py-1 ${bgClasses} ${textClass}`}
+                className={`flex items-center border-t-2 rounded-sm px-1.5 py-1 ${bgClasses} ${textClass} ${
+                  isDimmed ? 'opacity-30' : ''
+                }`}
                 style={{
                   gridRow: 2,
                   gridColumn: `${block.gridStart} / span ${block.span}`,

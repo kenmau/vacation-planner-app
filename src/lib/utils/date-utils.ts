@@ -73,6 +73,24 @@ export function formatDateRange(start: string, end: string): string {
  * cascade dates so each segment starts on the previous segment's end date.
  * Returns a new array with startDate and endDate filled in.
  */
+/**
+ * Find which segment a given date falls into.
+ * Segments are checked by [startDate, endDate) range.
+ * Returns the segment index, or -1 if the date is outside all segments.
+ */
+export function getSegmentForDate(
+  segments: Array<{ startDate: string; endDate: string }>,
+  date: string
+): number {
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i];
+    if (date >= seg.startDate && date < seg.endDate) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 export function calculateSegmentDates(
   segments: Array<{ durationDays: number; [key: string]: unknown }>,
   tripStartDate: string

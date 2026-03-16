@@ -1,14 +1,17 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { MapPin } from 'lucide-react';
 import { useTripStore, useTripStoreHydrated } from '@/lib/stores/trip-store';
 import { useWizardStore } from '@/lib/stores/wizard-store';
 import { calculatePriceBreakdown } from '@/lib/utils/price-calculator';
+import { daysBetween, getSegmentForDate } from '@/lib/utils/date-utils';
 import { PriceHeader } from '@/components/trip/price-header';
 import { SegmentCard } from '@/components/trip/segment-card';
 import { FlightCTA } from '@/components/trip/flight-cta';
+import { TimelineCalendar } from '@/components/shared/timeline-calendar';
+import { DayDetailDrawer } from '@/components/calendar/day-detail-drawer';
 import { Button } from '@/components/ui/button';
 
 export default function TripOverviewPage() {
@@ -18,6 +21,8 @@ export default function TripOverviewPage() {
   const events = useTripStore((s) => s.events);
   const loadFromTrip = useWizardStore((s) => s.loadFromTrip);
 
+  const [drawerDate, setDrawerDate] = useState<string | null>(null);
+
   useEffect(() => {
     // Only redirect after hydration — otherwise we'd redirect before the store loads
     if (hydrated && !activeTrip) {
@@ -25,12 +30,40 @@ export default function TripOverviewPage() {
     }
   }, [hydrated, activeTrip, router]);
 
+  const segments = useMemo(
+    () => (activeTrip ? [...activeTrip.segments].sort((a, b) => a.order - b.order) : []),
+    [activeTrip]
+  );
+
+  // Build timeline data from sorted segments
+  const timelineSegments = useMemo(
+    () =>
+      segments.map((s) => ({
+        type: s.type,
+        title: s.title,
+        durationDays: daysBetween(s.startDate, s.endDate),
+        location: `${s.location.city}, ${s.location.stateOrCountry}`,
+      })),
+    [segments]
+  );
+
+  const totalDays = useMemo(
+    () => (activeTrip ? daysBetween(activeTrip.startDate, activeTrip.endDate) : 0),
+    [activeTrip]
+  );
+
+  // Resolve the segment for the selected drawer date
+  const drawerSegment = useMemo(() => {
+    if (!drawerDate || segments.length === 0) return null;
+    const idx = getSegmentForDate(segments, drawerDate);
+    return idx >= 0 ? segments[idx] : null;
+  }, [drawerDate, segments]);
+
   if (!hydrated || !activeTrip) {
     return null;
   }
 
   const breakdown = calculatePriceBreakdown(activeTrip, events);
-  const segments = [...activeTrip.segments].sort((a, b) => a.order - b.order);
 
   if (segments.length === 0) {
     return (
@@ -55,6 +88,17 @@ export default function TripOverviewPage() {
   return (
     <div className="space-y-0">
       <PriceHeader breakdown={breakdown} />
+
+      {/* Calendar timeline */}
+      <div className="px-4 pt-4">
+        <TimelineCalendar
+          startDate={activeTrip.startDate}
+          totalDays={totalDays}
+          segments={timelineSegments}
+          onDayClick={(date) => setDrawerDate(date)}
+          selectedDate={drawerDate ?? undefined}
+        />
+      </div>
 
       <div className="px-4 py-4 space-y-2">
         {segments.map((segment, index) => (
@@ -83,6 +127,21 @@ export default function TripOverviewPage() {
           </Button>
         </div>
       </div>
+
+      {/* Day Detail Drawer */}
+      <DayDetailDrawer
+        open={drawerDate !== null}
+        onOpenChange={(open) => {
+          if (!open) setDrawerDate(null);
+        }}
+        date={drawerDate ?? ''}
+        segmentTitle={
+          drawerSegment
+            ? `${drawerSegment.location.city}, ${drawerSegment.location.stateOrCountry}`
+            : ''
+        }
+        segmentId={drawerSegment?.id ?? ''}
+      />
     </div>
   );
 }
