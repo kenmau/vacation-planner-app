@@ -71,19 +71,19 @@
 
 ---
 
-## Phase 3 — Calendar & Day Detail ⏳
+## Phase 3 — Calendar & Day Detail 🔁
 **Goal**: The calendar timeline is interactive and users can manage daily events with costs.
 
 ### Checklist
-- [ ] Horizontal scrollable calendar timeline (color-coded by segment, weather icons, city names)
-- [ ] Tapping a day opens right slide-out detail panel (max 420px, full-width mobile)
-- [ ] Day detail — event list auto-sorted by start time
-- [ ] Day detail — add event form: time, description, category, duration (15-min increments), cost (CAD)
-- [ ] Day detail — edit and delete events
-- [ ] Event cost rolls up into segment total and trip overall total
-- [ ] Deleting a costed event subtracts from totals
-- [ ] Dark backdrop closes drawer on tap
-- [ ] Calendar track cloned into cruise-browse, land-activities views (with segment highlighting)
+- [x] Horizontal scrollable calendar timeline (color-coded by segment, weather icons, city names)
+- [x] Tapping a day opens right slide-out detail panel (max 420px, full-width mobile)
+- [x] Day detail — event list auto-sorted by start time
+- [x] Day detail — add event form: time, description, category, duration (15-min increments), cost (CAD)
+- [x] Day detail — edit and delete events
+- [x] Event cost rolls up into segment total and trip overall total
+- [x] Deleting a costed event subtracts from totals
+- [x] Dark backdrop closes drawer on tap
+- [x] Calendar track cloned into cruise-browse, land-activities views (with segment highlighting)
 
 **End-of-phase validation**: Ask Ken to tap through calendar days, add/delete events with costs, and verify totals update correctly.
 
@@ -228,7 +228,7 @@
 | 0 | Wireframe & Requirements | ✅ |
 | 1 | Foundation | ✅ |
 | 2 | Trip Structure | ✅ |
-| 3 | Calendar & Day Detail | ⏳ |
+| 3 | Calendar & Day Detail | 🔁 |
 | 4 | Cruise Module | ⏳ |
 | 5 | Land & Accommodations | ⏳ |
 | 6 | Travel | ⏳ |
