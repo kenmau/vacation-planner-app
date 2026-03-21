@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Label } from '@/components/ui/label';
 import { SegmentTypePicker } from './segment-type-picker';
-import { getSegmentType, SEGMENT_COLOR_MAP } from '@/lib/utils/constants';
+import { getSegmentType, SEGMENT_BORDER_MAP, SEGMENT_BADGE_MAP } from '@/lib/utils/constants';
 import { cn } from '@/lib/utils';
 
 interface SegmentData {
@@ -32,12 +32,6 @@ interface SegmentEditCardProps {
   onMoveDown: () => void;
 }
 
-function getBorderClass(color: string): string {
-  const classes = SEGMENT_COLOR_MAP[color] ?? '';
-  const match = classes.match(/border-\w+-500/);
-  return match ? match[0] : 'border-gray-300';
-}
-
 export function SegmentEditCard({
   segment,
   index,
@@ -51,8 +45,8 @@ export function SegmentEditCard({
 }: SegmentEditCardProps) {
   const segmentType = getSegmentType(segment.type);
   const color = segmentType?.color ?? 'gray';
-  const borderClass = getBorderClass(color);
-  const colorClasses = SEGMENT_COLOR_MAP[color] ?? '';
+  const borderClass = SEGMENT_BORDER_MAP[color] ?? 'border-gray-300';
+  const badgeClass = SEGMENT_BADGE_MAP[color] ?? '';
   const isCruiseType = segment.type === 'cruise' || segment.type === 'river-cruise';
 
   return (
@@ -63,7 +57,7 @@ export function SegmentEditCard({
           <span className="text-sm font-medium text-muted-foreground">
             Segment {index + 1}
           </span>
-          <Badge variant="secondary" className={cn('text-xs', colorClasses)}>
+          <Badge variant="secondary" className={cn('text-xs', badgeClass)}>
             Day {dayStart}{dayEnd > dayStart ? `\u2013${dayEnd}` : ''}
           </Badge>
         </div>

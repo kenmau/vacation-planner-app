@@ -20,6 +20,20 @@ function makeSegment(overrides: Partial<Segment> = {}): Segment {
 }
 
 describe('SegmentCard', () => {
+  it('should render segment type color classes on the card border and badge', () => {
+    const { container } = render(
+      <SegmentCard segment={makeSegment({ type: 'cruise' })} />
+    );
+    // Card should have the blue border (cruise = blue)
+    const card = container.firstElementChild as HTMLElement;
+    expect(card.className).toContain('border-blue-500');
+    // Badge should have bg and text color classes
+    const badge = screen.getByText('Cruise');
+    expect(badge.className).toContain('bg-blue-50');
+    expect(badge.className).toContain('text-blue-700');
+  });
+
+
   it('should display the segment title heading', () => {
     render(<SegmentCard segment={makeSegment({ title: 'Denali Adventure' })} />);
     expect(screen.getByText('Denali Adventure')).toBeInTheDocument();

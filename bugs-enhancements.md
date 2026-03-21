@@ -19,3 +19,7 @@
 - [x] ~~Adding an event should prompt the user to select a date, and the event should then be added to the correct date section in the events list.~~ **Done** — date picker added to `EventForm` via `showDateField` prop; events sort into correct date section automatically.
 - [x] ~~When editing an event, the form should be pre-populated with the existing event details, and the user should be able to change the date of the event. If the date is changed, the event should be moved to the correct date section in the events list.~~ **Done** — edit mode includes date field, `updateEvent` now updates the date, and the sorted list re-groups automatically.
 - [x] ~~Allow clicking the event within the segment to open the edit form for that event (currently, you can only click the pencil icon to open the edit form).~~ **Done** — entire event row is now clickable (with hover state), pencil icon removed in favor of row click. Delete button still has `stopPropagation`.
+
+### Bugs
+
+- [x] ~~The colours of the cards are not showing up correctly. (i.e. The segments and alerts are black~~ **Fixed** — replaced dynamic Tailwind class extraction (`.split()`, regex) with separate static `SEGMENT_BORDER_MAP` and `SEGMENT_BADGE_MAP` in `constants.ts`. Updated `segment-card.tsx`, `segment-edit-card.tsx`, `wizard-3/page.tsx`, and `trip-card.tsx` to use direct lookups.
