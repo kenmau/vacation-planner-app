@@ -4,7 +4,7 @@ import { Calendar, MapPin, Ship, Building, CarFront } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { EventsToggle } from '@/components/trip/events-toggle';
-import { getSegmentType, SEGMENT_COLOR_MAP } from '@/lib/utils/constants';
+import { getSegmentType, SEGMENT_BORDER_MAP, SEGMENT_BADGE_MAP } from '@/lib/utils/constants';
 import { formatDateRange } from '@/lib/utils/date-utils';
 import type { Segment } from '@/lib/types';
 
@@ -15,19 +15,17 @@ interface SegmentCardProps {
 export function SegmentCard({ segment }: SegmentCardProps) {
   const segType = getSegmentType(segment.type);
   const colorKey = segType?.color ?? 'green';
-  const colorClasses = SEGMENT_COLOR_MAP[colorKey] ?? SEGMENT_COLOR_MAP['green'];
-
-  // Extract border color class for the left border
-  const borderColor = colorClasses.split(' ').find((c) => c.startsWith('border-')) ?? 'border-green-500';
+  const borderClass = SEGMENT_BORDER_MAP[colorKey] ?? SEGMENT_BORDER_MAP['green'];
+  const badgeClass = SEGMENT_BADGE_MAP[colorKey] ?? SEGMENT_BADGE_MAP['green'];
 
   const isCruise = segment.type === 'cruise' || segment.type === 'river-cruise';
 
   return (
-    <Card className={`border-l-4 ${borderColor}`}>
+    <Card className={`border-l-4 ${borderClass}`}>
       <CardContent className="space-y-3">
         {/* Top row: type pill + dates */}
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <Badge className={colorClasses}>
+          <Badge className={badgeClass}>
             {segType?.name ?? segment.type}
           </Badge>
           <div className="flex items-center gap-1.5 text-sm font-semibold">

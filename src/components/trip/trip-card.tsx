@@ -4,7 +4,7 @@ import type { Trip } from '@/lib/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { formatDateRange } from '@/lib/utils/date-utils';
-import { getSegmentType, SEGMENT_COLOR_MAP } from '@/lib/utils/constants';
+import { getSegmentType, SEGMENT_BADGE_MAP } from '@/lib/utils/constants';
 
 interface TripCardProps {
   trip: Trip;
@@ -47,14 +47,14 @@ export function TripCard({ trip, onSelect }: TripCardProps) {
           <div className="flex flex-wrap gap-1.5 pt-1">
             {uniqueSegmentTypes.map((typeId) => {
               const segType = getSegmentType(typeId);
-              const colorClasses = segType
-                ? SEGMENT_COLOR_MAP[segType.color] ?? ''
+              const badgeClass = segType
+                ? SEGMENT_BADGE_MAP[segType.color] ?? ''
                 : '';
               return (
                 <Badge
                   key={typeId}
                   variant="outline"
-                  className={colorClasses}
+                  className={badgeClass}
                 >
                   {segType?.name ?? typeId}
                 </Badge>

@@ -13,7 +13,8 @@ import { Info, MapPin, Calendar, Users } from 'lucide-react';
 import { formatDateRange, calculateSegmentDates } from '@/lib/utils/date-utils';
 import {
   getSegmentType,
-  SEGMENT_COLOR_MAP,
+  SEGMENT_BORDER_MAP,
+  SEGMENT_BADGE_MAP,
 } from '@/lib/utils/constants';
 import {
   calculateRunningDayCounter,
@@ -158,16 +159,16 @@ export default function WizardStep3Page() {
           {segments.map((seg, index) => {
             const segType = getSegmentType(seg.type);
             const color = segType?.color ?? 'gray';
-            const colorClasses = SEGMENT_COLOR_MAP[color] ?? '';
-            const borderColor = colorClasses.match(/border-\w+-500/)?.[0] ?? 'border-gray-300';
+            const borderClass = SEGMENT_BORDER_MAP[color] ?? 'border-gray-300';
+            const badgeClass = SEGMENT_BADGE_MAP[color] ?? '';
             const dc = dayCounters[index];
 
             return (
-              <Card key={index} className={`border-l-4 ${borderColor}`}>
+              <Card key={index} className={`border-l-4 ${borderClass}`}>
                 <CardContent className="py-3 flex flex-col gap-2">
                   {/* Type pill + day range */}
                   <div className="flex items-center justify-between">
-                    <Badge className={colorClasses}>
+                    <Badge className={badgeClass}>
                       {segType?.name ?? seg.type}
                     </Badge>
                     <span className="text-xs text-muted-foreground">
