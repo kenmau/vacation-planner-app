@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Backpack, Settings } from "lucide-react";
+import { ArrowLeft, Backpack, Map, Settings } from "lucide-react";
 import { useTripStore } from "@/lib/stores/trip-store";
 import { useWizardStore } from "@/lib/stores/wizard-store";
 
@@ -71,6 +71,19 @@ export function TopBar() {
 
         {/* Title */}
         <h1 className="flex-1 text-lg font-semibold truncate">{title}</h1>
+
+        {/* Desktop Trips link */}
+        <Link
+          href="/"
+          className={`hidden lg:flex items-center gap-1.5 text-sm transition-colors ${
+            pathname === "/" || pathname === "/dashboard" || pathname.startsWith("/trip-overview") || pathname.startsWith("/wizard") || pathname.startsWith("/cruise") || pathname.startsWith("/land-activities") || pathname.startsWith("/accommodations") || pathname.startsWith("/travel")
+              ? "text-foreground font-medium"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          <Map className="h-4 w-4" />
+          Trips
+        </Link>
 
         {/* Desktop Pack link */}
         <Link
