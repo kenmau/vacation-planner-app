@@ -71,7 +71,7 @@
 
 ---
 
-## Phase 3 — Calendar & Day Detail 🔁
+## Phase 3 — Calendar & Day Detail ✅
 **Goal**: The calendar timeline is interactive and users can manage daily events with costs.
 
 ### Checklist
@@ -87,7 +87,7 @@
 
 **End-of-phase validation**: Ask Ken to tap through calendar days, add/delete events with costs, and verify totals update correctly.
 
-**Validated by Ken**: ⏳
+**Validated by Ken**: ✅ 2026-03-21
 
 ---
 
@@ -228,7 +228,7 @@
 | 0 | Wireframe & Requirements | ✅ |
 | 1 | Foundation | ✅ |
 | 2 | Trip Structure | ✅ |
-| 3 | Calendar & Day Detail | 🔁 |
+| 3 | Calendar & Day Detail | ✅ |
 | 4 | Cruise Module | ⏳ |
 | 5 | Land & Accommodations | ⏳ |
 | 6 | Travel | ⏳ |
